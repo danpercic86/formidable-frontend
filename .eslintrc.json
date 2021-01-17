@@ -43,7 +43,10 @@
         ],
         "quotes": [
           2,
-          "single"
+          "single",
+          {
+            "avoidEscape": true
+          }
         ]
       }
     },
