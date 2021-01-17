@@ -12,7 +12,9 @@ COPY . /app/
 RUN npm run build:ssr
 
 # ------------------RUNTIME-----------------------
-FROM node:lts-alpine
+FROM alpine
+
+RUN apk add --update nodejs
 
 WORKDIR /app
 
