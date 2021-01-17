@@ -2,12 +2,15 @@
   "name": "formidable-frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run dev",
+    "local": "ng serve --proxy-config proxy/proxy.local.conf.json",
+    "dev": "ng serve --proxy-config proxy/proxy.dev.conf.json",
+    "live": "ng serve --proxy-config proxy/proxy.live.conf.json",
     "build": "ng build",
-    "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "dev:ssr": "ng run opportunity:serve-ssr",
+    "serve:ssr": "node dist/server/main.js",
+    "build:ssr": "ng build --prod && ng run opportunity:server:production"
   },
   "private": true,
   "dependencies": {
@@ -25,11 +28,23 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.2",
+    "@angular-eslint/builder": "1.1.0",
+    "@angular-eslint/eslint-plugin": "1.1.0",
+    "@angular-eslint/eslint-plugin-template": "1.1.0",
+    "@angular-eslint/schematics": "1.1.0",
+    "@angular-eslint/template-parser": "1.1.0",
     "@angular/cli": "^11.0.7",
     "@angular/compiler-cli": "~11.0.1",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^14.14.21",
-    "codelyzer": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "4.3.0",
+    "@typescript-eslint/parser": "4.3.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-prefer-arrow": "1.2.2",
+    "eslint-plugin-prettier": "^3.3.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "^6.0.0",
     "karma": "^6.0.0",
@@ -37,9 +52,9 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "prettier": "^2.2.1",
     "protractor": "~7.0.0",
     "ts-node": "^9.1.1",
-    "tslint": "~6.1.0",
     "typescript": "~4.0.2"
   }
 }
