@@ -158,7 +158,7 @@ ij_markdown_min_lines_between_paragraphs = 1
 indent_size = 2
 tab_width = 2
 ij_yaml_keep_line_breaks = true
-ij_yaml_space_before_colon = true
+ij_yaml_space_before_colon = false
 ij_yaml_spaces_within_braces = true
 ij_yaml_spaces_within_brackets = true
 
