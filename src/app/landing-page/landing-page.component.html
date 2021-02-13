@@ -1,1 +1,8 @@
-<p>landing-page works!</p>
+<div *ngFor="let form of forms$ | async">
+    <a [routerLink]="form.id.toString()">
+        {{form.name}}
+    </a>
+    <a *ngFor="let section of form.sections" [routerLink]="['section', section.id.toString()]">
+        --> {{section.name}}
+    </a>
+</div>
