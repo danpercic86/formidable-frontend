@@ -24,8 +24,14 @@
       "@core/*": [
         "app/core/*"
       ],
+      "@services/*": [
+        "app/core/services/*"
+      ],
       "@shared/*": [
         "app/shared/*"
+      ],
+      "@models/*": [
+        "app/shared/models/*"
       ],
       "@assets/*": [
         "assets/*"

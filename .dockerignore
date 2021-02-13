@@ -9,7 +9,9 @@ karma.conf.js
 .gitignore
 .github
 .editorconfig
-.eslintrc.json
+.eslintrc
 .prettierrc.json
 .stylelintrc
 .dockerignore
+.browserslistrc
+.docker-compose.yml
