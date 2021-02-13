@@ -11,7 +11,7 @@ export abstract class GenericCreateService<T extends Model> extends GenericBaseS
         super(injector);
     }
 
-    public post(payload: T): Observable<T> {
+    public create(payload: T): Observable<T> {
         return this.http.post<T>(this._url, payload);
     }
 }

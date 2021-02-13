@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root',
 })
 export abstract class GenericBaseService {
-    protected abstract modelName: string;
+    protected abstract readonly modelName: string;
     protected apiUrl = '/api/';
     protected http: HttpClient;
 

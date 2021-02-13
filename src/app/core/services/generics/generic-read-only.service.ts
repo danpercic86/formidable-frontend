@@ -11,19 +11,19 @@ export abstract class GenericReadOnlyService<T extends Model> extends GenericBas
         super(injector);
     }
 
-    private _getOne(slugOrId: string): Observable<T> {
+    private __getOne(slugOrId: string): Observable<T> {
         const url = `${this._url}/${slugOrId}/`;
         return this.http.get<T>(url);
     }
 
-    private _getAll(): Observable<T[]> {
+    private __getAll(): Observable<T[]> {
         return this.http.get<T[]>(this._url);
     }
 
-    public get(slugOrId: string): Observable<T | T[]> {
+    public get(slugOrId?: string): Observable<T | T[]> {
         if (slugOrId !== undefined && slugOrId !== null) {
-            return this._getOne(slugOrId);
+            return this.__getOne(slugOrId);
         }
-        return this._getAll();
+        return this.__getAll();
     }
 }
