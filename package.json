@@ -8,6 +8,7 @@
     "live": "ng serve --proxy-config proxy/proxy.live.conf.json",
     "build": "ng build",
     "lint": "ng lint",
+    "test": "ng test",
     "dev:ssr": "ng run formidable-frontend:serve-ssr",
     "serve:ssr": "node dist/formidable-frontend/server/main.js",
     "build:ssr": "ng build --prod && ng run formidable-frontend:server:production"
