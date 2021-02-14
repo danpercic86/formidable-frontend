@@ -1,0 +1,5 @@
+<mat-form-field class="demo-full-width margin-top" [formGroup]="group">
+    <mat-select [placeholder]="field.name" [formControlName]="field.name">
+        <mat-option *ngFor="let item of field.choices" [value]="item.value">{{item.name}}</mat-option>
+    </mat-select>
+</mat-form-field>
