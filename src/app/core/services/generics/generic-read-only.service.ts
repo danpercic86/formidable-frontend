@@ -13,11 +13,11 @@ export abstract class GenericReadOnlyService<T extends Model> extends GenericBas
 
     private __getOne(slugOrId: string): Observable<T> {
         const url = `${this._url}/${slugOrId}/`;
-        return this.http.get<T>(url);
+        return this._http.get<T>(url);
     }
 
     private __getAll(): Observable<T[]> {
-        return this.http.get<T[]>(this._url);
+        return this._http.get<T[]>(this._url);
     }
 
     public get(slugOrId?: string): Observable<T | T[]> {

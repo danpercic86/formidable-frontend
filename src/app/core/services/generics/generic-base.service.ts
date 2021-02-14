@@ -5,15 +5,15 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root',
 })
 export abstract class GenericBaseService {
-    protected abstract readonly modelName: string;
-    protected apiUrl = '/api/';
-    protected http: HttpClient;
+    protected abstract readonly _modelName: string;
+    protected _apiUrl = '/api/';
+    protected _http: HttpClient;
 
     protected constructor(protected injector: Injector) {
-        this.http = injector.get(HttpClient);
+        this._http = injector.get(HttpClient);
     }
 
     protected get _url(): string {
-        return `${this.apiUrl}${this.modelName}/`;
+        return `${this._apiUrl}${this._modelName}/`;
     }
 }

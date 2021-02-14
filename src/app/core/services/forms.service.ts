@@ -11,5 +11,5 @@ export class FormsService extends GenericReadOnlyService<FormModel> implements I
         super(injector);
     }
 
-    protected modelName = 'forms';
+    protected _modelName = 'forms';
 }
