@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
 import { SectionComponent } from './section/section.component';
+import { FormBuilderModule } from './form-builder/form-builder.module';
 
 @NgModule({
     declarations: [AppComponent, SectionComponent],
@@ -14,6 +15,7 @@ import { SectionComponent } from './section/section.component';
         AppRoutingModule,
         SharedModule,
         CoreModule,
+        FormBuilderModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

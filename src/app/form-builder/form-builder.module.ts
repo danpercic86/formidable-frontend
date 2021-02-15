@@ -20,7 +20,7 @@ import { SelectComponent } from './components/select/select.component';
 import { DateComponent } from './components/date/date.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
-import { DynamicFieldDirective } from './dynamic-field.directive';
+import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
 
 const matImports = [
     MatButtonModule,
@@ -39,7 +39,15 @@ const matImports = [
 ];
 
 @NgModule({
-    declarations: [FormBuilderComponent, InputComponent, SelectComponent, DateComponent, RadioComponent, CheckboxComponent, DynamicFieldDirective],
+    declarations: [
+        FormBuilderComponent,
+        InputComponent,
+        SelectComponent,
+        DateComponent,
+        RadioComponent,
+        CheckboxComponent,
+        DynamicFieldDirective,
+    ],
     imports: [SharedModule, ReactiveFormsModule, FormsModule, ...matImports],
     exports: [FormBuilderComponent],
 })

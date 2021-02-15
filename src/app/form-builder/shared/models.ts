@@ -2,6 +2,7 @@ import { Model } from '@models/base.model';
 
 export interface FieldModel extends Model {
     name: string;
+    value: string;
     placeholder: string;
     dependent_value: string;
     dependent_field?: number;

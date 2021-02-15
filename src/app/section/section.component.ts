@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilderComponent } from '../form-builder/form-builder.component';
 
 @Component({
     selector: 'formidable-section',
     templateUrl: './section.component.html',
     styleUrls: ['./section.component.scss'],
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent {
+    @ViewChild(FormBuilderComponent) form: FormBuilderComponent;
+
     constructor() {}
 
-    ngOnInit(): void {}
+    submit(event: Event): void {
+        console.log('form submitted');
+        console.log(event);
+    }
 }

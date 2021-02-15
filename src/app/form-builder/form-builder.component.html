@@ -1,1 +1,4 @@
-<p>form-builder works!</p>
+<form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)">
+    <ng-container *ngFor="let field of fields;" formidableDynamicField [field]="field" [group]="form">
+    </ng-container>
+</form>

@@ -1,1 +1,12 @@
-<p>section works!</p>
+<div class="form">
+    <div style="text-align:center">
+        <h1>
+            Registration Form
+        </h1>
+    </div>
+    <formidable-form-builder [fields]="regConfig" (submit)="submit($event)">
+    </formidable-form-builder>
+    <div class="margin-top">
+        {{ form.value | json }}
+    </div>
+</div>

@@ -7,14 +7,14 @@ import {
     Type,
     ViewContainerRef,
 } from '@angular/core';
-import { InputComponent } from './components/input/input.component';
-import { SelectComponent } from './components/select/select.component';
-import { DateComponent } from './components/date/date.component';
-import { RadioComponent } from './components/radio/radio.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { InputComponent } from '../components/input/input.component';
+import { SelectComponent } from '../components/select/select.component';
+import { DateComponent } from '../components/date/date.component';
+import { RadioComponent } from '../components/radio/radio.component';
+import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import { FormGroup } from '@angular/forms';
-import { FieldModel } from './shared/models';
-import { FieldComponent } from './shared/field.component';
+import { FieldModel } from '../shared/models';
+import { FieldComponent } from '../shared/field.component';
 
 const componentMapper: { [type: string]: Type<FieldComponent> } = {
     input: InputComponent,
@@ -31,9 +31,9 @@ const componentMapper: { [type: string]: Type<FieldComponent> } = {
     selector: '[formidableDynamicField]',
 })
 export class DynamicFieldDirective implements OnInit {
-    @Input() field: FieldModel;
-    @Input() group: FormGroup;
-    componentRef: ComponentRef<FieldComponent>;
+    @Input() field: FieldModel = {} as FieldModel;
+    @Input() group: FormGroup = {} as FormGroup;
+    componentRef: ComponentRef<FieldComponent> = {} as ComponentRef<FieldComponent>;
 
     constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
 
