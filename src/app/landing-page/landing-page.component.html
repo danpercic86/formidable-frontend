@@ -2,7 +2,7 @@
     <a [routerLink]="form.id.toString()">
         {{form.name}}
     </a>
-    <a *ngFor="let section of form.sections" [routerLink]="['section', section.id.toString()]">
+    <a *ngFor="let section of form.sections" [routerLink]="['sections', section.id.toString()]">
         --> {{section.name}}
     </a>
 </div>

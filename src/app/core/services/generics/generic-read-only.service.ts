@@ -12,7 +12,7 @@ export abstract class GenericReadOnlyService<T extends Model> extends GenericBas
     }
 
     private __getOne(slugOrId: string): Observable<T> {
-        const url = `${this._url}/${slugOrId}/`;
+        const url = `${this._url}${slugOrId}/`;
         return this._http.get<T>(url);
     }
 

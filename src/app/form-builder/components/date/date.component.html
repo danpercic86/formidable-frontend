@@ -4,6 +4,6 @@
     <mat-datepicker #picker></mat-datepicker>
     <mat-hint></mat-hint>
     <ng-container *ngFor="let validation of field.validators;" ngProjectAs="mat-error">
-        <mat-error *ngIf="group.get(field.name).hasError(validation.constraint)">{{validation.message}}</mat-error>
+        <mat-error *ngIf="group.get(field.name)?.hasError(validation.constraint)">{{validation.message}}</mat-error>
     </ng-container>
 </mat-form-field>

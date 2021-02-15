@@ -41,6 +41,12 @@
             "style": "camelCase"
           }
         ],
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ],
         "quotes": [
           2,
           "single",

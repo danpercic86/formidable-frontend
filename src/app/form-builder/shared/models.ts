@@ -25,16 +25,19 @@ export interface ValidatorModel extends Model {
 }
 
 export enum ValidatorTypes {
-    minLength = 'minLength',
-    maxLength = 'maxLength',
-    regex = 'regex',
+    minLength = 'minlength',
+    maxLength = 'maxlength',
+    regex = 'pattern',
+    email = 'email',
+    required = 'required',
 }
 
 export enum FieldTypes {
     text = 'text',
     email = 'email',
-    file = 'file',
-    checkbox = 'checkbox',
-    radio = 'radio',
-    select = 'select',
+    url = 'url',
+    // file = 'file',
+    // checkbox = 'checkbox',
+    // radio = 'radio',
+    // select = 'select',
 }

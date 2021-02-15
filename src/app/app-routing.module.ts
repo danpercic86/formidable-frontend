@@ -4,12 +4,12 @@ import { SectionComponent } from './section/section.component';
 
 const routes: Routes = [
     {
-        path: '',
-        loadChildren: () => import('./landing-page/landing-page.module').then((m) => m.LandingPageModule),
-    },
-    {
         path: 'sections/:id',
         component: SectionComponent,
+    },
+    {
+        path: '',
+        loadChildren: () => import('./landing-page/landing-page.module').then((m) => m.LandingPageModule),
     },
     {
         path: '**',

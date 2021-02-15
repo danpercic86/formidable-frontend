@@ -15,12 +15,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { InputComponent } from './components/input/input.component';
-import { CommonModule } from '@angular/common';
 import { SelectComponent } from './components/select/select.component';
 import { DateComponent } from './components/date/date.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const matImports = [
     MatButtonModule,
@@ -48,7 +48,7 @@ const matImports = [
         CheckboxComponent,
         DynamicFieldDirective,
     ],
-    imports: [SharedModule, ReactiveFormsModule, FormsModule, ...matImports],
+    imports: [SharedModule, ReactiveFormsModule, FormsModule, BrowserAnimationsModule, ...matImports],
     exports: [FormBuilderComponent],
 })
 export class FormBuilderModule {}

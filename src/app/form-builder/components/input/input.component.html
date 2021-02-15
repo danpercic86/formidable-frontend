@@ -1,6 +1,7 @@
-<mat-form-field class="demo-full-width" [formGroup]="group">
+<mat-form-field [formGroup]="group">
+    <mat-label>{{field.name}}</mat-label>
     <input matInput [formControlName]="field.name" [placeholder]="field.placeholder" [type]="field.type">
-    <ng-container *ngFor="let validation of field.validators;" ngProjectAs="mat-error">
-        <mat-error *ngIf="group.get(field.name).hasError(validation.constraint)">{{validation.message}}</mat-error>
+    <ng-container *ngFor="let validator of field.validators;" ngProjectAs="mat-error">
+        <mat-error *ngIf="group.get(field.name)?.hasError(validator.type)">{{validator.message}}</mat-error>
     </ng-container>
 </mat-form-field>
