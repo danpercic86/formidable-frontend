@@ -20,6 +20,8 @@ const componentMapper: { [type: string]: Type<FieldComponent> } = {
     text: InputComponent,
     email: InputComponent,
     url: InputComponent,
+    integer: InputComponent,
+    decimal: InputComponent,
     // file: InputComponent,
     // select: SelectComponent,
     // date: DateComponent,

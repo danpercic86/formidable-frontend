@@ -8,9 +8,9 @@ import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms'
     styleUrls: ['./form-builder.component.scss'],
 })
 export class FormBuilderComponent implements OnInit {
-    @Input() fields: FieldModel[] = [];
-    @Output() formSubmit: EventEmitter<Record<string, unknown>> = new EventEmitter<Record<string, unknown>>();
-    form: FormGroup = {} as FormGroup;
+    @Input() fields: FieldModel[];
+    @Output() formSubmit: EventEmitter<Record<string, unknown>>;
+    form: FormGroup;
 
     private static _getValidatorFn(validator: ValidatorModel): ValidatorFn {
         switch (validator.type) {
@@ -24,6 +24,10 @@ export class FormBuilderComponent implements OnInit {
                 return Validators.email;
             case ValidatorTypes.required:
                 return Validators.required;
+            case ValidatorTypes.max:
+                return Validators.max(parseInt(validator.constraint));
+            case ValidatorTypes.min:
+                return Validators.min(parseInt(validator.constraint));
         }
     }
 
@@ -31,19 +35,19 @@ export class FormBuilderComponent implements OnInit {
 
     ngOnInit(): void {
         console.log(this.fields);
-        this.form = this._createControl();
+        this.form = this._createFormGroup();
     }
 
-    private _createControl(): FormGroup {
+    private _createFormGroup(): FormGroup {
         const group = this.fb.group({});
         this.fields.forEach((field) => {
-            const control = this.fb.control(field.value, this._bindValidations(field.validators));
+            const control = this.fb.control(field.value, this._bindValidators(field.validators));
             group.addControl(field.name, control);
         });
         return group;
     }
 
-    private _bindValidations(validators: ValidatorModel[]): ValidatorFn | null {
+    private _bindValidators(validators: ValidatorModel[]): ValidatorFn | null {
         const validList: ValidatorFn[] = [];
         validators.forEach((valid) => {
             validList.push(FormBuilderComponent._getValidatorFn(valid));

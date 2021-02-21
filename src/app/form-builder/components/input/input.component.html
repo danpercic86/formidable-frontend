@@ -1,7 +1,22 @@
 <mat-form-field [formGroup]="group">
-    <mat-label>{{field.name}}</mat-label>
-    <input matInput [formControlName]="field.name" [placeholder]="field.placeholder" [type]="field.type">
-    <ng-container *ngFor="let validator of field.validators;" ngProjectAs="mat-error">
-        <mat-error *ngIf="group.get(field.name)?.hasError(validator.type)">{{validator.message}}</mat-error>
+    <mat-label>{{ field.name }}</mat-label>
+    <input
+        matInput
+        [id]="field.id"
+        [name]="field.name"
+        [title]="field.name"
+        [placeholder]="field.placeholder"
+        [formControlName]="field.name"
+        [type]="type"
+        [step]="step"
+        [required]="isRequired"
+        [min]="getNumberFieldConstraint(validatorTypes.min)"
+        [max]="getNumberFieldConstraint(validatorTypes.max)"
+        [maxlength]="getNumberFieldConstraint(validatorTypes.maxLength)"
+        [minlength]="getNumberFieldConstraint(validatorTypes.minLength)"
+        [pattern]="getNumberFieldConstraint(validatorTypes.regex)"
+    />
+    <ng-container *ngFor="let validator of field.validators" ngProjectAs="mat-error">
+        <mat-error *ngIf="group.get(field.name)?.hasError(validator.type)">{{ validator.message }}</mat-error>
     </ng-container>
 </mat-form-field>

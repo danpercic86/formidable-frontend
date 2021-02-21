@@ -1,13 +1,10 @@
-<form [formGroup]="form" (submit)="onSubmit($event)"
-      autocomplete="off">
+<form [formGroup]="form" (submit)="onSubmit($event)" autocomplete="off">
     <div class="row overflow-hidden">
-        <div class="col-12"
-             *ngFor="let field of fields">
-            <ng-container formidableDynamicField [field]="field" [group]="form">
-            </ng-container>
+        <div class="col-12" *ngFor="let field of fields">
+            <ng-container formidableDynamicField [field]="field" [group]="form"></ng-container>
         </div>
         <div>
-            {{form.value | json}}
+            {{ form.value | json }}
         </div>
     </div>
 </form>

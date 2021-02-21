@@ -1,5 +1,5 @@
 export interface Model {
-    id: number;
+    id: string;
 }
 
 export interface CreatedModifiedModel extends Model {
