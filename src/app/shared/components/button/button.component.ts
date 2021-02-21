@@ -9,11 +9,17 @@ export class ButtonComponent {
     @Input()
     text = 'Submit';
     @Input()
+    matIcon: string;
+    @Input()
+    loading = false;
+    @Input()
     disabled = false;
+    @Input()
+    routerLink: string;
     @Input()
     color: 'primary' | 'accent' | 'warn' | 'link' = 'primary';
     @Input()
     type: 'button' | 'submit' | 'reset' = 'button';
     @Output()
-    buttonClick: EventEmitter<Event> = new EventEmitter<Event>();
+    action: EventEmitter<Event> = new EventEmitter<Event>();
 }
