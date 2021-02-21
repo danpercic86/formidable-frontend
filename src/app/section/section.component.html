@@ -1,7 +1,7 @@
 <mat-card class="row justify-content-center">
     <div class="col-sm-12 col-md-10 col-lg-8 m-auto">
         <mat-spinner class="m-auto" *ngIf="!fields.length"></mat-spinner>
-        <formidable-form-builder *ngIf="fields.length" [fields]="fields" (submit)="submit($event)">
+        <formidable-form-builder *ngIf="fields.length" [fields]="fields" (formSubmit)="submit($event)">
         </formidable-form-builder>
     </div>
 </mat-card>

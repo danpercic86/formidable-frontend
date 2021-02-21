@@ -9,7 +9,8 @@
         <formidable-button
             class="d-flex justify-content-end"
             type="submit"
-            (buttonClick)="onSubmit($event)"
+            [loading]="loading"
+            (action)="onSubmit($event)"
         ></formidable-button>
     </div>
 </form>
