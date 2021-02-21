@@ -6,5 +6,10 @@
         <div>
             {{ form.value | json }}
         </div>
+        <formidable-button
+            class="d-flex justify-content-end"
+            type="submit"
+            (buttonClick)="onSubmit($event)"
+        ></formidable-button>
     </div>
 </form>
