@@ -23,11 +23,11 @@ const componentMapper: { [type: string]: Type<FieldComponent> } = {
     tel: InputComponent,
     integer: InputComponent,
     decimal: InputComponent,
+    checkbox: CheckboxComponent,
     // file: InputComponent,
     // select: SelectComponent,
     // date: DateComponent,
     // radio: RadioComponent,
-    // checkbox: CheckboxComponent,
 };
 
 @Directive({
