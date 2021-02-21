@@ -4,6 +4,5 @@ import { FieldComponent } from '../../shared/field.component';
 @Component({
     selector: 'formidable-date',
     templateUrl: './date.component.html',
-    styles: [],
 })
 export class DateComponent extends FieldComponent {}
