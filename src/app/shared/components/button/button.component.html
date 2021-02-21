@@ -1,0 +1,7 @@
+<a *ngIf="color === 'link'; else button" mat-raised-button routerLink=".">{{ text }}</a>
+
+<ng-template #button>
+    <button mat-raised-button [color]="color" [disabled]="disabled" [type]="type" (submit)="buttonClick.emit($event)">
+        {{ text }}
+    </button>
+</ng-template>
