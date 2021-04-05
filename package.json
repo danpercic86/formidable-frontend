@@ -42,7 +42,7 @@
     "@angular-eslint/eslint-plugin-template": "^2.0.0",
     "@angular-eslint/schematics": "2.0.2",
     "@angular-eslint/template-parser": "^2.0.0",
-    "@angular/cli": "^11.2.6",
+    "@angular/cli": "^11.2.7",
     "@angular/compiler-cli": "~11.2.7",
     "@nguniversal/builders": "^11.2.1",
     "@types/express": "^4.17.11",
