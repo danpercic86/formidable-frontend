@@ -13,6 +13,12 @@ export class FormBuilderComponent implements OnInit {
     form: FormGroup;
     loading = false;
 
+    constructor(private _fb: FormBuilder) {}
+
+    public get value(): Record<string, unknown> {
+        return this.form.value as Record<string, unknown>;
+    }
+
     private static _getValidatorFn(validator: ValidatorModel): ValidatorFn {
         switch (validator.type) {
             case ValidatorTypes.maxLength:
@@ -32,11 +38,21 @@ export class FormBuilderComponent implements OnInit {
         }
     }
 
-    constructor(private _fb: FormBuilder) {}
-
     ngOnInit(): void {
         console.log(this.fields);
         this.form = this._createFormGroup();
+    }
+
+    onSubmit(event: Event): void {
+        this.loading = true;
+        event.preventDefault();
+        event.stopPropagation();
+        if (this.form.valid) {
+            this.formSubmit.emit(this.form.value);
+        } else {
+            this._validateAllFormFields(this.form);
+        }
+        this.loading = false;
     }
 
     private _createFormGroup(): FormGroup {
@@ -56,26 +72,10 @@ export class FormBuilderComponent implements OnInit {
         return Validators.compose(validList);
     }
 
-    onSubmit(event: Event): void {
-        this.loading = true;
-        event.preventDefault();
-        event.stopPropagation();
-        if (this.form.valid) {
-            this.formSubmit.emit(this.form.value);
-        } else {
-            this._validateAllFormFields(this.form);
-        }
-        this.loading = false;
-    }
-
     private _validateAllFormFields(formGroup: FormGroup): void {
         Object.keys(formGroup.controls).forEach((field) => {
             const control = formGroup.get(field);
             control?.markAsTouched({ onlySelf: true });
         });
-    }
-
-    public get value(): Record<string, unknown> {
-        return this.form.value as Record<string, unknown>;
     }
 }

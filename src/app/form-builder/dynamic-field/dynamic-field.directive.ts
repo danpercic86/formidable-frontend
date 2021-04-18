@@ -8,11 +8,8 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 import { InputComponent } from '../components/input/input.component';
-import { SelectComponent } from '../components/select/select.component';
-import { DateComponent } from '../components/date/date.component';
-import { RadioComponent } from '../components/radio/radio.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { FieldModel } from '../shared/models';
 import { FieldComponent } from '../shared/field.component';
 

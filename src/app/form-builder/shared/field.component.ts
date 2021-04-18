@@ -10,6 +10,16 @@ export abstract class FieldComponent {
         return !!validator;
     }
 
+    public get type(): string {
+        switch (this.field.type) {
+            case FieldTypes.integer:
+            case FieldTypes.decimal:
+                return 'number';
+            default:
+                return this.field.type;
+        }
+    }
+
     public getConstraint(type: ValidatorTypes): string {
         let validator: ValidatorModel | undefined;
         switch (this.field.type) {
@@ -19,16 +29,6 @@ export abstract class FieldComponent {
             default:
                 validator = this.field.validators.find((v) => v.type === type);
                 return validator ? validator.constraint : '';
-        }
-    }
-
-    public get type(): string {
-        switch (this.field.type) {
-            case FieldTypes.integer:
-            case FieldTypes.decimal:
-                return 'number';
-            default:
-                return this.field.type;
         }
     }
 }

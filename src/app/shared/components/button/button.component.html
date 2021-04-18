@@ -1,15 +1,15 @@
-<a *ngIf="color === 'link'; else button" mat-raised-button [routerLink]="routerLink">{{ text }}</a>
+<a *ngIf="color === 'link'; else button" [routerLink]="routerLink" mat-raised-button>{{ text }}</a>
 
 <ng-template #button>
     <button
-        mat-raised-button
+        (click)="action.emit($event)"
+        (keydown)="action.emit($event)"
         [color]="color"
         [disabled]="disabled || loading"
         [type]="type"
-        (click)="action.emit($event)"
-        (keydown)="action.emit($event)"
+        mat-raised-button
     >
-        <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
+        <mat-spinner *ngIf="loading" [diameter]="20"></mat-spinner>
         <mat-icon *ngIf="matIcon">{{ matIcon }}</mat-icon>
         {{ text }}
     </button>

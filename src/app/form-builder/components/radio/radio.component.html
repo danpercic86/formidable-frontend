@@ -1,6 +1,6 @@
-<div class="demo-full-width margin-top" [formGroup]="group">
-    <label class="radio-label-padding">{{field.name}}:</label>
+<div [formGroup]="group" class="demo-full-width margin-top">
+    <label class="radio-label-padding">{{ field.name }}:</label>
     <mat-radio-group [formControlName]="field.name">
-        <mat-radio-button *ngFor="let item of field.choices" [value]="item.value">{{item.name}}</mat-radio-button>
+        <mat-radio-button *ngFor="let item of field.choices" [value]="item.value">{{ item.name }}</mat-radio-button>
     </mat-radio-group>
 </div>

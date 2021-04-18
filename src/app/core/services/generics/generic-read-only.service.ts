@@ -11,6 +11,13 @@ export abstract class GenericReadOnlyService<T extends Model> extends GenericBas
         super(injector);
     }
 
+    public get(slugOrId?: string): Observable<T | T[]> {
+        if (slugOrId !== undefined && slugOrId !== null) {
+            return this.__getOne(slugOrId);
+        }
+        return this.__getAll();
+    }
+
     private __getOne(slugOrId: string): Observable<T> {
         const url = `${this._url}${slugOrId}/`;
         return this._http.get<T>(url);
@@ -18,12 +25,5 @@ export abstract class GenericReadOnlyService<T extends Model> extends GenericBas
 
     private __getAll(): Observable<T[]> {
         return this._http.get<T[]>(this._url);
-    }
-
-    public get(slugOrId?: string): Observable<T | T[]> {
-        if (slugOrId !== undefined && slugOrId !== null) {
-            return this.__getOne(slugOrId);
-        }
-        return this.__getAll();
     }
 }

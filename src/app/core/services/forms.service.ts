@@ -7,9 +7,9 @@ import { IFormService } from '@shared/interfaces/form.interface';
     providedIn: 'root',
 })
 export class FormsService extends GenericReadOnlyService<FormModel> implements IFormService {
+    protected _modelName = 'forms';
+
     constructor(protected injector: Injector) {
         super(injector);
     }
-
-    protected _modelName = 'forms';
 }

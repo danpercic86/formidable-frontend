@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class LandingPageComponent {
     public forms$: Observable<FormModel[]>;
+
     constructor(private formsService: FormsService) {
         this.forms$ = formsService.get() as Observable<FormModel[]>;
     }
