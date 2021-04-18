@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,22 +12,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 @NgModule({
     declarations: [AppComponent, SectionComponent],
     imports: [
         BrowserModule.withServerTransition({ appId: 'formidableServer' }),
+        BrowserTransferStateModule,
+        TransferHttpCacheModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         GlobalSharedModule,
         CoreModule,
         FormBuilderModule,
         MatCardModule,
-        BrowserAnimationsModule,
         MatToolbarModule,
         MatIconModule,
         MatProgressSpinnerModule,
     ],
-    providers: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
