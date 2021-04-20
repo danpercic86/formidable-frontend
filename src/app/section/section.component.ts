@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormBuilderComponent } from '../form-builder/form-builder.component';
+import { Component } from '@angular/core';
 import { SectionsService } from '@services/sections.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -13,13 +12,12 @@ import { take } from 'rxjs/operators';
     styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent {
-    @ViewChild(FormBuilderComponent) form: FormBuilderComponent;
     section$: Observable<SectionModel>;
     fields: FieldModel[] = [];
 
     constructor(private _sectionsService: SectionsService, private _route: ActivatedRoute) {
-        const id = this._route.snapshot.paramMap.get('id') || undefined;
-        this.section$ = this._sectionsService.get(id) as Observable<SectionModel>;
+        const id = _route.snapshot.paramMap.get('id') || undefined;
+        this.section$ = _sectionsService.get(id) as Observable<SectionModel>;
         this.section$.pipe(take(1)).subscribe((section) => {
             this.fields = section.fields;
             console.log(this.fields);

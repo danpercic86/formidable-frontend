@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
     styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent {
-    public forms$: Observable<FormModel[]>;
+    forms$: Observable<FormModel[]>;
 
-    constructor(private formsService: FormsService) {
-        this.forms$ = formsService.get() as Observable<FormModel[]>;
+    constructor(private _formsService: FormsService) {
+        this.forms$ = _formsService.get() as Observable<FormModel[]>;
     }
 }

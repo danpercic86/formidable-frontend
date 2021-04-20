@@ -15,7 +15,7 @@ export class FormBuilderComponent implements OnInit {
 
     constructor(private _fb: FormBuilder) {}
 
-    public get value(): Record<string, unknown> {
+    get value(): Record<string, unknown> {
         return this.form.value as Record<string, unknown>;
     }
 

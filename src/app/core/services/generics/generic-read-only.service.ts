@@ -7,23 +7,23 @@ import { GenericBaseService } from '@services/generics/generic-base.service';
     providedIn: 'root',
 })
 export abstract class GenericReadOnlyService<T extends Model> extends GenericBaseService {
-    protected constructor(protected injector: Injector) {
-        super(injector);
+    protected constructor(protected readonly _injector: Injector) {
+        super(_injector);
     }
 
-    public get(slugOrId?: string): Observable<T | T[]> {
+    get(slugOrId?: string): Observable<T | T[]> {
         if (slugOrId !== undefined && slugOrId !== null) {
-            return this.__getOne(slugOrId);
+            return this._getOne(slugOrId);
         }
-        return this.__getAll();
+        return this._getAll();
     }
 
-    private __getOne(slugOrId: string): Observable<T> {
+    private _getOne(slugOrId: string): Observable<T> {
         const url = `${this._url}${slugOrId}/`;
         return this._http.get<T>(url);
     }
 
-    private __getAll(): Observable<T[]> {
+    private _getAll(): Observable<T[]> {
         return this._http.get<T[]>(this._url);
     }
 }

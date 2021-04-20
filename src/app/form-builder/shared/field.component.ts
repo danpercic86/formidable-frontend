@@ -5,12 +5,12 @@ export abstract class FieldComponent {
     field: FieldModel;
     group: FormGroup;
 
-    public get isRequired(): boolean {
+    get isRequired(): boolean {
         const validator = this.field.validators.find((v) => v.type === ValidatorTypes.required);
         return !!validator;
     }
 
-    public get type(): string {
+    get type(): string {
         switch (this.field.type) {
             case FieldTypes.integer:
             case FieldTypes.decimal:
@@ -20,7 +20,7 @@ export abstract class FieldComponent {
         }
     }
 
-    public getConstraint(type: ValidatorTypes): string {
+    getConstraint(type: ValidatorTypes): string {
         let validator: ValidatorModel | undefined;
         switch (this.field.type) {
             case FieldTypes.decimal:

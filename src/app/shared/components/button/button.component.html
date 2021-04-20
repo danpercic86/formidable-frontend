@@ -3,7 +3,7 @@
 <ng-template #button>
     <button
         (click)="action.emit($event)"
-        (keydown)="action.emit($event)"
+        (keyup)="action.emit($event)"
         [color]="color"
         [disabled]="disabled || loading"
         [type]="type"

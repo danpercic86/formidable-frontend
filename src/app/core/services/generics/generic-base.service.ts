@@ -9,8 +9,8 @@ export abstract class GenericBaseService {
     protected _apiUrl = '/api/';
     protected _http: HttpClient;
 
-    protected constructor(protected injector: Injector) {
-        this._http = injector.get(HttpClient);
+    protected constructor(protected readonly _injector: Injector) {
+        this._http = _injector.get(HttpClient);
     }
 
     protected get _url(): string {

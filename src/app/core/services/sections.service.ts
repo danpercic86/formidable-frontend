@@ -8,7 +8,7 @@ import { SectionModel } from '@models/section.model';
 export class SectionsService extends GenericReadOnlyService<SectionModel> {
     protected _modelName = 'sections';
 
-    constructor(protected injector: Injector) {
-        super(injector);
+    constructor(protected _injector: Injector) {
+        super(_injector);
     }
 }

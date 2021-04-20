@@ -33,16 +33,16 @@ const componentMapper: { [type: string]: Type<FieldComponent> } = {
 export class DynamicFieldDirective implements OnInit {
     @Input() field: FieldModel = {} as FieldModel;
     @Input() group: FormGroup = {} as FormGroup;
-    componentRef: ComponentRef<FieldComponent> = {} as ComponentRef<FieldComponent>;
+    private _componentRef: ComponentRef<FieldComponent> = {} as ComponentRef<FieldComponent>;
 
-    constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
+    constructor(private readonly _resolver: ComponentFactoryResolver, private readonly _container: ViewContainerRef) {}
 
     ngOnInit(): void {
-        const factory = this.resolver.resolveComponentFactory(componentMapper[this.field.type]);
-        this.componentRef = this.container.createComponent(factory);
-        console.log(this.componentRef.instance);
-        this.componentRef.instance.field = this.field;
-        this.componentRef.instance.group = this.group;
+        const factory = this._resolver.resolveComponentFactory(componentMapper[this.field.type]);
+        this._componentRef = this._container.createComponent(factory);
+        console.log(this._componentRef.instance);
+        this._componentRef.instance.field = this.field;
+        this._componentRef.instance.group = this.group;
         console.log(this.group);
     }
 }

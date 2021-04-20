@@ -9,7 +9,7 @@ import { FieldTypes, ValidatorModel, ValidatorTypes } from '../../shared/models'
 export class InputComponent extends FieldComponent {
     validatorTypes = ValidatorTypes;
 
-    public get step(): string {
+    get step(): string {
         switch (this.field.type) {
             case FieldTypes.integer:
                 return '1';
@@ -20,7 +20,7 @@ export class InputComponent extends FieldComponent {
         }
     }
 
-    public getNumberFieldConstraint(type: ValidatorTypes): string {
+    getNumberFieldConstraint(type: ValidatorTypes): string {
         let validator: ValidatorModel | undefined;
         switch (this.field.type) {
             case FieldTypes.decimal:
