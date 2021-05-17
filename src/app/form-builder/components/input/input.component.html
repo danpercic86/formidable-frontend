@@ -17,6 +17,8 @@
         matInput
     />
     <ng-container *ngFor="let validator of field.validators" ngProjectAs="mat-error">
-        <mat-error *ngIf="group.get(field.name)?.hasError(validator.type)">{{ validator.message }}</mat-error>
+        <mat-error *ngIf="group.get(field.name)?.hasError(validator.type)">{{
+            validator.message
+        }}</mat-error>
     </ng-container>
 </mat-form-field>

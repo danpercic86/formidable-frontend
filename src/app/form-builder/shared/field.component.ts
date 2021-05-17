@@ -6,7 +6,9 @@ export abstract class FieldComponent {
     group: FormGroup;
 
     get isRequired(): boolean {
-        const validator = this.field.validators.find((v) => v.type === ValidatorTypes.required);
+        const validator = this.field.validators.find(
+            (v) => v.type === ValidatorTypes.required,
+        );
         return !!validator;
     }
 

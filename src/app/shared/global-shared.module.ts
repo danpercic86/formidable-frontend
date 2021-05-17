@@ -8,7 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     declarations: [ButtonComponent],
-    imports: [CommonModule, RouterModule, MatButtonModule, MatProgressSpinnerModule, MatIconModule],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        MatIconModule,
+    ],
     exports: [ButtonComponent],
 })
 export class GlobalSharedModule {}

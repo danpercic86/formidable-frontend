@@ -15,7 +15,10 @@ export class SectionComponent {
     section$: Observable<SectionModel>;
     fields: FieldModel[] = [];
 
-    constructor(private _sectionsService: SectionsService, private _route: ActivatedRoute) {
+    constructor(
+        private _sectionsService: SectionsService,
+        private _route: ActivatedRoute,
+    ) {
         const id = _route.snapshot.paramMap.get('id') || undefined;
         this.section$ = _sectionsService.get(id) as Observable<SectionModel>;
         this.section$.pipe(take(1)).subscribe((section) => {

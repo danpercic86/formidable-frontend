@@ -25,7 +25,9 @@ export class InputComponent extends FieldComponent {
         switch (this.field.type) {
             case FieldTypes.decimal:
             case FieldTypes.integer:
-                validator = this.field.validators.find((validator) => validator.type === type);
+                validator = this.field.validators.find(
+                    (validator) => validator.type === type,
+                );
                 return validator ? validator.constraint : '';
             default:
                 return '';

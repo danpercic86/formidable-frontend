@@ -12,7 +12,9 @@ describe('GenericCreateService', () => {
             imports: [HttpClientTestingModule],
             providers: [GenericCreateService],
         });
-        service = TestBed.inject(GenericCreateService) as GenericCreateService<TestModel>;
+        service = TestBed.inject(
+            GenericCreateService,
+        ) as GenericCreateService<TestModel>;
     });
 
     it('should be created', () => {

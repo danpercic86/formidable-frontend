@@ -6,7 +6,10 @@ import { IFormService } from '@shared/interfaces/form.interface';
 @Injectable({
     providedIn: 'root',
 })
-export class FormsService extends GenericReadOnlyService<FormModel> implements IFormService {
+export class FormsService
+    extends GenericReadOnlyService<FormModel>
+    implements IFormService
+{
     protected _modelName = 'forms';
 
     constructor(protected _injector: Injector) {

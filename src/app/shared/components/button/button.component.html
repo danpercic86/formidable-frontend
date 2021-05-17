@@ -1,4 +1,6 @@
-<a *ngIf="color === 'link'; else button" [routerLink]="routerLink" mat-raised-button>{{ text }}</a>
+<a *ngIf="color === 'link'; else button" [routerLink]="routerLink" mat-raised-button>{{
+    text
+}}</a>
 
 <ng-template #button>
     <button

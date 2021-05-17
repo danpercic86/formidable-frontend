@@ -1,7 +1,11 @@
 <form (submit)="onSubmit($event)" [formGroup]="form" autocomplete="off">
     <div class="row overflow-hidden">
         <div *ngFor="let field of fields" class="col-12">
-            <ng-container [field]="field" [group]="form" formidableDynamicField></ng-container>
+            <ng-container
+                [field]="field"
+                [group]="form"
+                formidableDynamicField
+            ></ng-container>
         </div>
         <div>
             {{ form.value | json }}

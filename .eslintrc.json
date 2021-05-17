@@ -53,6 +53,13 @@
           {
             "avoidEscape": true
           }
+        ],
+        "max-len": [
+          "error",
+          {
+            "code": 88,
+            "tabWidth": 4
+          }
         ]
       }
     },

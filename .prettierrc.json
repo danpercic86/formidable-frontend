@@ -1,11 +1,22 @@
 {
   "tabWidth": 4,
   "useTabs": false,
+  "printWidth": 88,
   "semi": true,
   "singleQuote": true,
   "quoteProps": "consistent",
   "trailingComma": "all",
   "bracketSpacing": true,
   "arrowParens": "always",
-  "jsxSingleQuote": true
+  "jsxSingleQuote": true,
+  "overrides": [
+    {
+      "files": [
+        "*.html"
+      ],
+      "options": {
+        "parser": "angular"
+      }
+    }
+  ]
 }

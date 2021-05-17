@@ -9,7 +9,10 @@ const routes: Routes = [
     },
     {
         path: '',
-        loadChildren: () => import('./landing-page/landing-page.module').then((m) => m.LandingPageModule),
+        loadChildren: () =>
+            import('./landing-page/landing-page.module').then(
+                (m) => m.LandingPageModule,
+            ),
     },
     {
         path: '**',

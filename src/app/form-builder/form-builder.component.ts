@@ -9,7 +9,9 @@ import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms'
 })
 export class FormBuilderComponent implements OnInit {
     @Input() fields: FieldModel[];
-    @Output() formSubmit: EventEmitter<Record<string, unknown>> = new EventEmitter<Record<string, unknown>>();
+    @Output() formSubmit: EventEmitter<Record<string, unknown>> = new EventEmitter<
+        Record<string, unknown>
+    >();
     form: FormGroup;
     loading = false;
 
@@ -58,7 +60,10 @@ export class FormBuilderComponent implements OnInit {
     private _createFormGroup(): FormGroup {
         const group = this._fb.group({});
         this.fields.forEach((field) => {
-            const control = this._fb.control(field.value, this._bindValidators(field.validators));
+            const control = this._fb.control(
+                field.value,
+                this._bindValidators(field.validators),
+            );
             group.addControl(field.name, control);
         });
         return group;

@@ -6,7 +6,9 @@ import { GenericBaseService } from '@services/generics/generic-base.service';
 @Injectable({
     providedIn: 'root',
 })
-export abstract class GenericReadOnlyService<T extends Model> extends GenericBaseService {
+export abstract class GenericReadOnlyService<
+    T extends Model,
+> extends GenericBaseService {
     protected constructor(protected readonly _injector: Injector) {
         super(_injector);
     }
