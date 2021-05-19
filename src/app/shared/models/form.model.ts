@@ -1,5 +1,5 @@
-import { CreatedModifiedModel } from '@models/base.model';
-import { SectionMinimalModel } from '@models/section.model';
+import { CreatedModifiedModel } from './base.model';
+import { SectionMinimalModel } from './section.model';
 
 export interface FormModel extends CreatedModifiedModel {
   name: string;

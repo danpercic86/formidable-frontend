@@ -14,4 +14,6 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
   ],
   bootstrap: [AppComponent],
 })
-export class AppServerModule {}
+export class AppServerModule
+{
+}

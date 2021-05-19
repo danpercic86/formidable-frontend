@@ -1,4 +1,4 @@
-import { Model } from '@models/base.model';
+import { Model } from '@formidable/models';
 
 export interface FieldModel extends Model {
   name: string;
@@ -26,13 +26,13 @@ export interface ValidatorModel extends Model {
 }
 
 export type ValidatorType =
-  | 'min'
-  | 'max'
-  | 'minlength'
-  | 'maxlength'
-  | 'pattern'
-  | 'required'
-  | 'email';
+    | 'min'
+    | 'max'
+    | 'minlength'
+    | 'maxlength'
+    | 'pattern'
+    | 'required'
+    | 'email';
 
 export enum ValidatorTypes {
   min = 'min',
@@ -45,15 +45,15 @@ export enum ValidatorTypes {
 }
 
 export type FieldType =
-  | 'text'
-  | 'email'
-  | 'url'
-  | 'integer'
-  | 'decimal'
-  | 'file'
-  | 'checkbox'
-  | 'radio'
-  | 'select';
+    | 'text'
+    | 'email'
+    | 'url'
+    | 'integer'
+    | 'decimal'
+    | 'file'
+    | 'checkbox'
+    | 'radio'
+    | 'select';
 
 export enum FieldTypes {
   text = 'text',

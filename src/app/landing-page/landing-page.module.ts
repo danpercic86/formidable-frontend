@@ -18,4 +18,6 @@ const routes: Routes = [
   declarations: [LandingPageComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class LandingPageModule {}
+export class LandingPageModule
+{
+}

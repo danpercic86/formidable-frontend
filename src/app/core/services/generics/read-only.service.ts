@@ -1,7 +1,7 @@
 import { Injector } from '@angular/core';
-import { Model } from '@models/base.model';
 import { Observable } from 'rxjs';
-import { BaseService } from '@services/generics/base.service';
+import { Model } from '@formidable/models';
+import { BaseService } from './base.service';
 
 export abstract class ReadOnlyService<T extends Model> extends BaseService
 {

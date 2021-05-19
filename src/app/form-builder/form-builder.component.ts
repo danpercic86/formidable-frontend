@@ -55,11 +55,6 @@ export class FormBuilderComponent implements OnInit
     }
   }
 
-  private _createValidators(validators: ValidatorModel[]): ValidatorFn | null
-  {
-    return Validators.compose(validators.map(FormBuilderComponent._getValidatorFn));
-  }
-
   ngOnInit(): void
   {
     console.log(this.fields);
@@ -82,6 +77,11 @@ export class FormBuilderComponent implements OnInit
     }
 
     this.loading = false;
+  }
+
+  private _createValidators(validators: ValidatorModel[]): ValidatorFn | null
+  {
+    return Validators.compose(validators.map(FormBuilderComponent._getValidatorFn));
   }
 
   private _createFormGroup(): FormGroup

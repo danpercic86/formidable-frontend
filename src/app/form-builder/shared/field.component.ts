@@ -50,8 +50,7 @@ export abstract class FieldComponent
       case FieldTypes.decimal:
       case FieldTypes.integer:
         return '';
-      default:
-      {
+      default: {
         const validator = this.validators(type);
         return validator ? validator.constraint : '';
       }

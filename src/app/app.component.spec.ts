@@ -19,7 +19,7 @@ describe('AppComponent', () =>
     expect(app).toBeTruthy();
   });
 
-  it("should have as title 'formidable-frontend'", () =>
+  it('should have as title \'formidable-frontend\'', () =>
   {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
@@ -30,7 +30,7 @@ describe('AppComponent', () =>
   {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = <Element>fixture.nativeElement;
+    const compiled = <Element> fixture.nativeElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain(
       'formidable-frontend app is running!',
     );

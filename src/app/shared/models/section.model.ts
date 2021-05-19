@@ -1,5 +1,5 @@
-import { Model } from '@models/base.model';
 import { FieldModel } from '../../form-builder/shared/models';
+import { Model } from './base.model';
 
 export interface SectionMinimalModel extends Model {
   name: string;

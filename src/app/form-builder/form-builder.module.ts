@@ -21,7 +21,7 @@ import { RadioComponent } from './components/radio/radio.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GlobalSharedModule } from '@shared/global-shared.module';
+import { GlobalSharedModule } from '@formidable/shared';
 
 const matImports = [
   MatButtonModule,
@@ -59,4 +59,6 @@ const matImports = [
   ],
   exports: [FormBuilderComponent],
 })
-export class FormBuilderModule {}
+export class FormBuilderModule
+{
+}

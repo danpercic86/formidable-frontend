@@ -22,23 +22,25 @@
       "dom"
     ],
     "paths": {
-      "@core/*": [
-        "app/core/*"
+      "@formidable/core": [
+        "app/core"
       ],
-      "@services/*": [
-        "app/core/services/*"
+      "@formidable/services": [
+        "app/core/services"
       ],
-      "@shared/*": [
-        "app/shared/*"
+      "@formidable/shared": [
+        "app/shared",
+        "app/form-builder/shared"
       ],
-      "@models/*": [
-        "app/shared/models/*"
+      "@formidable/models": [
+        "app/shared/models",
+        "app/form-builder/models"
       ],
-      "@assets/*": [
+      "@formidable/assets/*": [
         "assets/*"
       ],
-      "@environments/*": [
-        "environments/*"
+      "@formidable/env": [
+        "environments"
       ]
     }
   },

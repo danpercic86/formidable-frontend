@@ -3,8 +3,8 @@
     {{ form.name }}
   </a>
   <a
-    *ngFor="let section of form.sections"
-    [routerLink]="['sections', section.id.toString()]"
+          *ngFor="let section of form.sections"
+          [routerLink]="['sections', section.id.toString()]"
   >
     --> {{ section.name }}
   </a>

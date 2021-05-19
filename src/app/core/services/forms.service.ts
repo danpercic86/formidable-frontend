@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
-import { ReadOnlyService } from '@services/generics/read-only.service';
-import { FormModel } from '@models/form.model';
-import { IFormService } from '@shared/interfaces/form.interface';
+import { ReadOnlyService } from './generics/read-only.service';
+import { FormModel } from '@formidable/models';
+import { IFormService } from '@formidable/shared';
 
 @Injectable({
   providedIn: 'root',

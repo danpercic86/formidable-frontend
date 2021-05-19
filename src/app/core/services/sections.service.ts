@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
-import { ReadOnlyService } from '@services/generics/read-only.service';
-import { SectionModel } from '@models/section.model';
+import { ReadOnlyService } from './generics/read-only.service';
+import { SectionModel } from '@formidable/models';
 
 @Injectable({
   providedIn: 'root',

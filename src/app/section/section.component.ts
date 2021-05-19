@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { SectionsService } from '@services/sections.service';
 import { ActivatedRoute } from '@angular/router';
 import { FieldModel } from '../form-builder/shared/models';
 import { take } from 'rxjs/operators';
+import { SectionsService } from '@formidable/services';
 
 @Component({
   selector: 'formidable-section',
@@ -19,7 +19,7 @@ export class SectionComponent
   )
   {
     const id = _route.snapshot.paramMap.get('id') as string;
-    _sectionsService.get(id).pipe(take(1)).subscribe(section =>
+    this._sectionsService.get(id).pipe(take(1)).subscribe(section =>
     {
       this.fields = section.fields;
       console.log(this.fields);

@@ -4,12 +4,12 @@
 
 <ng-template #button>
   <button
-    (click)="action.emit($event)"
-    (keyup)="action.emit($event)"
-    [color]="color"
-    [disabled]="disabled || loading"
-    [type]="type"
-    mat-raised-button
+          (click)="action.emit($event)"
+          (keyup)="action.emit($event)"
+          [color]="color"
+          [disabled]="disabled || loading"
+          [type]="type"
+          mat-raised-button
   >
     <mat-spinner *ngIf="loading" [diameter]="20"></mat-spinner>
     <mat-icon *ngIf="matIcon">{{ matIcon }}</mat-icon>

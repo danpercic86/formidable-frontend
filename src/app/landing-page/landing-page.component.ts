@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormsService } from '@services/forms.service';
-import { FormModel } from '@models/form.model';
 import { Observable } from 'rxjs';
+import { FormModel } from '@formidable/models';
+import { FormsService } from '@formidable/services';
 
 @Component({
   selector: 'formidable-landing-page',
