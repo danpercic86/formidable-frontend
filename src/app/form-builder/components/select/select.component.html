@@ -1,7 +1,7 @@
 <mat-form-field [formGroup]="group" class="demo-full-width margin-top">
-    <mat-select [formControlName]="field.name" [placeholder]="field.name">
-        <mat-option *ngFor="let choice of field.choices" [value]="choice.value">{{
-            choice.name
-        }}</mat-option>
-    </mat-select>
+  <mat-select [formControlName]="field.name" [placeholder]="field.name">
+    <mat-option *ngFor="let choice of field.choices" [value]="choice.value">{{
+      choice.name
+    }}</mat-option>
+  </mat-select>
 </mat-form-field>

@@ -1,8 +1,8 @@
 export interface Model {
-    id: string;
+  id: string;
 }
 
 export interface CreatedModifiedModel extends Model {
-    created: string;
-    modified: string;
+  created: string;
+  modified: string;
 }

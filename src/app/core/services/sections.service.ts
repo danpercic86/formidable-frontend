@@ -1,14 +1,16 @@
 import { Injectable, Injector } from '@angular/core';
-import { GenericReadOnlyService } from '@services/generics/generic-read-only.service';
+import { ReadOnlyService } from '@services/generics/read-only.service';
 import { SectionModel } from '@models/section.model';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
-export class SectionsService extends GenericReadOnlyService<SectionModel> {
-    protected _modelName = 'sections';
+export class SectionsService extends ReadOnlyService<SectionModel>
+{
+  protected _modelName = 'sections';
 
-    constructor(protected _injector: Injector) {
-        super(_injector);
-    }
+  constructor(protected _injector: Injector)
+  {
+    super(_injector);
+  }
 }

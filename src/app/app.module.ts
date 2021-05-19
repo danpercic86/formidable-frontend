@@ -15,21 +15,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
 @NgModule({
-    declarations: [AppComponent, SectionComponent],
-    imports: [
-        BrowserModule.withServerTransition({ appId: 'formidableServer' }),
-        BrowserTransferStateModule,
-        TransferHttpCacheModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        GlobalSharedModule,
-        CoreModule,
-        FormBuilderModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatProgressSpinnerModule,
-    ],
-    bootstrap: [AppComponent],
+  declarations: [AppComponent, SectionComponent],
+  imports: [
+    BrowserModule.withServerTransition({ appId: 'formidableServer' }),
+    BrowserTransferStateModule,
+    TransferHttpCacheModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    GlobalSharedModule,
+    CoreModule,
+    FormBuilderModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
 @NgModule({
-    imports: [
-        AppModule,
-        ServerModule,
-        TransferHttpCacheModule,
-        ServerTransferStateModule,
-    ],
-    bootstrap: [AppComponent],
+  imports: [
+    AppModule,
+    ServerModule,
+    TransferHttpCacheModule,
+    ServerTransferStateModule,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppServerModule {}

@@ -21,7 +21,6 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended",
         "plugin:@angular-eslint/recommended--extra"
       ],
       "rules": {
@@ -58,7 +57,28 @@
           "error",
           {
             "code": 88,
-            "tabWidth": 4
+            "tabWidth": 2
+          }
+        ],
+        "indent": [
+          "error",
+          2,
+          {
+            "SwitchCase": 1
+          }
+        ],
+        "brace-style": [
+          "error",
+          "allman",
+          {
+            "allowSingleLine": true
+          }
+        ],
+        "arrow-parens": [
+          "error",
+          "as-needed",
+          {
+            "requireForBlockBody": true
           }
         ]
       }
@@ -68,8 +88,7 @@
         "*.html"
       ],
       "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:prettier/recommended"
+        "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
     }
