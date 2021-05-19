@@ -32,10 +32,9 @@ const componentMapper: { [type: string]: Type<FieldComponent> } = {
 })
 export class DynamicFieldDirective implements OnInit
 {
-  @Input() field: FieldModel = {} as FieldModel;
-  @Input() group: FormGroup = {} as FormGroup;
-  private _componentRef: ComponentRef<FieldComponent> =
-    {} as ComponentRef<FieldComponent>;
+  @Input() field: FieldModel;
+  @Input() group: FormGroup;
+  private _componentRef: ComponentRef<FieldComponent>;
 
   constructor(
     private readonly _resolver: ComponentFactoryResolver,
@@ -48,9 +47,7 @@ export class DynamicFieldDirective implements OnInit
       componentMapper[this.field.type],
     );
     this._componentRef = this._container.createComponent(factory);
-    console.log(this._componentRef.instance);
     this._componentRef.instance.field = this.field;
     this._componentRef.instance.group = this.group;
-    console.log(this.group);
   }
 }

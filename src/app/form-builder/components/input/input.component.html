@@ -16,7 +16,7 @@
     [type]="type"
     matInput
   />
-  <ng-container *ngFor="let validator of field.validators" ngProjectAs="mat-error">
+  <ng-container *ngFor="let validator of validators()" ngProjectAs="mat-error">
     <mat-error *ngIf="control?.hasError(validator.type)">{{
       validator.message
     }}</mat-error>

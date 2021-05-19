@@ -1,6 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FieldModel, ValidatorModel, ValidatorTypes } from './shared/models';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'formidable-form-builder',
@@ -14,32 +20,44 @@ export class FormBuilderComponent implements OnInit
   form: FormGroup;
   loading = false;
 
-  constructor(private readonly _formBuilder: FormBuilder) {}
+  constructor(private readonly _formBuilder: FormBuilder)
+  {
+  }
 
   get value(): Record<string, unknown>
   {
     return this.form.value as Record<string, unknown>;
   }
 
-  private static _getValidatorFn(validator: ValidatorModel): ValidatorFn
+  private static _getValidatorFn({
+    constraint,
+    type
+  }: ValidatorModel): ValidatorFn | undefined
   {
-    switch (validator.type)
+    switch (type)
     {
       case ValidatorTypes.maxLength:
-        return Validators.maxLength(parseInt(validator.constraint));
+        return Validators.maxLength(parseInt(constraint));
       case ValidatorTypes.minLength:
-        return Validators.minLength(parseInt(validator.constraint));
+        return Validators.minLength(parseInt(constraint));
       case ValidatorTypes.regex:
-        return Validators.pattern(validator.constraint);
+        return Validators.pattern(constraint);
       case ValidatorTypes.email:
         return Validators.email;
       case ValidatorTypes.required:
         return Validators.required;
       case ValidatorTypes.max:
-        return Validators.max(parseInt(validator.constraint));
+        return Validators.max(parseInt(constraint));
       case ValidatorTypes.min:
-        return Validators.min(parseInt(validator.constraint));
+        return Validators.min(parseInt(constraint));
+      default:
+        return undefined;
     }
+  }
+
+  private _createValidators(validators: ValidatorModel[]): ValidatorFn | null
+  {
+    return Validators.compose(validators.map(FormBuilderComponent._getValidatorFn));
   }
 
   ngOnInit(): void
@@ -53,46 +71,39 @@ export class FormBuilderComponent implements OnInit
     this.loading = true;
     event.preventDefault();
     event.stopPropagation();
+
     if (this.form.valid)
     {
       this.formSubmit.emit(this.form.value);
     }
     else
     {
-      this._validateAllFormFields();
+      this._validateFormFields();
     }
+
     this.loading = false;
   }
 
   private _createFormGroup(): FormGroup
   {
     const group = this._formBuilder.group({});
-    this.fields.forEach((field) =>
+    this.fields.forEach(field =>
     {
-      const control = this._formBuilder.control(
-        field.value,
-        this._bindValidators(field.validators),
-      );
-      group.addControl(field.name, control);
+      group.addControl(field.name, this._createControl(field));
     });
     return group;
   }
 
-  private _bindValidators(validators: ValidatorModel[]): ValidatorFn | null
+  private _createControl({ validators, name }: FieldModel): FormControl
   {
-    const validList: ValidatorFn[] = [];
-    validators.forEach((validator) =>
-    {
-      validList.push(FormBuilderComponent._getValidatorFn(validator));
-    });
-    return Validators.compose(validList);
+    return this._formBuilder.control(name, this._createValidators(validators));
   }
 
-  private _validateAllFormFields(): void
+  private _validateFormFields(): void
   {
-    Object.keys(this.form.controls).forEach((field) =>
+    Object.keys(this.form.controls).forEach(fieldName =>
     {
-      this.form.get(field)?.markAsTouched({ onlySelf: true });
+      this.form.get(fieldName)?.markAsTouched({ onlySelf: true });
     });
   }
 }

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { SectionsService } from '@services/sections.service';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { SectionModel } from '@models/section.model';
 import { FieldModel } from '../form-builder/shared/models';
 import { take } from 'rxjs/operators';
 
@@ -13,17 +11,15 @@ import { take } from 'rxjs/operators';
 })
 export class SectionComponent
 {
-  section$: Observable<SectionModel>;
   fields: FieldModel[] = [];
 
   constructor(
-    private readonly _sectionsService: SectionsService,
-    private readonly _route: ActivatedRoute,
+      private readonly _route: ActivatedRoute,
+      private readonly _sectionsService: SectionsService,
   )
   {
     const id = _route.snapshot.paramMap.get('id') as string;
-    this.section$ = _sectionsService.get(id);
-    this.section$.pipe(take(1)).subscribe((section) =>
+    _sectionsService.get(id).pipe(take(1)).subscribe(section =>
     {
       this.fields = section.fields;
       console.log(this.fields);

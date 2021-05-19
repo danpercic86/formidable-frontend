@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FieldComponent } from '../../shared/field.component';
-import { FieldTypes, ValidatorModel, ValidatorTypes } from '../../shared/models';
+import {
+  FieldTypes,
+  ValidatorType,
+  ValidatorTypes
+} from '../../shared/models';
 
 @Component({
   selector: 'formidable-input',
@@ -23,15 +27,15 @@ export class InputComponent extends FieldComponent
     }
   }
 
-  getNumberFieldConstraint(type: ValidatorTypes): string
+  getNumberFieldConstraint(type: ValidatorType): string
   {
-    let validator: ValidatorModel | undefined;
     switch (this.field.type)
     {
       case FieldTypes.decimal:
-      case FieldTypes.integer:
-        validator = this.field.validators.find(validator => validator.type === type);
+      case FieldTypes.integer: {
+        const validator = this.validators(type);
         return validator ? validator.constraint : '';
+      }
       default:
         return '';
     }

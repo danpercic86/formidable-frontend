@@ -76,10 +76,7 @@
         ],
         "arrow-parens": [
           "error",
-          "as-needed",
-          {
-            "requireForBlockBody": true
-          }
+          "as-needed"
         ]
       }
     },
