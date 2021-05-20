@@ -1,60 +1,64 @@
 {
-  "$schema": "node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "formidable-frontend": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "formidable",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "formidable",
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "formidable": {
+      "projectType": "application",
+      "root": "apps/formidable",
+      "sourceRoot": "apps/formidable/src",
+      "prefix": "formidable-frontend",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/formidable-frontend/browser",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/formidable",
+            "index": "apps/formidable/src/index.html",
+            "main": "apps/formidable/src/main.ts",
+            "polyfills": "apps/formidable/src/polyfills.ts",
+            "tsConfig": "apps/formidable/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/formidable/src/favicon.ico",
+              "apps/formidable/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "apps/formidable/src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
             ],
-            "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -66,107 +70,92 @@
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
-              ]
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/formidable/src/environments/environment.ts",
+                  "with": "apps/formidable/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "formidable-frontend:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "formidable-frontend:build:production"
+              "browserTarget": "formidable:build:production"
+            },
+            "development": {
+              "browserTarget": "formidable:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "formidable-frontend:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "browserTarget": "formidable:build"
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
+              "apps/formidable/src/**/*.ts",
+              "apps/formidable/src/**/*.html"
             ]
           }
         },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/formidable"
+          ],
+          "options": {
+            "jestConfig": "apps/formidable/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "formidable-e2e": {
+      "root": "apps/formidable-e2e",
+      "sourceRoot": "apps/formidable-e2e/src",
+      "projectType": "application",
+      "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "formidable-frontend:serve"
+            "cypressConfig": "apps/formidable-e2e/cypress.json",
+            "tsConfig": "apps/formidable-e2e/tsconfig.e2e.json",
+            "devServerTarget": "formidable:serve:development"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "formidable-frontend:serve:production"
+              "devServerTarget": "formidable:serve:production"
             }
           }
         },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "outputPath": "dist/formidable-frontend/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "sourceMap": true,
-            "optimization": false
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "options": {
-            "browserTarget": "formidable-frontend:build",
-            "serverTarget": "formidable-frontend:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "formidable-frontend:build:production",
-              "serverTarget": "formidable-frontend:server:production"
-            }
+            "lintFilePatterns": [
+              "apps/formidable-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
     }
-  },
-  "defaultProject": "formidable-frontend",
-  "cli": {
-    "analytics": false
   }
 }

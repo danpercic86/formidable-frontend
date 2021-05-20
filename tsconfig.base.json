@@ -1,0 +1,46 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@formidable/core": [
+        "apps/formidable/src/app/core"
+      ],
+      "@formidable/services": [
+        "apps/formidable/src/app/core/services"
+      ],
+      "@formidable/shared": [
+        "apps/formidable/src/app/shared"
+      ],
+      "@builder/shared": [
+        "apps/formidable/src/app/form-builder/shared"
+      ],
+      "@formidable/models": [
+        "apps/formidable/src/app/shared/models"
+      ],
+      "@builder/models": [
+        "apps/formidable/src/app/form-builder/models"
+      ],
+      "@formidable/assets/*": [
+        "apps/formidable/src/assets/*"
+      ],
+      "@formidable/env": [
+        "apps/formidable/src/environments"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

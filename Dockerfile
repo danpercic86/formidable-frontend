@@ -3,7 +3,7 @@ FROM node:lts-alpine as builder
 WORKDIR /app
 
 COPY package.json /app
-COPY package-lock.json /app
+COPY yarn-lock.json /app
 
 RUN npm ci
 

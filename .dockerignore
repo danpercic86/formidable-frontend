@@ -7,6 +7,9 @@ karma.conf.js
 .gitignore
 .editorconfig
 .prettierrc.json
+.eslintrc.json
 .stylelintrc
 .dockerignore
 .browserslistrc
+jest.config.js
+jest.preset.js
