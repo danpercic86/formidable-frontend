@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IField } from '../form-builder/shared/models';
+import { IField } from '@builder/shared';
 import { take } from 'rxjs/operators';
 import { SectionsService } from '@formidable/services';
 
@@ -11,7 +11,7 @@ import { SectionsService } from '@formidable/services';
 })
 export class SectionComponent
 {
-  fields: IField[] = [];
+  fields: IField[];
 
   constructor(
       private readonly _route: ActivatedRoute,

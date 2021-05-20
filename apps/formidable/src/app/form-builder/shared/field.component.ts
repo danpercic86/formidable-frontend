@@ -14,8 +14,7 @@ export abstract class FieldComponent
 
   get isRequired(): boolean
   {
-    const validator = this.validators(ValidatorTypes.required);
-    return !!validator || this.field.is_required;
+    return !!this.validators(ValidatorTypes.required) || this.field.is_required;
   }
 
   get type(): string

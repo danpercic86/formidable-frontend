@@ -1,11 +1,12 @@
-<mat-card class="row justify-content-center">
-  <div class="col-sm-12 col-md-10 col-lg-8 m-auto">
-    <mat-spinner *ngIf="!fields.length" class="m-auto"></mat-spinner>
+<div class='content-center' *ngIf='!fields'>
+  <mat-spinner class='m-auto'></mat-spinner>
+</div>
+
+<mat-card class='row justify-content-center' *ngIf='fields'>
+  <div class='col-sm-12 col-md-10 col-lg-8 m-auto'>
     <formidable-form-builder
-            (formSubmit)="submit($event)"
-            *ngIf="fields.length"
-            [fields]="fields"
-    >
-    </formidable-form-builder>
+      (formSubmit)='submit($event)'
+      [fields]='fields'
+    ></formidable-form-builder>
   </div>
 </mat-card>
