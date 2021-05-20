@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ValidatorsService {
-
-  constructor() { }
+export class ValidatorsService
+{
+  constructor() {}
 }

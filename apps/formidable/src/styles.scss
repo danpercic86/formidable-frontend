@@ -5,66 +5,12 @@ body {
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   margin: 0;
 }
 
 mat-form-field {
   width: 100%;
-}
-
-.container {
-  display: flex;
-  width: 100%;
-  margin: auto;
-}
-
-.vh-100 {
-  height: 100vh;
-}
-
-.vw-100 {
-  width: 100vh;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.justify-content-center {
-  justify-content: center;
-}
-
-.m-auto {
-  margin: auto;
-}
-
-.col-12 {
-  width: 100%;
-}
-
-.col-sm-12 {
-  @media screen and (min-width: 768px) {
-    width: 100%;
-  }
-}
-
-.col-md-10 {
-  @media screen and (min-width: 992px) {
-    width: calc(100% - 16.66%);
-  }
-}
-
-.col-lg-8 {
-  @media screen and (min-width: 1200px) {
-    width: calc(100% - 33.32%);
-  }
 }
 
 .overflow-hidden {
