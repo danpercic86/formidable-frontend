@@ -1,12 +1,12 @@
-import { FieldModel } from '../../form-builder/shared/models';
-import { Model } from './base.model';
+import { IModel } from './base.model';
+import { IField } from '@builder/shared';
 
-export interface SectionMinimalModel extends Model {
+export interface ISectionMinimal extends IModel {
   name: string;
 }
 
-export interface SectionModel extends SectionMinimalModel {
-  fields: FieldModel[];
+export interface ISection extends ISectionMinimal {
+  fields: IField[];
   description: string;
   button_text: string;
 }

@@ -1,3 +1,3 @@
-export { FormModel } from './form.model';
-export { SectionModel } from './section.model';
-export { Model } from './base.model';
+export * from './form.model';
+export * from './section.model';
+export * from './base.model';

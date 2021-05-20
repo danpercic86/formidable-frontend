@@ -10,7 +10,7 @@ import {
 import { InputComponent } from '../components/input/input.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import { FormGroup } from '@angular/forms';
-import { FieldModel } from '../shared/models';
+import { IField } from '../shared/models';
 import { FieldComponent } from '../shared/field.component';
 
 const componentMapper: { [ type: string ]: Type<FieldComponent> } = {
@@ -32,7 +32,7 @@ const componentMapper: { [ type: string ]: Type<FieldComponent> } = {
 })
 export class DynamicFieldDirective implements OnInit
 {
-  @Input() field: FieldModel;
+  @Input() field: IField;
   @Input() group: FormGroup;
   private _componentRef: ComponentRef<FieldComponent>;
 

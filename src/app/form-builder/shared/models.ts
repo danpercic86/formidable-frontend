@@ -1,23 +1,23 @@
-import { Model } from '@formidable/models';
+import { IModel } from '@formidable/models';
 
-export interface FieldModel extends Model {
+export interface IField extends IModel {
   name: string;
   value: string;
   is_required: boolean;
   placeholder: string;
   dependent_value: string;
   dependent_field?: number;
-  choices: ChoiceModel[];
-  validators: ValidatorModel[];
+  choices: IChoice[];
+  validators: IValidator[];
   type: FieldType;
 }
 
-export interface ChoiceModel {
+export interface IChoice {
   name: string;
   value: string;
 }
 
-export interface ValidatorModel extends Model {
+export interface IValidator extends IModel {
   message: string;
   constraint: string;
   inverse_match: boolean;

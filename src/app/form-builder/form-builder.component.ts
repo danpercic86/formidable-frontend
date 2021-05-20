@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FieldModel, ValidatorModel, ValidatorTypes } from './shared/models';
+import { IField, IValidator, ValidatorTypes } from './shared/models';
 import {
   FormBuilder,
   FormControl,
@@ -15,7 +15,7 @@ import {
 })
 export class FormBuilderComponent implements OnInit
 {
-  @Input() fields: FieldModel[];
+  @Input() fields: IField[];
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
   form: FormGroup;
   loading = false;
@@ -32,7 +32,7 @@ export class FormBuilderComponent implements OnInit
   private static _getValidatorFn({
     constraint,
     type
-  }: ValidatorModel): ValidatorFn | undefined
+  }: IValidator): ValidatorFn | undefined
   {
     switch (type)
     {
@@ -79,7 +79,7 @@ export class FormBuilderComponent implements OnInit
     this.loading = false;
   }
 
-  private _createValidators(validators: ValidatorModel[]): ValidatorFn | null
+  private _createValidators(validators: IValidator[]): ValidatorFn | null
   {
     return Validators.compose(validators.map(FormBuilderComponent._getValidatorFn));
   }
@@ -94,7 +94,7 @@ export class FormBuilderComponent implements OnInit
     return group;
   }
 
-  private _createControl({ validators, name }: FieldModel): FormControl
+  private _createControl({ validators, name }: IField): FormControl
   {
     return this._formBuilder.control(name, this._createValidators(validators));
   }

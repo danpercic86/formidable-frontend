@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
-import { FormModel } from '../models';
+import { IForm } from '../models';
 
 export interface IFormService {
-  get(slugOrId?: string): Observable<FormModel | FormModel[]>;
+  get(): Observable<IForm[]>;
+  get(slugOrId: string): Observable<IForm>;
 }

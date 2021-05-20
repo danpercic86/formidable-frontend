@@ -1,8 +1,8 @@
-import { CreatedModifiedModel } from './base.model';
-import { SectionMinimalModel } from './section.model';
+import { ICreatedModifiedModel } from './base.model';
+import { ISectionMinimal } from './section.model';
 
-export interface FormModel extends CreatedModifiedModel {
+export interface IForm extends ICreatedModifiedModel {
   name: string;
   description: string;
-  sections: SectionMinimalModel[];
+  sections: ISectionMinimal[];
 }

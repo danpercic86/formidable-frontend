@@ -1,7 +1,7 @@
 import {
-  FieldModel,
+  IField,
   FieldTypes,
-  ValidatorModel,
+  IValidator,
   ValidatorType,
   ValidatorTypes,
 } from './models';
@@ -9,7 +9,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 
 export abstract class FieldComponent
 {
-  field: FieldModel;
+  field: IField;
   group: FormGroup;
 
   get isRequired(): boolean
@@ -35,9 +35,9 @@ export abstract class FieldComponent
     return this.group.get(this.field.name);
   }
 
-  validators(): ValidatorModel[];
-  validators(byType: ValidatorType): ValidatorModel | undefined;
-  validators(type?: ValidatorType): ValidatorModel | ValidatorModel[] | undefined
+  validators(): IValidator[];
+  validators(byType: ValidatorType): IValidator | undefined;
+  validators(type?: ValidatorType): IValidator | IValidator[] | undefined
   {
     const validators = this.field.validators;
     return type ? validators.find(v => v.type === type) : validators;

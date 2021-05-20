@@ -32,8 +32,13 @@
         "app/shared",
         "app/form-builder/shared"
       ],
+      "@builder/shared": [
+        "app/form-builder/shared"
+      ],
       "@formidable/models": [
-        "app/shared/models",
+        "app/shared/models"
+      ],
+      "@builder/models": [
         "app/form-builder/models"
       ],
       "@formidable/assets/*": [

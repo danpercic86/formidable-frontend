@@ -1,3 +1,4 @@
-export { GlobalSharedModule } from './global-shared.module';
-export { IFormService } from './interfaces/form.interface';
-export { ButtonComponent } from './components/button/button.component';
+export * from './global-shared.module';
+export * from './interfaces/form.interface';
+export * from './components/button/button.component';
+export * from './enums/buttons'

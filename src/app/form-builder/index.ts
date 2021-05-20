@@ -1,2 +1,2 @@
-export { FormBuilderModule } from './form-builder.module';
-export { FormBuilderComponent } from './form-builder.component';
+export * from './form-builder.module';
+export * from './form-builder.component';

@@ -1,8 +1,8 @@
-export interface Model {
+export interface IModel {
   id: string;
 }
 
-export interface CreatedModifiedModel extends Model {
+export interface ICreatedModifiedModel extends IModel {
   created: string;
   modified: string;
 }
