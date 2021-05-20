@@ -10,7 +10,9 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./landing-page/landing-page.module').then(m => m.LandingPageModule),
+      import('./landing-page/landing-page.module').then(
+        m => m.LandingPageModule
+      ),
   },
   {
     path: '**',
@@ -26,6 +28,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule
-{
-}
+export class AppRoutingModule {}

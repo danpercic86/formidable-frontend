@@ -17,6 +17,4 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   exports: [ButtonComponent],
 })
-export class GlobalSharedModule
-{
-}
+export class GlobalSharedModule {}

@@ -5,6 +5,4 @@ import { FieldComponent } from '../../shared/field.component';
   selector: 'formidable-radio',
   templateUrl: './radio.component.html',
 })
-export class RadioComponent extends FieldComponent
-{
-}
+export class RadioComponent extends FieldComponent {}

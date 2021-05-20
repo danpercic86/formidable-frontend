@@ -13,7 +13,7 @@ import { FormGroup } from '@angular/forms';
 import { IField } from '@builder/shared';
 import { FieldComponent } from '@builder/shared';
 
-const componentMapper: { [ type: string ]: Type<FieldComponent> } = {
+const componentMapper: { [type: string]: Type<FieldComponent> } = {
   text: InputComponent,
   email: InputComponent,
   url: InputComponent,
@@ -37,16 +37,14 @@ export class DynamicFieldDirective implements OnInit
   private _componentRef: ComponentRef<FieldComponent>;
 
   constructor(
-      private readonly _resolver: ComponentFactoryResolver,
-      private readonly _container: ViewContainerRef,
-  )
-  {
-  }
+    private readonly _resolver: ComponentFactoryResolver,
+    private readonly _container: ViewContainerRef
+  ) {}
 
   ngOnInit(): void
   {
     const factory = this._resolver.resolveComponentFactory(
-      componentMapper[ this.field.type ],
+      componentMapper[this.field.type]
     );
     this._componentRef = this._container.createComponent(factory);
     this._componentRef.instance.field = this.field;

@@ -1,24 +1,24 @@
 <mat-form-field [formGroup]="group">
   <mat-label>{{ field.name }}</mat-label>
   <input
-          [formControlName]="field.name"
-          [id]="field.id"
-          [max]="getNumberFieldConstraint(validatorTypes.max)"
-          [maxlength]="getNumberFieldConstraint(validatorTypes.maxLength)"
-          [min]="getNumberFieldConstraint(validatorTypes.min)"
-          [minlength]="getNumberFieldConstraint(validatorTypes.minLength)"
-          [name]="field.name"
-          [pattern]="getNumberFieldConstraint(validatorTypes.regex)"
-          [placeholder]="field.placeholder"
-          [required]="isRequired"
-          [step]="step"
-          [title]="field.name"
-          [type]="type"
-          matInput
+    [formControlName]="field.name"
+    [id]="field.id"
+    [max]="getNumberFieldConstraint(validatorTypes.max)"
+    [maxlength]="getNumberFieldConstraint(validatorTypes.maxLength)"
+    [min]="getNumberFieldConstraint(validatorTypes.min)"
+    [minlength]="getNumberFieldConstraint(validatorTypes.minLength)"
+    [name]="field.name"
+    [pattern]="getNumberFieldConstraint(validatorTypes.regex)"
+    [placeholder]="field.placeholder"
+    [required]="isRequired"
+    [step]="step"
+    [title]="field.name"
+    [type]="type"
+    matInput
   />
   <ng-container *ngFor="let validator of validators()" ngProjectAs="mat-error">
     <mat-error *ngIf="control?.hasError(validator.type)">{{
       validator.message
-      }}</mat-error>
+    }}</mat-error>
   </ng-container>
 </mat-form-field>

@@ -26,13 +26,13 @@ export interface IValidator extends IModel {
 }
 
 export type ValidatorType =
-    | 'min'
-    | 'max'
-    | 'minlength'
-    | 'maxlength'
-    | 'pattern'
-    | 'required'
-    | 'email';
+  | 'min'
+  | 'max'
+  | 'minlength'
+  | 'maxlength'
+  | 'pattern'
+  | 'required'
+  | 'email';
 
 export enum ValidatorTypes {
   min = 'min',
@@ -45,15 +45,15 @@ export enum ValidatorTypes {
 }
 
 export type FieldType =
-    | 'text'
-    | 'email'
-    | 'url'
-    | 'integer'
-    | 'decimal'
-    | 'file'
-    | 'checkbox'
-    | 'radio'
-    | 'select';
+  | 'text'
+  | 'email'
+  | 'url'
+  | 'integer'
+  | 'decimal'
+  | 'file'
+  | 'checkbox'
+  | 'radio'
+  | 'select';
 
 export enum FieldTypes {
   text = 'text',

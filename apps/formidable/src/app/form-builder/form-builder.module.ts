@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormBuilderComponent } from './form-builder.component';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '@builder/shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -59,6 +59,4 @@ const matImports = [
   ],
   exports: [FormBuilderComponent],
 })
-export class FormBuilderModule
-{
-}
+export class FormBuilderModule {}

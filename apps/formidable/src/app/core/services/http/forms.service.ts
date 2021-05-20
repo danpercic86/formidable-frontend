@@ -6,7 +6,9 @@ import { IFormService } from '@formidable/shared';
 @Injectable({
   providedIn: 'root',
 })
-export class FormsService extends ReadOnlyService<IForm> implements IFormService
+export class FormsService
+  extends ReadOnlyService<IForm>
+  implements IFormService
 {
   protected _modelName = 'forms';
 

@@ -5,7 +5,7 @@ import {
   FormControl,
   FormGroup,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -20,9 +20,7 @@ export class FormBuilderComponent implements OnInit
   form: FormGroup;
   loading = false;
 
-  constructor(private readonly _formBuilder: FormBuilder)
-  {
-  }
+  constructor(private readonly _formBuilder: FormBuilder) {}
 
   get value(): Record<string, unknown>
   {
@@ -31,7 +29,7 @@ export class FormBuilderComponent implements OnInit
 
   private static _getValidatorFn({
     constraint,
-    type
+    type,
   }: IValidator): ValidatorFn | undefined
   {
     switch (type)
@@ -81,7 +79,9 @@ export class FormBuilderComponent implements OnInit
 
   private _createValidators(validators: IValidator[]): ValidatorFn | null
   {
-    return Validators.compose(validators.map(FormBuilderComponent._getValidatorFn));
+    return Validators.compose(
+      validators.map(FormBuilderComponent._getValidatorFn)
+    );
   }
 
   private _createFormGroup(): FormGroup
