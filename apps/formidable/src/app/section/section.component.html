@@ -1,12 +1,12 @@
-<div class="content-center" *ngIf="!fields">
+<div class="content-center" *ngIf="!fields$">
   <mat-spinner class="m-auto"></mat-spinner>
 </div>
 
-<mat-card class="row justify-content-center" *ngIf="fields">
+<mat-card class="row justify-content-center" *ngIf="fields$">
   <div class="col-sm-12 col-md-10 col-lg-8 m-auto">
     <formidable-form-builder
       (formSubmit)="submit($event)"
-      [fields]="fields"
+      [fields]="fields$ | async"
     ></formidable-form-builder>
   </div>
 </mat-card>

@@ -7,6 +7,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { trackByFn } from './shared/functions';
 
 @Component({
   selector: 'formidable-form-builder',
@@ -19,6 +20,7 @@ export class FormBuilderComponent implements OnInit
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
   form: FormGroup;
   loading = false;
+  trackById = trackByFn
 
   constructor(private readonly _formBuilder: FormBuilder) {}
 

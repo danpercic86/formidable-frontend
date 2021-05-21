@@ -1,15 +1,17 @@
 <form (submit)="onSubmit($event)" [formGroup]="form" autocomplete="off">
   <div class="row overflow-hidden">
-    <div *ngFor="let field of fields" class="col-12">
+    <div *ngFor="let field of fields; trackBy: trackById" class="col-12">
       <ng-container
         [field]="field"
         [group]="form"
         formidableDynamicField
       ></ng-container>
     </div>
+
     <div>
       {{ form.value | json }}
     </div>
+
     <formidable-button
       (action)="onSubmit($event)"
       [loading]="loading"

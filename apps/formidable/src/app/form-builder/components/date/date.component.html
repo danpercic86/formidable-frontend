@@ -5,15 +5,17 @@
     [placeholder]="field.name"
     matInput
   />
+
   <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
   <mat-hint></mat-hint>
+
   <ng-container
-    *ngFor="let validation of field.validators"
+    *ngFor="let validator of field.validators; trackBy: trackByFn"
     ngProjectAs="mat-error"
   >
-    <mat-error *ngIf="group.get(field.name)?.hasError(validation.constraint)">{{
-      validation.message
+    <mat-error *ngIf="control?.hasError(validator.constraint)">{{
+      validator.message
     }}</mat-error>
   </ng-container>
 </mat-form-field>

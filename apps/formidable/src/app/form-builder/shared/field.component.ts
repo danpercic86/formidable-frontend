@@ -1,16 +1,18 @@
 import {
-  IField,
   FieldTypes,
+  IField,
   IValidator,
   ValidatorType,
-  ValidatorTypes,
+  ValidatorTypes
 } from './models';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { trackByFn } from './functions';
 
 export abstract class FieldComponent
 {
   field: IField;
   group: FormGroup;
+  trackByFn = trackByFn;
 
   get isRequired(): boolean
   {
@@ -49,7 +51,8 @@ export abstract class FieldComponent
       case FieldTypes.decimal:
       case FieldTypes.integer:
         return '';
-      default: {
+      default:
+      {
         const validator = this.validators(type);
         return validator ? validator.constraint : '';
       }

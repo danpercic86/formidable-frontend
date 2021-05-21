@@ -1,7 +1,9 @@
-<mat-form-field [formGroup]="group" class="demo-full-width margin-top">
+<mat-form-field [formGroup]="group">
   <mat-select [formControlName]="field.name" [placeholder]="field.name">
-    <mat-option *ngFor="let choice of field.choices" [value]="choice.value">{{
-      choice.name
-    }}</mat-option>
+    <mat-option
+      *ngFor="let choice of field.choices; trackBy: trackByFn"
+      [value]="choice.value"
+      >{{ choice.name }}</mat-option
+    >
   </mat-select>
 </mat-form-field>

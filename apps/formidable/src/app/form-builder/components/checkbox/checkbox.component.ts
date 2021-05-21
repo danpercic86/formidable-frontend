@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FieldComponent } from '../../shared/field.component';
+import { FieldComponent } from '@builder/shared';
 
 @Component({
   selector: 'formidable-checkbox',
