@@ -32,13 +32,16 @@
   "private": true,
   "prettier": {
     "tabWidth": 2,
+    "printWidth": 88,
     "singleQuote": true,
     "jsxSingleQuote": true,
     "arrowParens": "avoid",
     "bracketSpacing": true,
     "overrides": [
       {
-        "files": ["*.html"],
+        "files": [
+          "*.html"
+        ],
         "options": {
           "singleQuote": true,
           "parser": "angular"
