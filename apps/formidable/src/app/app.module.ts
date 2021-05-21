@@ -1,7 +1,4 @@
-import {
-  BrowserModule,
-  BrowserTransferStateModule,
-} from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GlobalSharedModule } from '@formidable/shared';
 import { CoreModule } from '@formidable/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, SectionComponent],
@@ -32,5 +31,12 @@ import { CoreModule } from '@formidable/core';
     MatProgressSpinnerModule,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class AppModule {}
