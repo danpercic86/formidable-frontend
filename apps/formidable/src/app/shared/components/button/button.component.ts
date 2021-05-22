@@ -24,7 +24,9 @@ export class ButtonComponent
   @Input()
   disabled = false;
   @Input()
-  routerLink = '';
+  routerLink: string | string[] = '';
+  @Input()
+  small = false;
   @Input()
   color: BtnColor = BtnColors.primary;
   @Input()

@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-::ng-deep body {
-  padding: 0 calc(100vh / 12) 0;
+  height: 100%;
 }
 
 .auth-form {
   width: 100%;
   min-width: 150px;
   max-width: 500px;
+}
+
+form {
+  width: 300px;
 }

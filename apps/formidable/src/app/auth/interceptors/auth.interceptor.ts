@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
   HttpErrorResponse,
-  HttpResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -20,29 +20,34 @@ export class AuthInterceptor implements HttpInterceptor
     private readonly _router: Router,
     private readonly _tokenService: TokenService,
     private readonly _authService: AuthService
-  ) {}
+  )
+  {
+  }
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>>
   {
+    console.log(request);
+    if (!request.withCredentials) return next.handle(request);
     request = this._setHeaders(request);
-    const refreshToken = this._tokenService.refreshToken || '';
 
     return next.handle(request).pipe(
       map(event => this._log(event)),
       catchError((error: HttpErrorResponse) =>
       {
         console.log(error);
-        if (error.status !== 401)
+        if (error.status !== 401 && error.status !== 403)
         {
           return throwError(error);
         }
 
-        if (error.error.error === 'invalid_token')
+        if (this._authService.isLoggedIn()) this._authService.logout();
+
+        if (error.error === 'invalid_token')
         {
-          this._authService.refreshToken({ refresh: refreshToken }).subscribe(() =>
+          this._authService.refreshToken().subscribe(() =>
           {
             location.reload();
           });
@@ -57,27 +62,14 @@ export class AuthInterceptor implements HttpInterceptor
 
   private _setHeaders(request: HttpRequest<unknown>): HttpRequest<unknown>
   {
-    if (this._tokenService.token)
+    if (this._tokenService.rawToken)
     {
       request = request.clone({
         setHeaders: {
-          Authorization: 'Bearer ' + this._tokenService.token,
-        },
+          Authorization: 'Bearer ' + this._tokenService.rawToken
+        }
       });
     }
-
-    if (!request.headers.has('Content-Type'))
-    {
-      request = request.clone({
-        setHeaders: {
-          'Content-Type': 'application/json',
-        },
-      });
-    }
-
-    request = request.clone({
-      headers: request.headers.set('Accept', 'application/json'),
-    });
 
     return request;
   }

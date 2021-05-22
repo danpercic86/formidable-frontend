@@ -8,7 +8,7 @@ import { take } from 'rxjs/operators';
 @Component({
   selector: 'formidable-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['../../auth.component.scss'],
+  styleUrls: ['../../auth.component.scss']
 })
 export class RegisterPageComponent implements OnInit
 {
@@ -20,7 +20,9 @@ export class RegisterPageComponent implements OnInit
     private readonly _authService: AuthService,
     private readonly _router: Router,
     private readonly _formBuilder: FormBuilder
-  ) {}
+  )
+  {
+  }
 
   ngOnInit(): void
   {
@@ -29,7 +31,7 @@ export class RegisterPageComponent implements OnInit
       password1: [null, Validators.required],
       password2: [null, Validators.required],
       first_name: [null, Validators.required],
-      last_name: [null, Validators.required],
+      last_name: [null, Validators.required]
     });
   }
 
@@ -37,21 +39,9 @@ export class RegisterPageComponent implements OnInit
   {
     this.isLoading = true;
     this._authService.register(this.form.value).pipe(take(1)).subscribe(
-      () =>
-      {
-        this.isLoading = false;
-        this.goToLogin();
-      },
-      err =>
-      {
-        console.log(err);
-        this.isLoading = false;
-      }
+      () => void this._router.navigate(['auth', 'login']),
+      err => console.log(err),
+      () => this.isLoading = false
     );
-  }
-
-  goToLogin()
-  {
-    this._authService.toLogin();
   }
 }

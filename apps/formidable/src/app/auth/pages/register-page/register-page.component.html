@@ -15,7 +15,7 @@
           [errorStateMatcher]="matcher"
         />
         <mat-error>
-          <span *ngIf="!form.get('first_name').valid && form.get('first_name').touched"
+          <span *ngIf="!form.get('first_name')?.valid && form.get('first_name')?.touched"
             >Please enter your first name</span
           >
         </mat-error>
@@ -31,7 +31,7 @@
           [errorStateMatcher]="matcher"
         />
         <mat-error>
-          <span *ngIf="!form.get('last_name').valid && form.get('last_name').touched"
+          <span *ngIf="!form.get('last_name')?.valid && form.get('last_name')?.touched"
             >Please enter your last name</span
           >
         </mat-error>
@@ -48,7 +48,7 @@
           [errorStateMatcher]="matcher"
         />
         <mat-error>
-          <span *ngIf="!form.get('email').valid && form.get('email').touched"
+          <span *ngIf="!form.get('email')?.valid && form.get('email')?.touched"
             >Please enter email</span
           >
         </mat-error>
@@ -65,7 +65,7 @@
           [errorStateMatcher]="matcher"
         />
         <mat-error>
-          <span *ngIf="!form.get('password1').valid && form.get('password1').touched"
+          <span *ngIf="!form.get('password1')?.valid && form.get('password1')?.touched"
             >Please enter Password</span
           >
         </mat-error>
@@ -82,7 +82,7 @@
           [errorStateMatcher]="matcher"
         />
         <mat-error>
-          <span *ngIf="!form.get('password2').valid && form.get('password2').touched"
+          <span *ngIf="!form.get('password2')?.valid && form.get('password2')?.touched"
             >Please enter password confirmation</span
           >
         </mat-error>
@@ -100,7 +100,7 @@
       <formidable-button
         label="Login"
         matIcon="login"
-        (action)="goToLogin()"
+        [routerLink]="['auth','login']"
       ></formidable-button>
     </form>
   </mat-card>

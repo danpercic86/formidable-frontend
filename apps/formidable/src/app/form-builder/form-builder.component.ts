@@ -1,11 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { IField, IValidator, ValidatorTypes } from './shared/models';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ValidatorFn,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { trackByFn } from './shared/functions';
 
@@ -13,6 +20,7 @@ import { trackByFn } from './shared/functions';
   selector: 'formidable-form-builder',
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormBuilderComponent implements OnInit
 {
@@ -20,9 +28,11 @@ export class FormBuilderComponent implements OnInit
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
   form: FormGroup;
   loading = false;
-  trackById = trackByFn
+  trackById = trackByFn;
 
-  constructor(private readonly _formBuilder: FormBuilder) {}
+  constructor(private readonly _formBuilder: FormBuilder)
+  {
+  }
 
   get value(): Record<string, unknown>
   {
@@ -31,7 +41,7 @@ export class FormBuilderComponent implements OnInit
 
   private static _getValidatorFn({
     constraint,
-    type,
+    type
   }: IValidator): ValidatorFn | undefined
   {
     switch (type)
@@ -61,11 +71,14 @@ export class FormBuilderComponent implements OnInit
     this.form = this._createFormGroup();
   }
 
-  onSubmit(event: Event): void
+  onSubmit(event: Event | Record<string, unknown>): void
   {
     this.loading = true;
-    event.preventDefault();
-    event.stopPropagation();
+    if (event instanceof Event)
+    {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
     if (this.form.valid)
     {
@@ -89,7 +102,7 @@ export class FormBuilderComponent implements OnInit
   private _createFormGroup(): FormGroup
   {
     const group = this._formBuilder.group({});
-    this.fields.forEach(field =>
+    this.fields?.forEach(field =>
     {
       group.addControl(field.name, this._createControl(field));
     });

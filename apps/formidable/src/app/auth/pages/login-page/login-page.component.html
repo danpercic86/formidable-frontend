@@ -1,55 +1,58 @@
-<div class="auth-container">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class='auth-container'>
+  <mat-spinner *ngIf='isLoading'></mat-spinner>
   <mat-card>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h2>Log In</h2>
+    <form [formGroup]='form' (ngSubmit)='onSubmit()' class='d-flex flex-column'>
+      <h2 class='text-center pb-2 text-secondary'>Log In</h2>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class='full-width'>
         <mat-label>Email</mat-label>
         <input
           matInput
-          placeholder="Email"
-          title="Email"
-          formControlName="email"
-          [errorStateMatcher]="matcher"
+          placeholder='Email'
+          title='Email'
+          formControlName='email'
+          [errorStateMatcher]='matcher'
         />
         <mat-error>
-          <span *ngIf="!form.get('email').valid && form.get('email').touched"
-            >Please enter email</span
+          <span *ngIf="!form.get('email')?.valid && form.get('email')?.touched"
+          >Please enter email</span
           >
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class='full-width'>
         <mat-label>Password</mat-label>
         <input
-          type="password"
+          type='password'
           matInput
-          placeholder="Password"
-          title="Password"
-          formControlName="password"
-          [errorStateMatcher]="matcher"
+          placeholder='Password'
+          title='Password'
+          formControlName='password'
+          [errorStateMatcher]='matcher'
         />
         <mat-error>
-          <span *ngIf="!form.get('password').valid && form.get('password').touched"
-            >Please enter Password</span
+          <span *ngIf="!form.get('password')?.valid && form.get('password')?.touched"
+          >Please enter Password</span
           >
         </mat-error>
       </mat-form-field>
 
       <formidable-button
-        [disabled]="!form.valid"
-        [loading]="isLoading"
-        label="Login"
-        matIcon="login"
-        (action)="onSubmit()"
+        class='flex-column align-self-center'
+        [disabled]='!form.valid'
+        [loading]='isLoading'
+        [text]="'Login'"
+        matIcon='login'
+        (action)='onSubmit()'
       ></formidable-button>
 
-      <h4>Don't have an account?</h4>
+      <h6 class='text-center fw-light pt-4'>Don't have an account?</h6>
       <formidable-button
-        label="Register"
-        matIcon="how_to_reg"
-        (action)="goToRegister()"
+        class='flex-column align-self-center'
+        [text]="'Register'"
+        [color]="'link'"
+        matIcon='how_to_reg'
+        [routerLink]="'/auth/register'"
       ></formidable-button>
     </form>
   </mat-card>

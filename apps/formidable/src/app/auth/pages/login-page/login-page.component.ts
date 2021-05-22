@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit
   ngOnInit(): void
   {
     this.form = this._formBuilder.group({
-      email: [null, Validators.required, Validators.email],
+      email: [null, Validators.required],
       password: [null, Validators.required],
     });
   }
@@ -33,22 +33,11 @@ export class LoginPageComponent implements OnInit
   onSubmit(): void
   {
     this.isLoading = true;
-    this._authService.login(this.form.value).pipe(take(1)).subscribe(
-      () =>
-      {
-        this.isLoading = false;
-        void this._router.navigate(['/admin']);
-      },
-      err =>
-      {
-        console.log(err);
-        this.isLoading = false;
-      }
-    );
-  }
-
-  goToRegister(): void
-  {
-    this._authService.toRegister();
+    this._authService.login(this.form.value).pipe(take(1))
+      .subscribe(
+        () => void this._router.navigate(['/home']),
+        err => console.log(err),
+        () => (this.isLoading = false)
+      );
   }
 }
