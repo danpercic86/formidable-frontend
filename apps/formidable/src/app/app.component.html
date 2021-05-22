@@ -1,7 +1,11 @@
-<mat-toolbar color="primary">
-  <mat-icon>local_fire_department</mat-icon>
-  <span>Enroll</span>
+<mat-toolbar color='primary' class='d-flex justify-content-between'>
+  <div>
+    <mat-icon>local_fire_department</mat-icon>
+    <span>Enroll</span>
+  </div>
+
+  <button *ngIf='isLoggedIn()' (click)='logout()' mat-button>Logout</button>
 </mat-toolbar>
-<div class="container vw-100">
+<div class='container vw-100'>
   <router-outlet></router-outlet>
 </div>

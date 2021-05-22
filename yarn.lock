@@ -6864,6 +6864,7 @@ __metadata:
     jest: 26.2.2
     jest-preset-angular: 8.4.0
     moment: ^2.29.1
+    ngx-logger: ^4.2.1
     postcss: ^8.2.15
     prettier: ^2.3.0
     rxjs: ~6.6.0
@@ -10207,6 +10208,20 @@ fsevents@^1.2.7:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: 34a8f5309135be258a97082af810ea43700a3e0121e7b1ea31b3e22e2663d7c0d502cd949abb6d1ab8c11abfd04500ee61721ec5408b2d4bef8105241fd8a4c2
+  languageName: node
+  linkType: hard
+
+"ngx-logger@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "ngx-logger@npm:4.2.1"
+  dependencies:
+    tslib: ^1.9.0
+    vlq: ^1.0.0
+  peerDependencies:
+    "@angular/common": ">6.0.0"
+    "@angular/core": ">6.0.0"
+    rxjs: ">6.0.0"
+  checksum: b3cc55ee5509d66d9f563d2db4631993d3fea9bd2cfb31969def9846b9c1d90baf2fbfd3099e087c090937b4d83967ff09c693c3580bf1e033c1bad924ead5fb
   languageName: node
   linkType: hard
 
@@ -14919,6 +14934,13 @@ resolve@1.17.0:
     unist-util-stringify-position: ^2.0.0
     vfile-message: ^2.0.0
   checksum: ee33bee7fb29cae493c3263c4298a28319ab6383ad2f017c036e7213911c6ca6e25d38e6347e59ab8fd0470b123b5522d1d2f6872e418c2e08fd3216fb160e39
+  languageName: node
+  linkType: hard
+
+"vlq@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "vlq@npm:1.0.1"
+  checksum: a15c2b8ed499d7ebf16fb5826738988fe177fe9f47e79c5a90da49c0408fce1aab7d22d83101603ff6b64d158b1e0662506f3305ca50c7f36e34bf18da2e1b56
   languageName: node
   linkType: hard
 

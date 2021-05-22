@@ -1,0 +1,11 @@
+button {
+  width: 130px;
+
+  span:first-child {
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    width: 100px !important;
+    min-height: 40px;
+  }
+}

@@ -9,9 +9,10 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, take } from 'rxjs/operators';
 import { TokenService } from '../services/token.service';
 import { AuthService } from '../services/auth.service';
+import { NGXLogger } from 'ngx-logger';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor
@@ -19,7 +20,8 @@ export class AuthInterceptor implements HttpInterceptor
   constructor(
     private readonly _router: Router,
     private readonly _tokenService: TokenService,
-    private readonly _authService: AuthService
+    private readonly _authService: AuthService,
+    private readonly _logger: NGXLogger
   )
   {
   }
@@ -29,38 +31,42 @@ export class AuthInterceptor implements HttpInterceptor
     next: HttpHandler
   ): Observable<HttpEvent<unknown>>
   {
-    console.log(request);
+    this._logger.debug('Intercepted request: ', request);
+
     if (!request.withCredentials) return next.handle(request);
-    request = this._setHeaders(request);
+
+    request = this._setAuthHeaders(request);
 
     return next.handle(request).pipe(
       map(event => this._log(event)),
       catchError((error: HttpErrorResponse) =>
       {
-        console.log(error);
-        if (error.status !== 401 && error.status !== 403)
+        this._logger.debug('Https response error: ', error);
+
+        if (error.error === 'invalid_token')
+        {
+          this._authService.refreshToken().pipe(take(1)).subscribe(() =>
+          {
+            location.reload();
+          });
+        }
+
+        if (
+          (error.status !== 401 && error.status !== 403) ||
+          !this._authService.isLoggedIn()
+        )
         {
           return throwError(error);
         }
 
         if (this._authService.isLoggedIn()) this._authService.logout();
 
-        if (error.error === 'invalid_token')
-        {
-          this._authService.refreshToken().subscribe(() =>
-          {
-            location.reload();
-          });
-        }
-
-        void this._router.navigate(['login']);
-
         return throwError(error);
       })
     );
   }
 
-  private _setHeaders(request: HttpRequest<unknown>): HttpRequest<unknown>
+  private _setAuthHeaders(request: HttpRequest<unknown>): HttpRequest<unknown>
   {
     if (this._tokenService.rawToken)
     {
@@ -78,7 +84,7 @@ export class AuthInterceptor implements HttpInterceptor
   {
     if (event instanceof HttpResponse)
     {
-      console.log('event--->>>', event);
+      this._logger.debug('Http response event: ', event);
     }
     return event;
   }

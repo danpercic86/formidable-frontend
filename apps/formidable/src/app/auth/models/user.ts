@@ -1,4 +1,5 @@
-export interface User {
+export interface IUser
+{
     pk: number;
     username: string;
     email: string;

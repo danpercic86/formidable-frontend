@@ -3,52 +3,47 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
-  HttpParams
+  HttpParams,
 } from '@angular/common/http';
 import { TokenService } from './token.service';
-import { Observable, throwError } from 'rxjs';
-import { catchError, take, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, shareReplay, take, tap } from 'rxjs/operators';
 import {
   ILoginRequestData,
   ILoginResponseData,
   IRefreshTokenResponseData,
-  IRegisterRequestData
+  IRegisterRequestData,
 } from '../models/auth-models';
 import { Router } from '@angular/router';
-
-const API_URL = '/api/auth/';
+import { IUser } from '../models/user';
+import { environment } from '@formidable/env';
+import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService
 {
-  redirectUrl: string;
-
   private _refreshTokenTimeout: number;
+  private readonly _userSubject = new BehaviorSubject<IUser | null>(null);
+  private readonly _httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }),
+  };
 
-  get authOptions(): { headers: HttpHeaders }
-  {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Bearer ' + (this._tokenService.rawToken as string)
-      })
-    };
-  }
+  readonly user = this._userSubject.asObservable();
 
   constructor(
     private readonly _http: HttpClient,
     private readonly _tokenService: TokenService,
-    private readonly _router: Router
-  )
-  {
-  }
+    private readonly _router: Router,
+    private readonly _logger: NGXLogger
+  ) {}
 
-  private static _handleError(error: HttpErrorResponse)
+  private _handleError(error: HttpErrorResponse)
   {
-    console.log('ERROR');
-    console.log(error);
+    this._logger.error('Auth error', error);
     return throwError(error);
   }
 
@@ -59,68 +54,67 @@ export class AuthService
     const body = new HttpParams()
       .set('email', data.email)
       .set('password', data.password);
-    const url = API_URL + 'login/';
-    const options = { withCredentials: true };
 
-    return this._http.post<ILoginResponseData>(url, body, options).pipe(
+    return this._http.post<ILoginResponseData>(`${Api.authUrl}/login/`, body).pipe(
       tap(res =>
       {
         this._tokenService.rawToken = res.access_token;
         this._tokenService.rawRefreshToken = res.refresh_token;
+        this._userSubject.next(res.user);
         this._startRefreshTokenTimer();
       }),
-      catchError(AuthService._handleError)
+      shareReplay(),
+      catchError(err => this._handleError(err))
     );
   }
 
   refreshToken(): Observable<IRefreshTokenResponseData>
   {
+    this._tokenService.removeToken();
+
     const refreshToken = this._tokenService.rawRefreshToken || '';
-    this._tokenService.removeTokens();
     const body = new HttpParams().set('refresh', refreshToken);
-    const url = API_URL + 'token/refresh/';
-    const options = { ...this.authOptions, withCredentials: true };
+    const url = Api.tokenUrl + '/refresh/';
+    const options = { ...this._httpOptions };
 
     return this._http.post<IRefreshTokenResponseData>(url, body, options).pipe(
       tap(res =>
       {
         this._tokenService.rawToken = res.access;
-        this._tokenService.rawRefreshToken = res.access;
         this._startRefreshTokenTimer();
       }),
-      catchError(AuthService._handleError)
+      shareReplay(),
+      catchError(err => this._handleError(err))
     );
   }
 
-  logout(): Promise<boolean>
+  logout(): void
   {
     this._tokenService.removeTokens();
     this._stopRefreshTokenTimer();
 
-    const url = API_URL + 'logout/';
-    const options = { withCredentials: true };
-    this._http.post(url, {}, options).pipe(take(1)).subscribe();
+    this._http.post(`${Api.authUrl}/logout/`, {})
+      .pipe(take(1), shareReplay())
+      .subscribe();
 
-    return this._router.navigate(['/login']);
+    void this._router.navigate(['auth', 'login']);
   }
 
   register(data: IRegisterRequestData): Observable<IRegisterRequestData>
   {
-    const url = API_URL + 'registration/';
-    const options = { withCredentials: true };
-
-    return this._http.post<IRegisterRequestData>(url, data, options)
-      .pipe(catchError(AuthService._handleError));
+    return this._http
+      .post<IRegisterRequestData>(`${Api.authUrl}/registration/`, data)
+      .pipe(shareReplay(), catchError(err => this._handleError(err)));
   }
 
   verifyToken(): Observable<IRefreshTokenResponseData>
   {
     const body = { token: this._tokenService.rawToken };
-    const url = API_URL + 'token/verify/';
+    const url = `${Api.tokenUrl}/verify/`;
     const options = { withCredentials: true };
 
     return this._http.post<IRefreshTokenResponseData>(url, body, options)
-      .pipe(catchError(AuthService._handleError));
+      .pipe(shareReplay(), catchError(err => this._handleError(err)));
   }
 
   isLoggedIn(): boolean
@@ -130,9 +124,13 @@ export class AuthService
 
   private _startRefreshTokenTimer(): void
   {
-    if (!this._tokenService.token) return;
+    if (!this._tokenService.token) return this._logger.debug('Not token on timer start');
+
     const expires = new Date(this._tokenService.token?.exp * 1000);
     const timeout = expires.getTime() - Date.now() - 60 * 1000;
+
+    this._logger.debug('Start refresh token timer with timeout: ', timeout);
+
     this._refreshTokenTimeout = setTimeout(
       () => this.refreshToken().pipe(take(1)).subscribe(),
       timeout
@@ -141,6 +139,20 @@ export class AuthService
 
   private _stopRefreshTokenTimer(): void
   {
+    this._logger.debug('Stop refresh token timer');
     clearTimeout(this._refreshTokenTimeout);
+  }
+}
+
+class Api
+{
+  static get authUrl(): string
+  {
+    return environment.apiUrl + 'auth';
+  }
+
+  static get tokenUrl(): string
+  {
+    return environment.apiUrl + 'token';
   }
 }

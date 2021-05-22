@@ -1,5 +1,5 @@
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,9 @@ import { GlobalSharedModule } from '@formidable/shared';
 import { CoreModule } from '@formidable/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
+import { autoAuthenticate } from './auth/utils/functions';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, SectionComponent],
@@ -29,14 +32,23 @@ import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
     MatToolbarModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, enableSourceMaps: true }),
+    MatButtonModule
   ],
   bootstrap: [AppComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true,
+      multi: true
     },
-  ],
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => autoAuthenticate,
+      multi: true
+    }
+  ]
 })
-export class AppModule {}
+export class AppModule
+{
+}

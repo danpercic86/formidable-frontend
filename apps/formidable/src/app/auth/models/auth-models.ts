@@ -1,4 +1,4 @@
-import { User } from './user';
+import { IUser } from './user';
 
 export interface ILoginRequestData
 {
@@ -10,7 +10,7 @@ export interface ILoginResponseData
 {
     access_token: string;
     refresh_token: string;
-    user: User;
+    user: IUser;
 }
 
 export interface IRegisterRequestData
@@ -20,11 +20,6 @@ export interface IRegisterRequestData
     email: string;
     password1: string;
     password2: string;
-}
-
-export interface IRefreshTokenRequestData
-{
-    refresh: string;
 }
 
 export interface IRefreshTokenResponseData

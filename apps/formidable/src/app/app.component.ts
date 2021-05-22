@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'formidable-root',
@@ -8,4 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent
 {
   title = 'formidable-frontend';
+  constructor(private readonly _authService: AuthService){}
+
+  isLoggedIn()
+  {
+    return this._authService.isLoggedIn();
+  }
+
+  logout()
+  {
+    this._authService.logout();
+  }
 }

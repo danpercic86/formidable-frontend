@@ -11,6 +11,7 @@ import { IButtonOptions } from '../../interfaces/button.options';
 @Component({
   selector: 'formidable-button',
   templateUrl: './button.component.html',
+  styleUrls: ['button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent
