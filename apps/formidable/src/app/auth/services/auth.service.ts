@@ -3,7 +3,7 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
-  HttpParams,
+  HttpParams
 } from '@angular/common/http';
 import { TokenService } from './token.service';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -12,7 +12,7 @@ import {
   ILoginRequestData,
   ILoginResponseData,
   IRefreshTokenResponseData,
-  IRegisterRequestData,
+  IRegisterRequestData
 } from '../models/auth-models';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user';
@@ -20,7 +20,7 @@ import { environment } from '@formidable/env';
 import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService
 {
@@ -28,8 +28,8 @@ export class AuthService
   private readonly _userSubject = new BehaviorSubject<IUser | null>(null);
   private readonly _httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    }),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    })
   };
 
   readonly user = this._userSubject.asObservable();
@@ -39,7 +39,9 @@ export class AuthService
     private readonly _tokenService: TokenService,
     private readonly _router: Router,
     private readonly _logger: NGXLogger
-  ) {}
+  )
+  {
+  }
 
   private _handleError(error: HttpErrorResponse)
   {
@@ -84,7 +86,11 @@ export class AuthService
         this._startRefreshTokenTimer();
       }),
       shareReplay(),
-      catchError(err => this._handleError(err))
+      catchError(err =>
+      {
+        this.logout();
+        return this._handleError(err);
+      })
     );
   }
 
@@ -124,7 +130,8 @@ export class AuthService
 
   private _startRefreshTokenTimer(): void
   {
-    if (!this._tokenService.token) return this._logger.debug('Not token on timer start');
+    if (!this._tokenService.token)
+      return this._logger.debug('No token on timer start');
 
     const expires = new Date(this._tokenService.token?.exp * 1000);
     const timeout = expires.getTime() - Date.now() - 60 * 1000;
@@ -153,6 +160,6 @@ class Api
 
   static get tokenUrl(): string
   {
-    return environment.apiUrl + 'token';
+    return Api.authUrl + '/token';
   }
 }

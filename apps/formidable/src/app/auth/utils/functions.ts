@@ -1,14 +1,16 @@
 import { AuthService } from '../services/auth.service';
-import { take } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
+import { take } from 'rxjs/operators';
 
 export function autoAuthenticate(authService: AuthService, logger: NGXLogger)
 {
   return (): Promise<void> =>
-    new Promise(resolve =>
+    new Promise<void>(resolve =>
     {
-      // attempt to refresh token on app start up to auto authenticate
-      logger.debug('Auto authenticate');
-      authService.refreshToken().pipe(take(1)).subscribe().add(resolve);
+      logger.debug('Auto refresh token on start');
+
+      authService.refreshToken().pipe(take(1)).subscribe();
+
+      resolve();
     });
 }

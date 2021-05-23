@@ -11,12 +11,12 @@ export class AppComponent
   title = 'formidable-frontend';
   constructor(private readonly _authService: AuthService){}
 
-  isLoggedIn()
+  isLoggedIn(): boolean
   {
     return this._authService.isLoggedIn();
   }
 
-  logout()
+  logout(): void
   {
     this._authService.logout();
   }

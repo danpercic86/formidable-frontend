@@ -15,8 +15,9 @@ import { CoreModule } from '@formidable/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { autoAuthenticate } from './auth/utils/functions';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from './auth/services/auth.service';
 
 @NgModule({
   declarations: [AppComponent, SectionComponent],
@@ -44,7 +45,8 @@ import { MatButtonModule } from '@angular/material/button';
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: () => autoAuthenticate,
+      useFactory: autoAuthenticate,
+      deps: [AuthService, NGXLogger],
       multi: true
     }
   ]
