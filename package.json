@@ -76,7 +76,7 @@
     "@angular-eslint/template-parser": "~12.0.0",
     "@angular/cli": "12.0.0",
     "@angular/compiler-cli": "12.0.0",
-    "@angular/language-service": "12.0.0",
+    "@angular/language-service": "12.0.1",
     "@nrwl/cli": "12.3.4",
     "@nrwl/cypress": "12.3.4",
     "@nrwl/eslint-plugin-nx": "12.3.4",
