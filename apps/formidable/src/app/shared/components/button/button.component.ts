@@ -6,7 +6,6 @@ import {
   Output
 } from '@angular/core';
 import { BtnColor, BtnColors, BtnType, BtnTypes } from '../../enums/buttons';
-import { IButtonOptions } from '../../interfaces/button.options';
 
 @Component({
   selector: 'formidable-button',
@@ -34,16 +33,4 @@ export class ButtonComponent
   type: BtnType = BtnTypes.button;
   @Output()
   action = new EventEmitter<Event | Record<string, unknown>>();
-
-  @Input()
-  options: IButtonOptions = {
-    text: 'Submit',
-    action: new EventEmitter<Event | Record<string, unknown>>(),
-    type: BtnTypes.button,
-    color: BtnColors.primary,
-    routerLink: '',
-    disabled: false,
-    loading: false,
-    matIcon: ''
-  };
 }
