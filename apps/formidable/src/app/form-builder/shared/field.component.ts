@@ -44,18 +44,18 @@ export abstract class FieldComponent
     return type ? validators.find(v => v.type === type) : validators;
   }
 
-  getConstraint(type: ValidatorType): string
-  {
-    switch (this.field.type)
-    {
-      case FieldTypes.decimal:
-      case FieldTypes.integer:
-        return '';
-      default:
-      {
-        const validator = this.validators(type);
-        return validator ? validator.constraint : '';
-      }
-    }
-  }
+  // getConstraint(type: ValidatorType): string
+  // {
+  //   switch (this.field.type)
+  //   {
+  //     case FieldTypes.decimal:
+  //     case FieldTypes.integer:
+  //       return '';
+  //     default:
+  //     {
+  //       const validator = this.validators(type);
+  //       return validator ? validator.constraint : '';
+  //     }
+  //   }
+  // }
 }
