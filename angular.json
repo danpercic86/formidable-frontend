@@ -1,7 +1,9 @@
 {
   "version": 1,
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "analytics": false,
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "yarn"
   },
   "defaultProject": "formidable",
   "schematics": {
