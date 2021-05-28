@@ -20,7 +20,6 @@ import { DateComponent } from './components/date/date.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalSharedModule } from '@formidable/shared';
 
 const matImports = [
@@ -53,7 +52,6 @@ const matImports = [
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,
     ...matImports,
     GlobalSharedModule,
   ],

@@ -40,7 +40,6 @@ export class RegisterPageComponent implements OnInit
     this.isLoading = true;
     this._authService.register(this.form.value).pipe(take(1)).subscribe(
       () => void this._router.navigate(['auth', 'login']),
-      err => console.log(err),
       () => this.isLoading = false
     );
   }

@@ -1,11 +1,1 @@
-<div *ngFor="let form of forms$ | async">
-  <a [routerLink]="form.id.toString()">
-    {{ form.name }}
-  </a>
-  <a
-    *ngFor="let section of form.sections"
-    [routerLink]="['sections', section.id.toString()]"
-  >
-    --> {{ section.name }}
-  </a>
-</div>
+<h1>Welcome to Formidable!</h1>

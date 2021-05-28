@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="group">
+<mat-form-field [formGroup]="form">
   <mat-select [formControlName]="field.name" [placeholder]="field.name">
     <mat-option
       *ngFor="let choice of field.choices; trackBy: trackByFn"

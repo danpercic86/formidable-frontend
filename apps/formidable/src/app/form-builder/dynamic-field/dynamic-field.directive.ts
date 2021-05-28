@@ -48,6 +48,6 @@ export class DynamicFieldDirective implements OnInit
     );
     this._componentRef = this._container.createComponent(factory);
     this._componentRef.instance.field = this.field;
-    this._componentRef.instance.group = this.group;
+    this._componentRef.instance.form = this.group;
   }
 }

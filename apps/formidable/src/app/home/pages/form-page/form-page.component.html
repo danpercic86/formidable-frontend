@@ -1,0 +1,10 @@
+<div *ngIf='form$ | async as form'>
+  <p>{{form.name}}</p>
+
+  <p>{{form.description}}</p>
+
+  <formidable-button
+    [text]="'Begin form'"
+    (action)='goToFirstSection(form.sections[0].id)'
+  ></formidable-button>
+</div>

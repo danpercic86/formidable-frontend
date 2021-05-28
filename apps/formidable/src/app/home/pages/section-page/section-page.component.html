@@ -1,0 +1,21 @@
+<div class='content-center' *ngIf='!section$'>
+  <mat-spinner class='m-auto'></mat-spinner>
+</div>
+
+<div *ngIf='section$ | async as section' class='row justify-content-center'>
+
+  <div class='col-sm-12 col-md-10 col-lg-8 m-auto' *ngIf='section.fields as fields'>
+    <p>{{ section.name }}</p>
+
+    <p>{{ section.description }}</p>
+
+    <div class='content-center' *ngIf='section.fields === null'>
+      <p class='m-auto'>There are no fields!</p>
+    </div>
+    <formidable-form-builder
+      (formSubmit)='submit($event)'
+      [fields]='fields'
+      [buttonText]='section.button_text'
+    ></formidable-form-builder>
+  </div>
+</div>

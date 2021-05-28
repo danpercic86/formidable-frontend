@@ -6,15 +6,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 
+const modules = [
+  CommonModule,
+  RouterModule,
+  MatButtonModule,
+  MatProgressSpinnerModule,
+  MatIconModule
+];
+
+const components = [
+  ButtonComponent
+];
+
 @NgModule({
-  declarations: [ButtonComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
-  ],
-  exports: [ButtonComponent],
+  declarations: [...components],
+  imports: [...modules],
+  exports: [...components, ...modules]
 })
-export class GlobalSharedModule {}
+export class GlobalSharedModule
+{
+}

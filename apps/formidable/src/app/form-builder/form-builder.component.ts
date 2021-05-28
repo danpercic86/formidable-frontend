@@ -21,6 +21,7 @@ import { NGXLogger } from 'ngx-logger';
 export class FormBuilderComponent implements OnInit
 {
   @Input() fields: IField[];
+  @Input() buttonText: string;
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
   form: FormGroup;
   loading = false;

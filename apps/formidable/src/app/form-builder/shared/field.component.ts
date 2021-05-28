@@ -11,7 +11,7 @@ import { trackByFn } from './functions';
 export abstract class FieldComponent
 {
   field: IField;
-  group: FormGroup;
+  form: FormGroup;
   trackByFn = trackByFn;
 
   get isRequired(): boolean
@@ -33,7 +33,7 @@ export abstract class FieldComponent
 
   get control(): AbstractControl | null
   {
-    return this.group.get(this.field.name);
+    return this.form.get(this.field.name);
   }
 
   validators(): IValidator[];

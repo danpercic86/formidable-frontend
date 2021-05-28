@@ -8,17 +8,21 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { catchError, map, take } from 'rxjs/operators';
+import { catchError, take, tap } from 'rxjs/operators';
 import { TokenService } from '../services/token.service';
 import { AuthService } from '../services/auth.service';
 import { NGXLogger } from 'ngx-logger';
+
+interface IError
+{
+  code: string;
+  detail: string;
+}
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor
 {
   constructor(
-    private readonly _router: Router,
     private readonly _tokenService: TokenService,
     private readonly _authService: AuthService,
     private readonly _logger: NGXLogger
@@ -38,32 +42,24 @@ export class AuthInterceptor implements HttpInterceptor
     request = this._setAuthHeaders(request);
 
     return next.handle(request).pipe(
-      map(event => this._log(event)),
-      catchError((error: HttpErrorResponse) =>
-      {
-        this._logger.debug('Https response error: ', error);
-
-        if (error.error === 'invalid_token')
-        {
-          this._authService.refreshToken().pipe(take(1)).subscribe(() =>
-          {
-            location.reload();
-          });
-        }
-
-        if (
-          (error.status !== 401 && error.status !== 403) ||
-          !this._authService.isLoggedIn()
-        )
-        {
-          return throwError(error);
-        }
-
-        if (this._authService.isLoggedIn()) this._authService.logout();
-
-        return throwError(error);
-      })
+      tap(event => this._log(event)),
+      catchError(error => this._handleError(error))
     );
+  }
+
+  private _handleError(error: HttpErrorResponse): Observable<never>
+  {
+    this._logger.debug('Https response error: ', error);
+
+    if (this._authService.isLoggedIn()) this._authService.logout();
+
+    if ((<IError>error.error).code === 'token_not_valid')
+    {
+      const refreshTokenRequest = this._authService.refreshToken().pipe(take(1));
+      refreshTokenRequest.subscribe(() => location.reload());
+    }
+
+    return throwError(error);
   }
 
   private _setAuthHeaders(request: HttpRequest<unknown>): HttpRequest<unknown>
