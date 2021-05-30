@@ -4,6 +4,12 @@ import { IToken } from '../models/token';
 const ACCESS_TOKEN = 'formidable_access_token';
 const REFRESH_TOKEN = 'formidable_refresh_token';
 
+const decode = (token: string | null): IToken | null =>
+{
+  if (!token) return null;
+  return JSON.parse(atob(token.split('.')[1])) as IToken;
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,14 +28,12 @@ export class TokenService
 
   get token(): IToken | null
   {
-    if (!this.rawToken) return null;
-    return <IToken>JSON.parse(atob(this.rawToken.split('.')[1]));
+    return decode(this.rawToken);
   }
 
   get refreshToken(): IToken | null
   {
-    if (!this.rawRefreshToken) return null;
-    return <IToken>JSON.parse(atob(this.rawRefreshToken.split('.')[1]));
+    return decode(this.rawRefreshToken);
   }
 
   get rawRefreshToken(): string | null
@@ -43,15 +47,9 @@ export class TokenService
     localStorage.setItem(REFRESH_TOKEN, refreshToken);
   }
 
-  removeToken(): void
-  {
-    localStorage.removeItem(ACCESS_TOKEN);
-  }
+  removeToken = (): void => localStorage.removeItem(ACCESS_TOKEN);
 
-  removeRefreshToken(): void
-  {
-    localStorage.removeItem(REFRESH_TOKEN);
-  }
+  removeRefreshToken = (): void => localStorage.removeItem(REFRESH_TOKEN);
 
   removeTokens(): void
   {

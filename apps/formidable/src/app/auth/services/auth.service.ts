@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TokenService } from './token.service';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, shareReplay, take, tap } from 'rxjs/operators';
+import { catchError, take, tap } from 'rxjs/operators';
 import {
-  ILoginRequestData,
-  ILoginResponseData,
-  IRefreshTokenResponseData,
-  IRegisterRequestData
+  ILoginRequest,
+  ILoginResponse,
+  IRefreshTokenResponse,
+  IRegisterRequest
 } from '../models/auth-models';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user';
@@ -43,13 +38,7 @@ export class AuthService
   {
   }
 
-  private _handleError(error: HttpErrorResponse)
-  {
-    this._logger.error('Auth error', error);
-    return throwError(error);
-  }
-
-  login(data: ILoginRequestData): Observable<ILoginResponseData>
+  login(data: ILoginRequest): Observable<ILoginResponse>
   {
     this._tokenService.removeTokens();
 
@@ -57,20 +46,18 @@ export class AuthService
       .set('email', data.email)
       .set('password', data.password);
 
-    return this._http.post<ILoginResponseData>(`${Api.authUrl}/login/`, body).pipe(
+    return this._http.post<ILoginResponse>(`${Api.authUrl}/login/`, body).pipe(
       tap(res =>
       {
         this._tokenService.rawToken = res.access_token;
         this._tokenService.rawRefreshToken = res.refresh_token;
         this._userSubject.next(res.user);
         this._startRefreshTokenTimer();
-      }),
-      shareReplay(),
-      catchError(err => this._handleError(err))
+      })
     );
   }
 
-  refreshToken(): Observable<IRefreshTokenResponseData>
+  refreshToken(): Observable<IRefreshTokenResponse>
   {
     this._tokenService.removeToken();
 
@@ -79,17 +66,16 @@ export class AuthService
     const url = Api.tokenUrl + '/refresh/';
     const options = { ...this._httpOptions };
 
-    return this._http.post<IRefreshTokenResponseData>(url, body, options).pipe(
+    return this._http.post<IRefreshTokenResponse>(url, body, options).pipe(
       tap(res =>
       {
         this._tokenService.rawToken = res.access;
         this._startRefreshTokenTimer();
       }),
-      shareReplay(),
       catchError(err =>
       {
         this.logout();
-        return this._handleError(err);
+        return throwError(err);
       })
     );
   }
@@ -99,28 +85,23 @@ export class AuthService
     this._tokenService.removeTokens();
     this._stopRefreshTokenTimer();
 
-    this._http.post(`${Api.authUrl}/logout/`, {})
-      .pipe(take(1), shareReplay())
-      .subscribe();
+    this._http.post(`${Api.authUrl}/logout/`, {}).pipe(take(1)).subscribe();
 
     void this._router.navigate(['auth', 'login']);
   }
 
-  register(data: IRegisterRequestData): Observable<IRegisterRequestData>
+  register(data: IRegisterRequest): Observable<IRegisterRequest>
   {
-    return this._http
-      .post<IRegisterRequestData>(`${Api.authUrl}/registration/`, data)
-      .pipe(shareReplay(), catchError(err => this._handleError(err)));
+    return this._http.post<IRegisterRequest>(`${Api.authUrl}/registration/`, data);
   }
 
-  verifyToken(): Observable<IRefreshTokenResponseData>
+  verifyToken(): Observable<IRefreshTokenResponse>
   {
     const body = { token: this._tokenService.rawToken };
     const url = `${Api.tokenUrl}/verify/`;
     const options = { withCredentials: true };
 
-    return this._http.post<IRefreshTokenResponseData>(url, body, options)
-      .pipe(shareReplay(), catchError(err => this._handleError(err)));
+    return this._http.post<IRefreshTokenResponse>(url, body, options);
   }
 
   isLoggedIn(): boolean
@@ -130,8 +111,7 @@ export class AuthService
 
   private _startRefreshTokenTimer(): void
   {
-    if (!this._tokenService.token)
-      return this._logger.debug('No token on timer start');
+    if (!this._tokenService.token) return this._logger.debug('No token on timer start');
 
     const expires = new Date(this._tokenService.token?.exp * 1000);
     const timeout = expires.getTime() - Date.now() - 60 * 1000;

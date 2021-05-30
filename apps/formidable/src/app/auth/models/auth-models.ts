@@ -1,19 +1,19 @@
 import { IUser } from './user';
 
-export interface ILoginRequestData
+export interface ILoginRequest
 {
     email: string;
     password: string;
 }
 
-export interface ILoginResponseData
+export interface ILoginResponse
 {
     access_token: string;
     refresh_token: string;
     user: IUser;
 }
 
-export interface IRegisterRequestData
+export interface IRegisterRequest
 {
     first_name: string;
     last_name: string;
@@ -22,12 +22,12 @@ export interface IRegisterRequestData
     password2: string;
 }
 
-export interface IRefreshTokenResponseData
+export interface IRefreshTokenResponse
 {
     access: string;
 }
 
-export interface IVerifyTokenRequestData
+export interface IVerifyTokenRequest
 {
     token: string;
 }

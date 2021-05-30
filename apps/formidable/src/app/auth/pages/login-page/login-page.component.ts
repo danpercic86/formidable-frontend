@@ -46,8 +46,7 @@ export class LoginPageComponent implements OnInit
         {
           this.authError = true;
           this.isLoading = false;
-        },
-        () => (this.isLoading = false)
+        }
       );
   }
 }
