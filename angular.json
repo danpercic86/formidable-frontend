@@ -49,10 +49,7 @@
             "polyfills": "apps/formidable/src/polyfills.ts",
             "tsConfig": "apps/formidable/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/formidable/src/favicon.ico",
-              "apps/formidable/src/assets"
-            ],
+            "assets": ["apps/formidable/src/favicon.ico", "apps/formidable/src/assets"],
             "styles": [
               "apps/formidable/src/styles.scss",
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
@@ -121,9 +118,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/formidable"
-          ],
+          "outputs": ["coverage/apps/formidable"],
           "options": {
             "jestConfig": "apps/formidable/jest.config.js",
             "passWithNoTests": true
@@ -152,9 +147,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/formidable-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/formidable-e2e/**/*.{js,ts}"]
           }
         }
       }
