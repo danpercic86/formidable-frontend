@@ -2,24 +2,28 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormPageComponent } from './form-page.component';
 
-describe('FormPageComponent', () => {
+describe('FormPageComponent', () =>
+{
   let component: FormPageComponent;
   let fixture: ComponentFixture<FormPageComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async () =>
+  {
     await TestBed.configureTestingModule({
       declarations: [ FormPageComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
-  beforeEach(() => {
+  beforeEach(() =>
+  {
     fixture = TestBed.createComponent(FormPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', () =>
+  {
     expect(component).toBeTruthy();
   });
 });

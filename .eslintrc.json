@@ -19,7 +19,10 @@
           "error",
           {
             "enforceBuildableLibDependency": true,
-            "allow": ["@formidable/**", "@builder/**"],
+            "allow": [
+              "@formidable/**",
+              "@builder/**"
+            ],
             "depConstraints": [
               {
                 "sourceTag": "*",
@@ -93,6 +96,58 @@
             "ignoreStatic": true
           }
         ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "warn",
+          {
+            "accessibility": "no-public"
+          }
+        ],
+        "@typescript-eslint/member-ordering": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "memberLike",
+            "modifiers": [
+              "readonly"
+            ],
+            "format": [
+              "UPPER_CASE",
+              "camelCase"
+            ]
+          },
+          {
+            "selector": "memberLike",
+            "modifiers": [
+              "private"
+            ],
+            "format": [
+              "camelCase"
+            ],
+            "leadingUnderscore": "require"
+          },
+          {
+            "selector": "memberLike",
+            "modifiers": [
+              "protected"
+            ],
+            "format": [
+              "camelCase"
+            ],
+            "leadingUnderscore": "require"
+          },
+          {
+            "selector": "memberLike",
+            "modifiers": [
+              "private",
+              "readonly"
+            ],
+            "format": [
+              "UPPER_CASE",
+              "camelCase"
+            ],
+            "leadingUnderscore": "require"
+          }
+        ],
         "quotes": [
           2,
           "single",
@@ -125,9 +180,19 @@
           "error",
           "as-needed"
         ],
-        "semi": ["error", "always"],
-        "object-curly-spacing": ["error", "always"]
-      }
+        "semi": [
+          "error",
+          "always"
+        ],
+        "object-curly-spacing": [
+          "error",
+          "always"
+        ]
+      },
+      "plugins": [
+        "@angular-eslint/eslint-plugin",
+        "@typescript-eslint"
+      ]
     },
     {
       "files": [

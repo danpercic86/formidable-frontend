@@ -2696,7 +2696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:4.25.0":
+"@typescript-eslint/eslint-plugin@npm:^4.25.0":
   version: 4.25.0
   resolution: "@typescript-eslint/eslint-plugin@npm:4.25.0"
   dependencies:
@@ -2750,7 +2750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:4.25.0":
+"@typescript-eslint/parser@npm:^4.25.0":
   version: 4.25.0
   resolution: "@typescript-eslint/parser@npm:4.25.0"
   dependencies:
@@ -6670,8 +6670,8 @@ __metadata:
     "@nrwl/workspace": 12.3.4
     "@types/jest": 26.0.23
     "@types/node": 15.6.1
-    "@typescript-eslint/eslint-plugin": 4.25.0
-    "@typescript-eslint/parser": 4.25.0
+    "@typescript-eslint/eslint-plugin": ^4.25.0
+    "@typescript-eslint/parser": ^4.25.0
     cypress: ^6.0.1
     dotenv: 10.0.0
     eslint: 7.27.0
