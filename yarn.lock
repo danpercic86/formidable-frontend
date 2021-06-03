@@ -241,9 +241,9 @@
   dependencies:
     tslib "^2.1.0"
 
-"@angular/platform-server@^12.0.0":
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-12.0.2.tgz#d8e0d470704cbdcfe990f5612ced590194467919"
+"@angular/platform-server@^12.0.3":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-12.0.3.tgz#e8277b7aa33cf7d42bf34d4ed6fc0c34857fe4c3"
   dependencies:
     domino "^2.1.2"
     tslib "^2.1.0"
@@ -1502,6 +1502,16 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nrwl/cli@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-12.3.6.tgz#72718eb6f99808ee1bba047643e7cd09b1e346f4"
+  dependencies:
+    "@nrwl/tao" "12.3.6"
+    chalk "4.1.0"
+    v8-compile-cache "2.3.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cypress@12.3.5":
   version "12.3.5"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.3.5.tgz#48ff40fff72cc6a73b2b6882e5cb5d8b70050531"
@@ -1529,12 +1539,23 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
-"@nrwl/eslint-plugin-nx@12.3.5":
-  version "12.3.5"
-  resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-12.3.5.tgz#c57b9895508cbe5ec7c32eebcd590d6dd119da6f"
+"@nrwl/devkit@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.3.6.tgz#1b12242f617e3cf3a3fa5345857a6eaaba93c83e"
   dependencies:
-    "@nrwl/devkit" "12.3.5"
-    "@nrwl/workspace" "12.3.5"
+    "@nrwl/tao" "12.3.6"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    semver "7.3.4"
+    strip-json-comments "^3.1.1"
+    tslib "^2.0.0"
+
+"@nrwl/eslint-plugin-nx@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-12.3.6.tgz#e92247d3e06dd4d8ef20ad1258329cd44b40a7de"
+  dependencies:
+    "@nrwl/devkit" "12.3.6"
+    "@nrwl/workspace" "12.3.6"
     "@typescript-eslint/experimental-utils" "^4.3.0"
     confusing-browser-globals "^1.0.9"
 
@@ -1548,11 +1569,31 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
+"@nrwl/jest@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-12.3.6.tgz#ebeaa019cfd17e0347646991b67db792c85a95f0"
+  dependencies:
+    "@nrwl/devkit" "12.3.6"
+    jest-resolve "^26.6.2"
+    rxjs "^6.5.4"
+    strip-json-comments "^3.1.1"
+    tslib "^2.0.0"
+
 "@nrwl/linter@12.3.5":
   version "12.3.5"
   resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.3.5.tgz#3224926a936b60e31c74b63efd7c97fce511610a"
   dependencies:
     "@nrwl/devkit" "12.3.5"
+    glob "7.1.4"
+    minimatch "3.0.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+
+"@nrwl/linter@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.3.6.tgz#fe18cbca77f7480c4f595ebc45d440ed508d3037"
+  dependencies:
+    "@nrwl/devkit" "12.3.6"
     glob "7.1.4"
     minimatch "3.0.4"
     tmp "~0.2.1"
@@ -1572,6 +1613,21 @@
 "@nrwl/tao@12.3.5":
   version "12.3.5"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.3.5.tgz#7cbc65a561e5f9255403dc55bddf0f9a6743397c"
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    strip-json-comments "^3.1.1"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.3.6.tgz#47709cd16312cf87d57a895dcc5eca27e78b44b1"
   dependencies:
     chalk "4.1.0"
     enquirer "~2.3.6"
@@ -1604,6 +1660,33 @@
     npm-run-all "^4.1.5"
     open "^7.4.2"
     resolve "1.17.0"
+    rxjs "^6.5.4"
+    semver "7.3.4"
+    strip-json-comments "^3.1.1"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
+"@nrwl/workspace@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-12.3.6.tgz#4b78e08284312726861a5a50ca2bc50243ea041a"
+  dependencies:
+    "@nrwl/cli" "12.3.6"
+    "@nrwl/devkit" "12.3.6"
+    "@nrwl/jest" "12.3.6"
+    "@nrwl/linter" "12.3.6"
+    chalk "4.1.0"
+    cosmiconfig "^4.0.0"
+    dotenv "8.2.0"
+    enquirer "~2.3.6"
+    flat "^5.0.2"
+    fs-extra "^9.1.0"
+    glob "7.1.4"
+    ignore "^5.0.4"
+    minimatch "3.0.4"
+    npm-run-all "^4.1.5"
+    open "^7.4.2"
     rxjs "^6.5.4"
     semver "7.3.4"
     strip-json-comments "^3.1.1"
