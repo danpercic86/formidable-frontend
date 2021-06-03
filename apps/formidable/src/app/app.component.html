@@ -1,14 +1,15 @@
-<mat-toolbar color='primary' class='d-flex justify-content-between'>
-  <div>
-    <mat-icon>local_fire_department</mat-icon>
-    <span>Enroll</span>
-  </div>
+<!--<mat-toolbar color='primary' class='d-flex justify-content-between'>-->
+<!--  <div>-->
+<!--    <mat-icon>local_fire_department</mat-icon>-->
+<!--    <span>Enroll</span>-->
+<!--  </div>-->
 
-  <div>
-    <button *ngIf='isLoggedIn()' [routerLink]="['home']" mat-button>Home</button>
-    <button *ngIf='isLoggedIn()' (click)='logout()' mat-button>Logout</button>
-  </div>
-</mat-toolbar>
-<div class='container vw-100'>
-  <router-outlet></router-outlet>
-</div>
+<!--  <div>-->
+<!--    <button *ngIf='isLoggedIn()' [routerLink]="['home']" mat-button>Home</button>-->
+<!--    <button *ngIf='isLoggedIn()' (click)='logout()' mat-button>Logout</button>-->
+<!--  </div>-->
+<!--</mat-toolbar>-->
+<formidable-navbar></formidable-navbar>
+<!--<div class='container vw-100'>-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->

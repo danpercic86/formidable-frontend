@@ -7,7 +7,7 @@ import { FormPageComponent } from './pages/form-page/form-page.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   {
-    path: 'sections/:id',
+    path: 'sections',
     component: SectionPageComponent,
   },
   {
