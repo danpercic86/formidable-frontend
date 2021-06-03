@@ -1599,9 +1599,9 @@
     tmp "~0.2.1"
     tslib "^2.0.0"
 
-"@nrwl/nx-cloud@12.1.4":
-  version "12.1.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-12.1.4.tgz#70a113f26f51187db41de885f2e229b2798fb804"
+"@nrwl/nx-cloud@12.1.7":
+  version "12.1.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-12.1.7.tgz#0cf53b5a9cb204dffd419782e595027f3e368027"
   dependencies:
     axios "^0.21.1"
     chalk "4.1.0"
