@@ -107,11 +107,30 @@
     rxjs "6.6.7"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@12.0.2", "@angular-devkit/schematics@~12.0.0":
+"@angular-devkit/core@12.0.3":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-12.0.3.tgz#01c796dd7d3e0c228b4628439ee1c34bbdda4f1f"
+  dependencies:
+    ajv "8.2.0"
+    ajv-formats "2.0.2"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.6.7"
+    source-map "0.7.3"
+
+"@angular-devkit/schematics@12.0.2":
   version "12.0.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-12.0.2.tgz#e53030340377117e57d87356d979d7b215e6037e"
   dependencies:
     "@angular-devkit/core" "12.0.2"
+    ora "5.4.0"
+    rxjs "6.6.7"
+
+"@angular-devkit/schematics@12.0.3", "@angular-devkit/schematics@^12.0.0":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-12.0.3.tgz#9c9a881db1fd4c07b78729f46e2932adf76906de"
+  dependencies:
+    "@angular-devkit/core" "12.0.3"
     ora "5.4.0"
     rxjs "6.6.7"
 
@@ -1477,16 +1496,16 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^2.0.1"
 
-"@nrwl/angular@12.3.5":
-  version "12.3.5"
-  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-12.3.5.tgz#f578d8f24086b33fd233cf85d506020076a7dd7a"
+"@nrwl/angular@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-12.3.6.tgz#e94107b0f081682328d41f3d89d1b57424d1576a"
   dependencies:
-    "@angular-devkit/schematics" "~12.0.0"
-    "@nrwl/cypress" "12.3.5"
-    "@nrwl/devkit" "12.3.5"
-    "@nrwl/jest" "12.3.5"
-    "@nrwl/linter" "12.3.5"
-    "@schematics/angular" "~12.0.0"
+    "@angular-devkit/schematics" "^12.0.0"
+    "@nrwl/cypress" "12.3.6"
+    "@nrwl/devkit" "12.3.6"
+    "@nrwl/jest" "12.3.6"
+    "@nrwl/linter" "12.3.6"
+    "@schematics/angular" "^12.0.0"
     jasmine-marbles "~0.6.0"
     rxjs-for-await "0.0.2"
     tslib "^2.1.0"
@@ -1520,6 +1539,22 @@
     "@nrwl/devkit" "12.3.5"
     "@nrwl/linter" "12.3.5"
     "@nrwl/workspace" "12.3.5"
+    fork-ts-checker-webpack-plugin "^3.1.1"
+    rxjs "^6.5.4"
+    ts-loader "5.4.5"
+    tsconfig-paths-webpack-plugin "3.2.0"
+    tslib "^2.0.0"
+    webpack-node-externals "1.7.2"
+    yargs-parser "20.0.0"
+
+"@nrwl/cypress@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.3.6.tgz#6399f4c298f12a8333e6cbc9562c54de1183226b"
+  dependencies:
+    "@cypress/webpack-preprocessor" "~4.1.2"
+    "@nrwl/devkit" "12.3.6"
+    "@nrwl/linter" "12.3.6"
+    "@nrwl/workspace" "12.3.6"
     fork-ts-checker-webpack-plugin "^3.1.1"
     rxjs "^6.5.4"
     ts-loader "5.4.5"
@@ -1701,12 +1736,20 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@schematics/angular@12.0.2", "@schematics/angular@~12.0.0":
+"@schematics/angular@12.0.2":
   version "12.0.2"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-12.0.2.tgz#bccde04cb1a607f9dae4547482f066412741fa91"
   dependencies:
     "@angular-devkit/core" "12.0.2"
     "@angular-devkit/schematics" "12.0.2"
+    jsonc-parser "3.0.0"
+
+"@schematics/angular@^12.0.0":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-12.0.3.tgz#00f7f1c6c6ae527dd7cfd36c1426238995f98620"
+  dependencies:
+    "@angular-devkit/core" "12.0.3"
+    "@angular-devkit/schematics" "12.0.3"
     jsonc-parser "3.0.0"
 
 "@sinonjs/commons@^1.7.0":
