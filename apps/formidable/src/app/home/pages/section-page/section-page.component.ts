@@ -1,39 +1,40 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { SectionsService } from '@formidable/services';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormsService, SectionsService } from '@formidable/services';
 import { Observable } from 'rxjs';
-import { ISection, ISectionMinimal } from '@formidable/models';
+import { IForm, ISection, ISectionMinimal } from '@formidable/models';
 import { map } from 'rxjs/operators';
-import { StepperOrientation } from '@angular/cdk/stepper';
+import { StepperOrientation, StepperSelectionEvent } from '@angular/cdk/stepper';
 import { BreakpointObserver } from '@angular/cdk/layout';
-
-interface IState
-{
-  sections: ISectionMinimal[];
-}
 
 @Component({
   templateUrl: './section-page.component.html',
   styleUrls: ['./section-page.component.scss']
 })
-export class SectionPageComponent
+export class SectionPageComponent implements OnInit
 {
-  // currentSection$: Observable<ISection>;
   sections: ISectionMinimal[];
-  stepperOrientation: Observable<StepperOrientation>;
+  stepperOrientation$: Observable<StepperOrientation>;
+  currentSection: ISection;
+  currentStep = 0;
+  loading = true;
 
   constructor(
     private readonly _route: ActivatedRoute,
     private readonly _sectionsService: SectionsService,
-    private readonly _breakpointObserver: BreakpointObserver
+    private readonly _breakpointObserver: BreakpointObserver,
+    private readonly _formsService: FormsService
   )
   {
-    this.sections = (history.state as IState).sections;
-
-    // this.currentSection$ = _route.paramMap.pipe(switchMap(params => this._getSection(params)));
-
-    this.stepperOrientation = _breakpointObserver.observe('(min-width: 800px)')
+    this.stepperOrientation$ = _breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({ matches }) => matches ? 'horizontal' : 'vertical'));
+  }
+
+  async ngOnInit(): Promise<void>
+  {
+    this.sections = (await this._getForm()).sections;
+    await this._fetchCurrentSection();
+    this.loading = false;
   }
 
   submit(data: Record<string, unknown>): void
@@ -42,19 +43,39 @@ export class SectionPageComponent
     console.log(data);
   }
 
-  private _getSection(params: ParamMap): Observable<ISection>
+  trackById(index: number, item: ISectionMinimal): string
   {
-    return this._sectionsService.get(params.get('id') as string);
-  }
-
-  getSection(id: string): Observable<ISection>
-  {
-    return this._sectionsService.get(id);
-  }
-
-  trackById(index: number, item: ISectionMinimal)
-  {
-    console.log(item);
     return item.id;
+  }
+
+  async stepSelectionChange(event: StepperSelectionEvent): Promise<void>
+  {
+    this.currentStep = event.selectedIndex;
+    this.loading = true;
+    await this._fetchCurrentSection();
+    this.loading = false;
+  }
+
+  isCurrentSection(sectionId: string): boolean
+  {
+    return this.sections[this.currentStep].id === sectionId && !this.loading;
+  }
+
+  private _getForm(): Promise<IForm>
+  {
+    const id = this._route.snapshot.paramMap.get('id') as string;
+    return this._formsService.get(id).toPromise();
+  }
+
+  private async _fetchCurrentSection()
+  {
+    if (this.currentStep === this.sections.length)
+    {
+      this.currentStep--;
+      return;
+    }
+
+    const sectionId = this.sections[this.currentStep].id;
+    this.currentSection = await this._sectionsService.get(sectionId).toPromise();
   }
 }

@@ -12,11 +12,17 @@
       {{ form.value | json }}
     </div>
 
-    <formidable-button
-      [loading]="loading"
-      [text]="buttonText"
-      class="d-flex justify-content-end"
-      type="submit"
-    ></formidable-button>
+    <ng-container
+      *ngTemplateOutlet="buttonTemplate ? buttonTemplate : defaultButton"
+    ></ng-container>
   </div>
 </form>
+
+<ng-template #defaultButton>
+  <formidable-button
+    [loading]="loading"
+    [text]="buttonText"
+    class="d-flex justify-content-end"
+    type="submit"
+  ></formidable-button>
+</ng-template>

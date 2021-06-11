@@ -1,66 +1,38 @@
-<!--<div class='content-center' *ngIf='!section$'>-->
-<!--  <mat-spinner class='m-auto'></mat-spinner>-->
-<!--</div>-->
-
-<!--<div *ngIf='section$ | async as section' class='row justify-content-center'>-->
-
-<!--  <div class='col-sm-12 col-md-10 col-lg-8 m-auto' *ngIf='section.fields as fields'>-->
-<!--    <p>{{ section.name }}</p>-->
-
-<!--    <p>{{ section.description }}</p>-->
-
-<!--    <div class='content-center' *ngIf='section.fields === null'>-->
-<!--      <p class='m-auto'>There are no fields!</p>-->
-<!--    </div>-->
-<!--    <formidable-form-builder-->
-<!--      (formSubmit)='submit($event)'-->
-<!--      [fields]='fields'-->
-<!--      [buttonText]='section.button_text'-->
-<!--    ></formidable-form-builder>-->
-<!--  </div>-->
-<!--</div>-->
 <mat-stepper
-  class='example-stepper'
-  [orientation]='(stepperOrientation | async)!'>
-  <mat-step *ngFor='let section of sections; trackBy: trackById' label='{{section.name}}'>
+  (selectionChange)='stepSelectionChange($event)'
+  [orientation]='(stepperOrientation$ | async)!'
+>
+  <mat-step *ngFor='let section of sections; trackBy: trackById'>
+    <ng-template matStepLabel>{{ section.name }}</ng-template>
     <ng-template matStepContent>
-      <formidable-form-builder
-        *ngIf='getSection(section.id) | async as currentSection'
-        (formSubmit)='submit($event)'
-        [buttonText]="'Some Text'"
-      ></formidable-form-builder>
+      <ng-container *ngIf='isCurrentSection(section.id); else spinner'>
+        <formidable-form-builder
+          (formSubmit)='submit($event)'
+          [buttonTemplate]='buttons'
+          [fields]='currentSection.fields'
+        >
+          <ng-template #buttons>
+            <div class='d-flex'>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </ng-template>
+        </formidable-form-builder>
+      </ng-container>
     </ng-template>
   </mat-step>
-  <!--  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">-->
-  <!--    <form [formGroup]="secondFormGroup">-->
-  <!--      <mat-form-field>-->
-  <!--        <mat-label>Address</mat-label>-->
-  <!--        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"-->
-  <!--               required>-->
-  <!--      </mat-form-field>-->
-  <!--      <div>-->
-  <!--        <button mat-button matStepperPrevious>Back</button>-->
-  <!--        <button mat-button matStepperNext>Next</button>-->
-  <!--      </div>-->
-  <!--    </form>-->
-  <!--  </mat-step>-->
-  <!--  <mat-step [stepControl]="thirdFormGroup" label="Fill out your phone number">-->
-  <!--    <form [formGroup]="thirdFormGroup">-->
-  <!--      <mat-form-field>-->
-  <!--        <mat-label>Phone number</mat-label>-->
-  <!--        <input matInput formControlName="thirdCtrl" placeholder="Ex. 12345678" required>-->
-  <!--      </mat-form-field>-->
-  <!--      <div>-->
-  <!--        <button mat-button matStepperPrevious>Back</button>-->
-  <!--        <button mat-button matStepperNext>Next</button>-->
-  <!--      </div>-->
-  <!--    </form>-->
-  <!--  </mat-step>-->
+
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
+    <ng-template matStepContent>
+      <p>You are now done.</p>
       <button mat-button matStepperPrevious>Back</button>
-    </div>
+    </ng-template>
   </mat-step>
 </mat-stepper>
+
+<ng-template #spinner>
+  <div class='content-center'>
+    <mat-spinner class='m-auto'></mat-spinner>
+  </div>
+</ng-template>

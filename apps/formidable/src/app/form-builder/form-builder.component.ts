@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output,
+  Output, TemplateRef
 } from '@angular/core';
 import { IField } from './shared/models';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -22,6 +22,7 @@ export class FormBuilderComponent implements OnInit
 {
   @Input() fields: IField[];
   @Input() buttonText: string;
+  @Input() buttonTemplate: TemplateRef<any>;
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
   form: FormGroup;
   loading = false;
@@ -68,7 +69,7 @@ export class FormBuilderComponent implements OnInit
   private _createFormGroup(): FormGroup
   {
     const group = this._formBuilder.group({});
-    this.fields?.forEach(field =>
+    this.fields.forEach(field =>
     {
       group.addControl(field.name, this._createControl(field));
     });

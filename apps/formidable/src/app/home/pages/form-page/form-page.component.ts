@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsService } from '@formidable/services';
 import { Observable } from 'rxjs';
-import { IForm, ISection, ISectionMinimal } from '@formidable/models';
+import { IForm } from '@formidable/models';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
   templateUrl: './form-page.component.html',
-  styleUrls: ['./form-page.component.scss'],
+  styleUrls: ['./form-page.component.scss']
 })
 export class FormPageComponent
 {
@@ -22,16 +22,9 @@ export class FormPageComponent
     this.form$ = _route.paramMap.pipe(switchMap(params => this._getForm(params)));
   }
 
-  // async goToFirstSection(sectionId: string): Promise<void>
-  // {
-  //   await this._router.navigate(['home', 'sections', sectionId]);
-  // }
-
-  async goToFirstSection(sections: ISectionMinimal[]): Promise<void>
+  async goToSections(formId: string): Promise<void>
   {
-    await this._router.navigate(['home', 'sections'], {
-      state: { sections: sections },
-    });
+    await this._router.navigate(['home', 'forms', formId, 'sections']);
   }
 
   private _getForm(params: ParamMap): Observable<IForm>
