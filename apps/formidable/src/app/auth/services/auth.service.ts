@@ -19,7 +19,7 @@ import { NGXLogger } from 'ngx-logger';
 })
 export class AuthService
 {
-  private _refreshTokenTimeout: number;
+  private _refreshTokenTimeout: ReturnType<typeof setTimeout>;
   private readonly _userSubject = new BehaviorSubject<IUser | null>(null);
   private readonly _httpOptions = {
     headers: new HttpHeaders({

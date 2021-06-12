@@ -16,8 +16,9 @@
     <span>
       <mat-spinner *ngIf='loading' [diameter]='24'></mat-spinner>
 
-      <span *ngIf='!loading'>{{ text }}</span>
-      <mat-icon *ngIf='matIcon && !loading'>{{ matIcon }}</mat-icon>
+      <span [hidden]='loading'>{{ text }}</span>
+
+      <mat-icon *ngIf='matIcon' [hidden]='loading'>{{ matIcon }}</mat-icon>
     </span>
   </button>
 </ng-template>

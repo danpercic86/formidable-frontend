@@ -76,8 +76,8 @@ export class FormBuilderComponent implements OnInit
     return group;
   }
 
-  private _createControl({ validators, name }: IField): FormControl
+  private _createControl({ validators, value }: IField): FormControl
   {
-    return this._formBuilder.control(name, ValidatorsService.compose(validators));
+    return this._formBuilder.control(value, ValidatorsService.compose(validators));
   }
 }

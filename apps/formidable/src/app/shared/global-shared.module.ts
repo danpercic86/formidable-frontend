@@ -14,19 +14,21 @@ import { MatListModule } from '@angular/material/list';
 const modules = [
   CommonModule,
   RouterModule,
+  LayoutModule,
   MatButtonModule,
   MatProgressSpinnerModule,
-  MatIconModule
+  MatIconModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule
 ];
 
-const components = [
-  ButtonComponent
-];
+const components = [ButtonComponent, NavbarComponent];
 
 @NgModule({
-  declarations: [...components, NavbarComponent],
-  imports: [...modules, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule],
-  exports: [...components, ...modules, NavbarComponent]
+  declarations: [...components],
+  imports: [...modules],
+  exports: [...components, ...modules]
 })
 export class GlobalSharedModule
 {
