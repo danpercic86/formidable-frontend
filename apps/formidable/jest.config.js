@@ -20,4 +20,7 @@ module.exports = {
     'jest-preset-angular/build/serializers/ng-snapshot',
     'jest-preset-angular/build/serializers/html-comment',
   ],
+  transform: {
+    "^.+\\.stories\\.[jt]sx?$": "@storybook/addon-storyshots/injectFileName"
+  },
 };
