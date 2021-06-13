@@ -10,8 +10,7 @@ import {
 import { InputComponent } from '../components/input/input.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import { FormGroup } from '@angular/forms';
-import { IField } from '@builder/shared';
-import { FieldComponent } from '@builder/shared';
+import { FieldComponent, IField } from '@builder/shared';
 
 const componentMapper: { [type: string]: Type<FieldComponent> } = {
   text: InputComponent,
@@ -33,7 +32,7 @@ const componentMapper: { [type: string]: Type<FieldComponent> } = {
 export class DynamicFieldDirective implements OnInit
 {
   @Input() field: IField;
-  @Input() group: FormGroup;
+  @Input() form: FormGroup;
   private _componentRef: ComponentRef<FieldComponent>;
 
   constructor(
@@ -48,6 +47,6 @@ export class DynamicFieldDirective implements OnInit
     );
     this._componentRef = this._container.createComponent(factory);
     this._componentRef.instance.field = this.field;
-    this._componentRef.instance.form = this.group;
+    this._componentRef.instance.form = this.form;
   }
 }

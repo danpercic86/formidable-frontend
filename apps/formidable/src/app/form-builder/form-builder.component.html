@@ -3,7 +3,7 @@
     <div *ngFor="let field of fields; trackBy: trackById" class="col-12">
       <ng-container
         [field]="field"
-        [group]="form"
+        [form]='form'
         formidableDynamicField
       ></ng-container>
     </div>

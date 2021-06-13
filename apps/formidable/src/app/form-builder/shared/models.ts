@@ -34,7 +34,7 @@ export type ValidatorType =
   | 'required'
   | 'email';
 
-export enum ValidatorTypes {
+enum _ValidatorTypes {
   min = 'min',
   max = 'max',
   minLength = 'minlength',
@@ -43,6 +43,8 @@ export enum ValidatorTypes {
   email = 'email',
   required = 'required',
 }
+
+export const ValidatorTypes = _ValidatorTypes;
 
 export type FieldType =
   | 'text'
@@ -55,7 +57,7 @@ export type FieldType =
   | 'radio'
   | 'select';
 
-export enum FieldTypes {
+enum _FieldTypes {
   text = 'text',
   email = 'email',
   url = 'url',
@@ -66,3 +68,5 @@ export enum FieldTypes {
   // radio = 'radio',
   // select = 'select',
 }
+
+export const FieldTypes = _FieldTypes;
