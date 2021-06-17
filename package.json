@@ -90,7 +90,7 @@
     "@nrwl/nx-cloud": "12.2.1",
     "@nrwl/tao": "12.3.6",
     "@nrwl/workspace": "12.3.6",
-    "@storybook/addon-actions": "^6.3.0-rc.4",
+    "@storybook/addon-actions": "^6.3.0-rc.8",
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-essentials": "^6.3.0-rc.4",
     "@storybook/addon-links": "^6.3.0-rc.4",
