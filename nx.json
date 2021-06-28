@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "ODg1Y2M5NTYtODZjMy00NGM2LTgwZjYtNGI2ZWZkZjQ0NjkwfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -32,9 +27,15 @@
     },
     "formidable-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "formidable"
-      ]
+      "implicitDependencies": ["formidable"]
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }
