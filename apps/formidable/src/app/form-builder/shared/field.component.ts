@@ -5,14 +5,36 @@ import {
   ValidatorType,
   ValidatorTypes
 } from './models';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator
+} from '@angular/forms';
 import { trackByFn } from './functions';
+import { Directive } from '@angular/core';
+import { ValidatorsService } from '../../core/services/components/validators.service';
 
-export abstract class FieldComponent
+@Directive({
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: FieldComponent
+    }
+  ]
+})
+export abstract class FieldComponent implements Validator
 {
   field: IField;
   form: FormGroup;
+
   trackByFn = trackByFn;
+
+  constructor(private readonly _validatorsService: ValidatorsService)
+  {
+  }
 
   get isRequired(): boolean
   {
@@ -42,6 +64,12 @@ export abstract class FieldComponent
   {
     const validators = this.field.validators;
     return type ? validators.find(v => v.type === type) : validators;
+  }
+
+  validate(): ValidationErrors | null
+  {
+    const errors = this._validatorsService.validate(this.form);
+    return errors[this.field.name] ? errors[this.field.name] : null;
   }
 
   // getConstraint(type: ValidatorType): string

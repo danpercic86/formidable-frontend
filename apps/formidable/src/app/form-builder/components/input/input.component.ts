@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { FieldComponent } from '@builder/shared';
-import { FieldTypes, ValidatorType, ValidatorTypes } from '@builder/shared';
+import {
+  FieldComponent,
+  FieldTypes,
+  ValidatorType,
+  ValidatorTypes
+} from '@builder/shared';
 
 @Component({
   selector: 'formidable-input',

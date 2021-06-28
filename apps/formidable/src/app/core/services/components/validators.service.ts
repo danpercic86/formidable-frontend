@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { IValidator, ValidatorTypes } from '@builder/shared';
-import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ValidatorsService
 {
   private static _getValidatorFn({
     constraint,
-    type
+    type,
   }: IValidator): ValidatorFn | undefined
   {
     switch (type)
@@ -33,16 +33,26 @@ export class ValidatorsService
     }
   }
 
-  static compose(validators: IValidator[]): ValidatorFn | null
+  static compose(rawValidators: IValidator[]): ValidatorFn[]
   {
-    return Validators.compose(validators.map(ValidatorsService._getValidatorFn));
+    const validators = rawValidators.map(ValidatorsService._getValidatorFn);
+    const composedValidators = Validators.compose(validators);
+    return composedValidators ? [composedValidators] : [];
   }
 
-  validate(form: FormGroup): void
+  validate(form: FormGroup): {[key: string]: ValidationErrors}
   {
+    const errors: {[key: string]: ValidationErrors} = {};
+
     Object.keys(form.controls).forEach(fieldName =>
     {
-      form.get(fieldName)?.markAsTouched({ onlySelf: true });
+      const control = form.controls[fieldName];
+
+      if (control.errors) errors[fieldName] = control.errors;
+
+      control.markAsTouched({ onlySelf: true });
     });
+
+    return errors;
   }
 }

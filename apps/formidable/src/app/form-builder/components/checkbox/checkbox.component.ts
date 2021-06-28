@@ -5,4 +5,6 @@ import { FieldComponent } from '@builder/shared';
   selector: 'formidable-checkbox',
   templateUrl: './checkbox.component.html',
 })
-export class CheckboxComponent extends FieldComponent {}
+export class CheckboxComponent extends FieldComponent
+{
+}
