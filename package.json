@@ -93,7 +93,7 @@
     "@storybook/addon-actions": "^6.3.0",
     "@storybook/addon-docs": "^6.3.1",
     "@storybook/addon-essentials": "^6.3.0-rc.4",
-    "@storybook/addon-links": "^6.3.0-rc.4",
+    "@storybook/addon-links": "^6.3.1",
     "@storybook/addon-storyshots": "^6.3.1",
     "@storybook/angular": "^6.3.1",
     "@storybook/builder-webpack5": "^6.3.0",
