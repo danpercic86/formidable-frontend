@@ -3,6 +3,8 @@ import { FieldComponent } from '@builder/shared';
 
 @Component({
   selector: 'formidable-radio',
-  templateUrl: './radio.component.html',
+  templateUrl: './radio.component.html'
 })
-export class RadioComponent extends FieldComponent {}
+export class RadioComponent extends FieldComponent
+{
+}

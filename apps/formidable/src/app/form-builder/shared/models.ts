@@ -1,6 +1,7 @@
 import { IModel } from '@formidable/models';
 
-export interface IField extends IModel {
+export interface IField extends IModel
+{
   name: string;
   value: string;
   is_required: boolean;
@@ -12,12 +13,14 @@ export interface IField extends IModel {
   type: FieldType;
 }
 
-export interface IChoice {
+export interface IChoice
+{
   name: string;
   value: string;
 }
 
-export interface IValidator extends IModel {
+export interface IValidator extends IModel
+{
   message: string;
   constraint: string;
   inverse_match: boolean;
@@ -34,7 +37,8 @@ export type ValidatorType =
   | 'required'
   | 'email';
 
-enum _ValidatorTypes {
+enum _ValidatorTypes
+{
   min = 'min',
   max = 'max',
   minLength = 'minlength',
@@ -57,7 +61,8 @@ export type FieldType =
   | 'radio'
   | 'select';
 
-enum _FieldTypes {
+enum _FieldTypes
+{
   text = 'text',
   email = 'email',
   url = 'url',

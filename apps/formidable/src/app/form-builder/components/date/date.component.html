@@ -1,21 +1,21 @@
-<mat-form-field [formGroup]="form" class="demo-full-width margin-top">
+<mat-form-field [formGroup]='form' class='demo-full-width margin-top'>
   <input
-    [formControlName]="field.name"
-    [matDatepicker]="picker"
-    [placeholder]="field.name"
+    [formControlName]='field.name'
+    [matDatepicker]='picker'
+    [placeholder]='field.name'
     matInput
   />
 
-  <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+  <mat-datepicker-toggle [for]='picker' matSuffix></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
   <mat-hint></mat-hint>
 
   <ng-container
-    *ngFor="let validator of field.validators; trackBy: trackByFn"
-    ngProjectAs="mat-error"
+    *ngFor='let validator of field.validators; trackBy: trackByFn'
+    ngProjectAs='mat-error'
   >
-    <mat-error *ngIf="control?.hasError(validator.constraint)">{{
+    <mat-error *ngIf='control?.hasError(validator.constraint)'>{{
       validator.message
-    }}</mat-error>
+      }}</mat-error>
   </ng-container>
 </mat-form-field>

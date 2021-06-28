@@ -21,13 +21,12 @@ export class AuthService
 {
   private _refreshTokenTimeout: ReturnType<typeof setTimeout>;
   private readonly _userSubject = new BehaviorSubject<IUser | null>(null);
+  readonly user = this._userSubject.asObservable();
   private readonly _httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     })
   };
-
-  readonly user = this._userSubject.asObservable();
 
   constructor(
     private readonly _http: HttpClient,

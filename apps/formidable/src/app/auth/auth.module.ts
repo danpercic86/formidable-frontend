@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { MatInputModule } from '@angular/material/input';
@@ -14,7 +14,7 @@ import { GlobalSharedModule } from '@formidable/shared';
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 @NgModule({
@@ -31,4 +31,6 @@ const routes: Routes = [
     GlobalSharedModule
   ]
 })
-export class AuthModule {}
+export class AuthModule
+{
+}

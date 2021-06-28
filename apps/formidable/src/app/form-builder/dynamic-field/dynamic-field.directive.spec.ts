@@ -1,8 +1,6 @@
 import { DynamicFieldDirective } from './dynamic-field.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FieldTypes, IField } from '@builder/shared';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ValidatorsService } from '../../core/services/components/validators.service';
 
 describe('DynamicFieldDirective', () =>
 {
@@ -17,13 +15,13 @@ describe('DynamicFieldDirective', () =>
     type: FieldTypes.text,
     validators: [],
     value: 'Field value',
-    name: 'Some field here',
+    name: 'Some field here'
   };
 
   beforeEach(async () =>
   {
     await TestBed.configureTestingModule({
-      declarations: [DynamicFieldDirective],
+      declarations: [DynamicFieldDirective]
     }).compileComponents();
   });
 

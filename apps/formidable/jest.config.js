@@ -5,16 +5,16 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.(html|svg)$',
-    },
+      stringifyContentPathRegex: '\\.(html|svg)$'
+    }
   },
   coverageDirectory: '../../coverage/apps/formidable',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment',
+    'jest-preset-angular/build/serializers/html-comment'
   ],
   transform: {
-    '^.+\\.stories\\.[jt]sx?$': '@storybook/addon-storyshots/injectFileName',
-  },
+    '^.+\\.stories\\.[jt]sx?$': '@storybook/addon-storyshots/injectFileName'
+  }
 };

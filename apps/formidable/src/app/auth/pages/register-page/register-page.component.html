@@ -1,106 +1,107 @@
-<div class="auth-container">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class='auth-container'>
+  <mat-spinner *ngIf='isLoading'></mat-spinner>
 
-  <mat-card *ngIf="!isLoading">
-    <form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+  <mat-card *ngIf='!isLoading'>
+    <form (ngSubmit)='onFormSubmit()' [formGroup]='form'>
 
       <h2>Register</h2>
-      <mat-form-field class="full-width">
+      <mat-form-field class='full-width'>
         <mat-label>First name</mat-label>
         <input
+          [errorStateMatcher]='matcher'
+          formControlName='first_name'
           matInput
-          placeholder="First name"
-          title="First name"
-          formControlName="first_name"
-          [errorStateMatcher]="matcher"
+          placeholder='First name'
+          title='First name'
         />
         <mat-error>
-          <span *ngIf="!form.get('first_name')?.valid && form.get('first_name')?.touched"
-            >Please enter your first name</span
+          <span
+            *ngIf="!form.get('first_name')?.valid && form.get('first_name')?.touched"
+          >Please enter your first name</span
           >
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class='full-width'>
         <mat-label>Last name</mat-label>
         <input
+          [errorStateMatcher]='matcher'
+          formControlName='last_name'
           matInput
-          placeholder="Last name"
-          title="Last name"
-          formControlName="last_name"
-          [errorStateMatcher]="matcher"
+          placeholder='Last name'
+          title='Last name'
         />
         <mat-error>
           <span *ngIf="!form.get('last_name')?.valid && form.get('last_name')?.touched"
-            >Please enter your last name</span
+          >Please enter your last name</span
           >
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class='full-width'>
         <mat-label>Email</mat-label>
         <input
+          [errorStateMatcher]='matcher'
+          formControlName='email'
           matInput
-          placeholder="Email"
-          title="Email"
-          type="email"
-          formControlName="email"
-          [errorStateMatcher]="matcher"
+          placeholder='Email'
+          title='Email'
+          type='email'
         />
         <mat-error>
           <span *ngIf="!form.get('email')?.valid && form.get('email')?.touched"
-            >Please enter email</span
+          >Please enter email</span
           >
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class='full-width'>
         <mat-label>Password</mat-label>
         <input
-          type="password"
+          [errorStateMatcher]='matcher'
+          formControlName='password1'
           matInput
-          placeholder="Password"
-          title="Password"
-          formControlName="password1"
-          [errorStateMatcher]="matcher"
+          placeholder='Password'
+          title='Password'
+          type='password'
         />
         <mat-error>
           <span *ngIf="!form.get('password1')?.valid && form.get('password1')?.touched"
-            >Please enter Password</span
+          >Please enter Password</span
           >
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class='full-width'>
         <mat-label>Confirm password</mat-label>
         <input
-          type="password"
+          [errorStateMatcher]='matcher'
+          formControlName='password2'
           matInput
-          placeholder="Confirm password"
-          title="Confirm password"
-          formControlName="password2"
-          [errorStateMatcher]="matcher"
+          placeholder='Confirm password'
+          title='Confirm password'
+          type='password'
         />
         <mat-error>
           <span *ngIf="!form.get('password2')?.valid && form.get('password2')?.touched"
-            >Please enter password confirmation</span
+          >Please enter password confirmation</span
           >
         </mat-error>
       </mat-form-field>
 
       <formidable-button
-        [disabled]="!form.valid"
-        [loading]="isLoading"
-        label="Register"
-        matIcon="how_to_reg"
-        (action)="onFormSubmit()"
+        (action)='onFormSubmit()'
+        [disabled]='!form.valid'
+        [loading]='isLoading'
+        label='Register'
+        matIcon='how_to_reg'
       ></formidable-button>
 
       <h4>Already registered?</h4>
       <formidable-button
-        label="Login"
-        matIcon="login"
         [routerLink]="['auth','login']"
+        label='Login'
+        matIcon='login'
       ></formidable-button>
     </form>
   </mat-card>

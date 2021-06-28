@@ -4,7 +4,7 @@ import { IForm } from '@formidable/models';
 import { IFormService } from '@formidable/shared';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FormsService
   extends ReadOnlyService<IForm>

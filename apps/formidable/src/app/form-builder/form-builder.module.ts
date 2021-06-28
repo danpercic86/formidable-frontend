@@ -33,7 +33,7 @@ const matImports = [
   MatSelectModule,
   MatOptionModule,
   MatCheckboxModule,
-  MatRadioModule,
+  MatRadioModule
 ];
 
 @NgModule({
@@ -44,14 +44,16 @@ const matImports = [
     DateComponent,
     RadioComponent,
     CheckboxComponent,
-    DynamicFieldDirective,
+    DynamicFieldDirective
   ],
   imports: [
     SharedModule,
     ReactiveFormsModule,
     ...matImports,
-    GlobalSharedModule,
+    GlobalSharedModule
   ],
-  exports: [FormBuilderComponent],
+  exports: [FormBuilderComponent]
 })
-export class FormBuilderModule {}
+export class FormBuilderModule
+{
+}

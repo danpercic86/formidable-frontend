@@ -7,7 +7,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 @Component({
   selector: 'formidable-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent
 {
@@ -21,7 +21,9 @@ export class NavbarComponent
   constructor(
     private readonly _breakpointObserver: BreakpointObserver,
     private readonly _authService: AuthService
-  ) {}
+  )
+  {
+  }
 
   logout(): void
   {

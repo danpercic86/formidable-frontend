@@ -8,7 +8,7 @@ import {
 
 @Component({
   selector: 'formidable-input',
-  templateUrl: './input.component.html',
+  templateUrl: './input.component.html'
 })
 export class InputComponent extends FieldComponent
 {
@@ -32,7 +32,8 @@ export class InputComponent extends FieldComponent
     switch (this.field.type)
     {
       case FieldTypes.decimal:
-      case FieldTypes.integer: {
+      case FieldTypes.integer:
+      {
         const validator = this.validators(type);
         return validator ? validator.constraint : '';
       }

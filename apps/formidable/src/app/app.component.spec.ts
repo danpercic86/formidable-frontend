@@ -8,7 +8,7 @@ describe('AppComponent', () =>
   {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      declarations: [AppComponent]
     }).compileComponents();
   });
 
@@ -19,7 +19,7 @@ describe('AppComponent', () =>
     expect(app).toBeTruthy();
   });
 
-  it("should have as title 'formidable-frontend'", () =>
+  it('should have as title \'formidable-frontend\'', () =>
   {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;

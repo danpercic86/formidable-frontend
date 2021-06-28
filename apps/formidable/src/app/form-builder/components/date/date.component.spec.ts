@@ -27,7 +27,7 @@ describe('DateComponent', () =>
     type: FieldTypes.integer,
     validators: [],
     value: 'Field value',
-    name: 'Some field here',
+    name: 'Some field here'
   };
 
   beforeEach(async () =>
@@ -40,8 +40,8 @@ describe('DateComponent', () =>
         MatDatepickerModule,
         MatNativeDateModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule,
-      ],
+        BrowserAnimationsModule
+      ]
     }).compileComponents();
   });
 
@@ -54,7 +54,7 @@ describe('DateComponent', () =>
       'Some field here': new FormControl(
         field.value,
         ValidatorsService.compose(field.validators)
-      ),
+      )
     });
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);

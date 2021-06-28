@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'storybook-page',
@@ -57,9 +57,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       </div>
     </section>
   </article>`,
-  styleUrls: ['./page.css'],
+  styleUrls: ['./page.css']
 })
-export default class PageComponent {
+export default class PageComponent
+{
   @Input()
   user: unknown = null;
 

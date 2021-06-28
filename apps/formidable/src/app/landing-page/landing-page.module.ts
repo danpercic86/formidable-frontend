@@ -6,16 +6,18 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
+    component: LandingPageComponent
   },
   {
     path: '**',
-    redirectTo: '',
-  },
+    redirectTo: ''
+  }
 ];
 
 @NgModule({
   declarations: [LandingPageComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes)]
 })
-export class LandingPageModule {}
+export class LandingPageModule
+{
+}

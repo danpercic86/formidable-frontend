@@ -1,22 +1,22 @@
-<mat-form-field [formGroup]="form">
+<mat-form-field [formGroup]='form'>
   <mat-label>{{ field.name }}</mat-label>
   <input
-    [formControlName]="field.name"
-    [id]="field.id"
-    [max]="getNumberFieldConstraint(validatorTypes.max)"
-    [maxlength]="getNumberFieldConstraint(validatorTypes.maxLength)"
-    [min]="getNumberFieldConstraint(validatorTypes.min)"
-    [minlength]="getNumberFieldConstraint(validatorTypes.minLength)"
-    [pattern]="getNumberFieldConstraint(validatorTypes.regex)"
-    [placeholder]="field.placeholder"
-    [required]="isRequired"
-    [step]="step"
-    [type]="type"
+    [formControlName]='field.name'
+    [id]='field.id'
+    [max]='getNumberFieldConstraint(validatorTypes.max)'
+    [maxlength]='getNumberFieldConstraint(validatorTypes.maxLength)'
+    [min]='getNumberFieldConstraint(validatorTypes.min)'
+    [minlength]='getNumberFieldConstraint(validatorTypes.minLength)'
+    [pattern]='getNumberFieldConstraint(validatorTypes.regex)'
+    [placeholder]='field.placeholder'
+    [required]='isRequired'
+    [step]='step'
+    [type]='type'
     matInput
   />
-  <ng-container *ngFor="let validator of validators(); trackBy: trackByFn">
-    <mat-error *ngIf="control?.hasError(validator.type)">{{
+  <ng-container *ngFor='let validator of validators(); trackBy: trackByFn'>
+    <mat-error *ngIf='control?.hasError(validator.type)'>{{
       validator.message
-    }}</mat-error>
+      }}</mat-error>
   </ng-container>
 </mat-form-field>

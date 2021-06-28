@@ -3,6 +3,8 @@ import { FieldComponent } from '@builder/shared';
 
 @Component({
   selector: 'formidable-date',
-  templateUrl: './date.component.html',
+  templateUrl: './date.component.html'
 })
-export class DateComponent extends FieldComponent {}
+export class DateComponent extends FieldComponent
+{
+}

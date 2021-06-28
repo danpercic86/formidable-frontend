@@ -4,7 +4,8 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output, TemplateRef
+  Output,
+  TemplateRef
 } from '@angular/core';
 import { IField } from './shared/models';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -16,7 +17,7 @@ import { NGXLogger } from 'ngx-logger';
   selector: 'formidable-form-builder',
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormBuilderComponent implements OnInit
 {
@@ -32,7 +33,9 @@ export class FormBuilderComponent implements OnInit
     private readonly _formBuilder: FormBuilder,
     private readonly _validatorsService: ValidatorsService,
     private readonly _loggerService: NGXLogger
-  ) {}
+  )
+  {
+  }
 
   get value(): Record<string, unknown>
   {

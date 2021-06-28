@@ -21,7 +21,9 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatCardModule,
     FormBuilderModule,
     GlobalSharedModule,
-    MatStepperModule,
+    MatStepperModule
   ]
 })
-export class HomeModule { }
+export class HomeModule
+{
+}

@@ -1,5 +1,5 @@
-<a *ngIf="color === 'link'; else button" [routerLink]='routerLink' mat-flat-button
-   class='text-primary'>
+<a *ngIf="color === 'link'; else button" [routerLink]='routerLink' class='text-primary'
+   mat-flat-button>
   {{ text }}
 </a>
 
@@ -10,8 +10,8 @@
     [color]='color'
     [disabled]='disabled || loading'
     [type]='type'
-    mat-raised-button
     class='d-flex justify-content-between button'
+    mat-raised-button
   >
     <span>
       <mat-spinner *ngIf='loading' [diameter]='24'></mat-spinner>

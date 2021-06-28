@@ -11,7 +11,7 @@ describe('FormsService', () =>
   {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [FormsService],
+      providers: [FormsService]
     });
     service = TestBed.inject(FormsService);
   });

@@ -3,7 +3,7 @@ import { ReadOnlyService } from './generics/read-only.service';
 import { ISection } from '@formidable/models';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SectionsService extends ReadOnlyService<ISection>
 {

@@ -3,13 +3,20 @@ import { IValidator, ValidatorTypes } from '@builder/shared';
 import { FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ValidatorsService
 {
+  static compose(rawValidators: IValidator[]): ValidatorFn[]
+  {
+    const validators = rawValidators.map(ValidatorsService._getValidatorFn);
+    const composedValidators = Validators.compose(validators);
+    return composedValidators ? [composedValidators] : [];
+  }
+
   private static _getValidatorFn({
     constraint,
-    type,
+    type
   }: IValidator): ValidatorFn | undefined
   {
     switch (type)
@@ -33,16 +40,9 @@ export class ValidatorsService
     }
   }
 
-  static compose(rawValidators: IValidator[]): ValidatorFn[]
+  validate(form: FormGroup): { [key: string]: ValidationErrors }
   {
-    const validators = rawValidators.map(ValidatorsService._getValidatorFn);
-    const composedValidators = Validators.compose(validators);
-    return composedValidators ? [composedValidators] : [];
-  }
-
-  validate(form: FormGroup): {[key: string]: ValidationErrors}
-  {
-    const errors: {[key: string]: ValidationErrors} = {};
+    const errors: { [key: string]: ValidationErrors } = {};
 
     Object.keys(form.controls).forEach(fieldName =>
     {

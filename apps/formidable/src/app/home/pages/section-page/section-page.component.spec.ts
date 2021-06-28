@@ -10,7 +10,7 @@ describe('SectionComponent', () =>
   beforeEach(async () =>
   {
     await TestBed.configureTestingModule({
-      declarations: [SectionPageComponent],
+      declarations: [SectionPageComponent]
     }).compileComponents();
   });
 

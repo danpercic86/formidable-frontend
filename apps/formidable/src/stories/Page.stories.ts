@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
 import Header from './header.component';
@@ -12,21 +12,21 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [Header],
-      imports: [CommonModule],
-    }),
-  ],
+      imports: [CommonModule]
+    })
+  ]
 } as Meta;
 
 const Template: Story<Page> = (args: Page) => ({
-  props: args,
+  props: args
 });
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
-  ...HeaderStories.LoggedIn.args,
+  ...HeaderStories.LoggedIn.args
 };
 
 export const LoggedOut = Template.bind({});
 LoggedOut.args = {
-  ...HeaderStories.LoggedOut.args,
+  ...HeaderStories.LoggedOut.args
 };

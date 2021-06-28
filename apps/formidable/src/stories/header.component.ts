@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'storybook-header',
@@ -46,9 +46,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       </div>
     </div>
   </header>`,
-  styleUrls: ['./header.css'],
+  styleUrls: ['./header.css']
 })
-export default class HeaderComponent {
+export default class HeaderComponent
+{
   @Input()
   user: unknown = null;
 
