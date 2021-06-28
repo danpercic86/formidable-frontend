@@ -82,7 +82,7 @@
     "@angular/elements": "^12.0.4",
     "@babel/core": "^7.14.6",
     "@compodoc/compodoc": "^1.1.11",
-    "@nrwl/cli": "12.3.6",
+    "@nrwl/cli": "12.4.0",
     "@nrwl/cypress": "12.4.0",
     "@nrwl/eslint-plugin-nx": "12.3.6",
     "@nrwl/jest": "12.3.6",
