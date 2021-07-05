@@ -84,7 +84,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "@nrwl/cli": "12.5.0",
     "@nrwl/cypress": "12.5.0",
-    "@nrwl/eslint-plugin-nx": "12.5.0",
+    "@nrwl/eslint-plugin-nx": "12.5.5",
     "@nrwl/jest": "12.5.0",
     "@nrwl/linter": "12.5.0",
     "@nrwl/nx-cloud": "12.2.7",
