@@ -2211,6 +2211,17 @@
     semver "7.3.4"
     tslib "^2.0.0"
 
+"@nrwl/devkit@12.5.7":
+  version "12.5.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.5.7.tgz#9f49ae2b884f0b440bda79ffedfae984c878827f"
+  integrity sha512-zVH8edxO59GeOzmwcw6qBpQVT0yX9aHdhP5/XAUgPOYINdHIDMy1IZHyhb19fefT4Ju6wUil+1L9g9KvUpULcw==
+  dependencies:
+    "@nrwl/tao" "12.5.7"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    semver "7.3.4"
+    tslib "^2.0.0"
+
 "@nrwl/eslint-plugin-nx@12.5.0":
   version "12.5.0"
   resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-12.5.0.tgz#dd6bedd6f3bbd4ccd730bbacdc5d2b29024ff211"
@@ -2237,6 +2248,17 @@
   integrity sha512-lryFCN+E7nVLLWp/6zww0mHTnh7eApA1VrNtCWgdBAiJymULTDm4a+yo141RiQV50Zgc7ngLP3UHJ7m4KnNCrQ==
   dependencies:
     "@nrwl/devkit" "12.5.0"
+    glob "7.1.4"
+    minimatch "3.0.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+
+"@nrwl/linter@12.5.7":
+  version "12.5.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.5.7.tgz#511346bc7aa82890ff8c4b2b72cab42b2b3e6af8"
+  integrity sha512-+fPN2rWZ7YfUdax+NcHtqQibDEUOd/XGb/DdFZ+fP+E6lJQLzpRXAOdJI3cYpkUo8sG3ClPyLdjleWKPE8REyA==
+  dependencies:
+    "@nrwl/devkit" "12.5.7"
     glob "7.1.4"
     minimatch "3.0.4"
     tmp "~0.2.1"
@@ -2272,6 +2294,22 @@
   version "12.5.0"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.5.0.tgz#fc1f20de507a5500b6a6a7f52cafee166f3bcde2"
   integrity sha512-qX4cPkx20msOukdI+SdDbG/Qhm4ARbr4iNOdcHY8ZxuQaG4U6wo/GBwa/A+2tFnsHZegtPnvoNmEW137P3goNw==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@12.5.7":
+  version "12.5.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.5.7.tgz#007e0ee743230cbfc18eae8aabba2aace8b3488d"
+  integrity sha512-H3kxmbPxYV3qG8TkjjqyLFVBW6Np1Ft3+iaoXr0Agh88I3oJhuxVFKHdclahAVGy76VtVjvnXr8lc4J9/6E0cA==
   dependencies:
     chalk "4.1.0"
     enquirer "~2.3.6"
