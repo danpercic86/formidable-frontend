@@ -97,7 +97,7 @@
     "@storybook/addon-storyshots": "^6.3.1",
     "@storybook/angular": "^6.3.1",
     "@storybook/builder-webpack5": "^6.3.1",
-    "@storybook/manager-webpack5": "^6.3.1",
+    "@storybook/manager-webpack5": "^6.3.4",
     "@types/jest": "26.0.23",
     "@types/node": "15.12.5",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
