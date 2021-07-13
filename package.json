@@ -65,7 +65,7 @@
     "@angular/platform-browser-dynamic": "12.1.0",
     "@angular/platform-server": "^12.1.0",
     "@angular/router": "12.1.0",
-    "@nrwl/angular": "12.5.0",
+    "@nrwl/angular": "12.5.8",
     "moment": "^2.29.1",
     "ngx-logger": "^4.2.1",
     "rxjs": "~6.6.0",
