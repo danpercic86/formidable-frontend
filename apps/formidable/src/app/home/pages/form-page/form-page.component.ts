@@ -11,7 +11,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class FormPageComponent
 {
-  form$: Observable<IForm>;
+  form$ = this._route.paramMap.pipe(switchMap(params => this._getForm(params)));
 
   constructor(
     private readonly _formsService: FormsService,
@@ -19,7 +19,6 @@ export class FormPageComponent
     private readonly _router: Router
   )
   {
-    this.form$ = _route.paramMap.pipe(switchMap(params => this._getForm(params)));
   }
 
   async goToSections(formId: string): Promise<void>
@@ -29,6 +28,6 @@ export class FormPageComponent
 
   private _getForm(params: ParamMap): Observable<IForm>
   {
-    return this._formsService.get(params.get('id') as string);
+    return this._formsService.getByKey(params.get('id') as string);
   }
 }

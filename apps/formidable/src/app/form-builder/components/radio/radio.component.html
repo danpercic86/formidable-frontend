@@ -1,11 +1,12 @@
-<div [formGroup]='form'>
+<div [formGroup]="form">
   <label>{{ field.name }}:</label>
 
-  <mat-radio-group [formControlName]='field.name'>
+  <mat-radio-group [formControlName]="field.name">
     <mat-radio-button
-      *ngFor='let item of field.choices; trackBy: trackByFn'
-      [value]='item.value'
-    >{{ item.name }}</mat-radio-button
+      *ngFor="let item of field.choices; trackBy: trackByFn"
+      [value]="item.value"
     >
+      {{ item.name }}
+    </mat-radio-button>
   </mat-radio-group>
 </div>

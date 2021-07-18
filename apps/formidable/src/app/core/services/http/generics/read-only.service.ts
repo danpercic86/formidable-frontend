@@ -1,15 +1,9 @@
-import { Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IModel } from '@formidable/models';
-import { BaseService } from './base.service';
+import { Service } from './base.service';
 
-export abstract class ReadOnlyService<T extends IModel> extends BaseService
+export abstract class ReadOnlyService<T extends IModel> extends Service
 {
-  protected constructor(protected readonly _injector: Injector)
-  {
-    super(_injector);
-  }
-
   get(): Observable<T[]>;
   get(slugOrId: string): Observable<T>;
   get(slugOrId?: string): Observable<T | T[]>

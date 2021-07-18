@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FieldComponent } from '@builder/shared';
 
 @Component({
-  selector: 'formidable-select',
-  templateUrl: './select.component.html'
+  templateUrl: './select.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent extends FieldComponent
 {

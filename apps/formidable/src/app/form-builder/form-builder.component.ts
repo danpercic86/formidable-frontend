@@ -12,6 +12,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { trackByFn } from './shared/functions';
 import { ValidatorsService } from '../core/services/components/validators.service';
 import { NGXLogger } from 'ngx-logger';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'formidable-form-builder',
@@ -23,16 +24,16 @@ export class FormBuilderComponent implements OnInit
 {
   @Input() fields: IField[];
   @Input() buttonText: string;
-  @Input() buttonTemplate: TemplateRef<any>;
+  @Input() buttonTemplate: TemplateRef<unknown>;
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
   form: FormGroup;
-  loading = false;
+  loading$ = new BehaviorSubject(false);
   trackById = trackByFn;
 
   constructor(
     private readonly _formBuilder: FormBuilder,
     private readonly _validatorsService: ValidatorsService,
-    private readonly _loggerService: NGXLogger
+    private readonly _logger: NGXLogger
   )
   {
   }
@@ -45,28 +46,25 @@ export class FormBuilderComponent implements OnInit
   ngOnInit(): void
   {
     this.form = this._createFormGroup();
-    this._loggerService.debug('Form created: ', this.form);
+    this._logger.debug('Form created: ', this.form);
   }
 
-  onSubmit(event: Event | Record<string, unknown>): void
+  onSubmit(event: Event): void
   {
-    this.loading = true;
-    if (event instanceof Event)
-    {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    this.loading$.next(true);
+    event.preventDefault();
+    event.stopPropagation();
 
     if (this.form.valid)
     {
-      this.formSubmit.emit(this.form.value);
+      this.formSubmit.emit(this.value);
     }
     else
     {
       this._validatorsService.validate(this.form);
     }
 
-    this.loading = false;
+    this.loading$.next(false);
   }
 
   private _createFormGroup(): FormGroup

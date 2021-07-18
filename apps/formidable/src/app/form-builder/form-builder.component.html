@@ -20,7 +20,7 @@
 
 <ng-template #defaultButton>
   <formidable-button
-    [loading]='loading'
+    [loading]='(loading$ | async) ?? false'
     [text]='buttonText'
     class='d-flex justify-content-end'
     type='submit'

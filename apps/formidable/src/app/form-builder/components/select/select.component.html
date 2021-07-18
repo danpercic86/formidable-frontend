@@ -3,7 +3,8 @@
     <mat-option
       *ngFor='let choice of field.choices; trackBy: trackByFn'
       [value]='choice.value'
-    >{{ choice.name }}</mat-option
     >
+      {{ choice.name }}
+    </mat-option>
   </mat-select>
 </mat-form-field>

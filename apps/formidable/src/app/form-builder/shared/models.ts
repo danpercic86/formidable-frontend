@@ -28,50 +28,30 @@ export interface IValidator extends IModel
   type: ValidatorType;
 }
 
-export type ValidatorType =
-  | 'min'
-  | 'max'
-  | 'minlength'
-  | 'maxlength'
-  | 'pattern'
-  | 'required'
-  | 'email';
+export const ValidatorTypes =
+  {
+    min: 'min',
+    max: 'max',
+    minlength: 'minlength',
+    maxlength: 'maxlength',
+    pattern: 'pattern',
+    email: 'email',
+    required: 'required'
+  } as const;
 
-enum _ValidatorTypes
-{
-  min = 'min',
-  max = 'max',
-  minLength = 'minlength',
-  maxLength = 'maxlength',
-  regex = 'pattern',
-  email = 'email',
-  required = 'required',
-}
+export type ValidatorType = keyof typeof ValidatorTypes
 
-export const ValidatorTypes = _ValidatorTypes;
+export const FieldTypes =
+  {
+    text: 'text',
+    email: 'email',
+    url: 'url',
+    integer: 'integer',
+    decimal: 'decimal'
+    // file = 'file',
+    // checkbox = 'checkbox',
+    // radio = 'radio',
+    // select = 'select',
+  } as const;
 
-export type FieldType =
-  | 'text'
-  | 'email'
-  | 'url'
-  | 'integer'
-  | 'decimal'
-  | 'file'
-  | 'checkbox'
-  | 'radio'
-  | 'select';
-
-enum _FieldTypes
-{
-  text = 'text',
-  email = 'email',
-  url = 'url',
-  integer = 'integer',
-  decimal = 'decimal',
-  // file = 'file',
-  // checkbox = 'checkbox',
-  // radio = 'radio',
-  // select = 'select',
-}
-
-export const FieldTypes = _FieldTypes;
+export type FieldType = keyof typeof FieldTypes

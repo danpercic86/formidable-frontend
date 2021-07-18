@@ -3,12 +3,12 @@ import { IField } from '@builder/shared';
 
 export interface ISectionMinimal extends IModel
 {
-  name: string;
+  readonly name: string;
 }
 
 export interface ISection extends ISectionMinimal
 {
-  fields: IField[];
-  description: string;
-  button_text: string;
+  readonly fields: IField[];
+  readonly description: string;
+  readonly buttonText: string;
 }

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IForm } from '@formidable/models';
 import { FormsService } from '@formidable/services';
 
 @Component({
@@ -9,10 +7,9 @@ import { FormsService } from '@formidable/services';
 })
 export class HomePageComponent
 {
-  forms$: Observable<IForm[]>;
+  forms$ = this._formsService.getAll();
 
   constructor(private readonly _formsService: FormsService)
   {
-    this.forms$ = _formsService.get();
   }
 }

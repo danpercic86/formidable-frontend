@@ -21,11 +21,11 @@ export class ValidatorsService
   {
     switch (type)
     {
-      case ValidatorTypes.maxLength:
+      case ValidatorTypes.maxlength:
         return Validators.maxLength(parseInt(constraint));
-      case ValidatorTypes.minLength:
+      case ValidatorTypes.minlength:
         return Validators.minLength(parseInt(constraint));
-      case ValidatorTypes.regex:
+      case ValidatorTypes.pattern:
         return Validators.pattern(constraint);
       case ValidatorTypes.email:
         return Validators.email;

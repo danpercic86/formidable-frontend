@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   FieldComponent,
   FieldTypes,
@@ -7,8 +7,8 @@ import {
 } from '@builder/shared';
 
 @Component({
-  selector: 'formidable-input',
-  templateUrl: './input.component.html'
+  templateUrl: './input.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent extends FieldComponent
 {

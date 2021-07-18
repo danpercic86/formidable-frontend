@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormsService, SectionsService } from '@formidable/services';
-import { Observable } from 'rxjs';
+import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
 import { IForm, ISection, ISectionMinimal } from '@formidable/models';
 import { map } from 'rxjs/operators';
 import { StepperOrientation, StepperSelectionEvent } from '@angular/cdk/stepper';
@@ -64,10 +64,10 @@ export class SectionPageComponent implements OnInit
   private _getForm(): Promise<IForm>
   {
     const id = this._route.snapshot.paramMap.get('id') as string;
-    return this._formsService.get(id).toPromise();
+    return lastValueFrom(this._formsService.getByKey(id));
   }
 
-  private async _fetchCurrentSection()
+  private async _fetchCurrentSection(): Promise<void>
   {
     if (this.currentStep === this.sections.length)
     {
@@ -76,6 +76,6 @@ export class SectionPageComponent implements OnInit
     }
 
     const sectionId = this.sections[this.currentStep].id;
-    this.currentSection = await this._sectionsService.get(sectionId).toPromise();
+    this.currentSection = await firstValueFrom(this._sectionsService.get(sectionId));
   }
 }

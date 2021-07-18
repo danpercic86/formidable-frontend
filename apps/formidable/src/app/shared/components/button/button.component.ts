@@ -5,7 +5,12 @@ import {
   Input,
   Output
 } from '@angular/core';
-import { BtnColor, BtnColors, BtnType, BtnTypes } from '../../enums/buttons';
+import {
+  BtnColor,
+  BtnColors,
+  BtnType,
+  BtnTypes
+} from '../../constants/button.constants';
 
 @Component({
   selector: 'formidable-button',

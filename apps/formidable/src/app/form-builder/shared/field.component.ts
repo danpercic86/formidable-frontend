@@ -5,36 +5,15 @@ import {
   ValidatorType,
   ValidatorTypes
 } from './models';
-import {
-  AbstractControl,
-  FormGroup,
-  NG_VALIDATORS,
-  ValidationErrors,
-  Validator
-} from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { trackByFn } from './functions';
-import { Directive } from '@angular/core';
-import { ValidatorsService } from '../../core/services/components/validators.service';
 
-@Directive({
-  providers: [
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: FieldComponent
-    }
-  ]
-})
-export abstract class FieldComponent implements Validator
+export abstract class FieldComponent
 {
   field: IField;
   form: FormGroup;
 
   trackByFn = trackByFn;
-
-  constructor(private readonly _validatorsService: ValidatorsService)
-  {
-  }
 
   get isRequired(): boolean
   {
@@ -53,11 +32,6 @@ export abstract class FieldComponent implements Validator
     }
   }
 
-  get control(): AbstractControl | null
-  {
-    return this.form.get(this.field.name);
-  }
-
   validators(): IValidator[];
   validators(byType: ValidatorType): IValidator | undefined;
   validators(type?: ValidatorType): IValidator | IValidator[] | undefined
@@ -66,24 +40,10 @@ export abstract class FieldComponent implements Validator
     return type ? validators.find(v => v.type === type) : validators;
   }
 
-  validate(): ValidationErrors | null
+  get control(): AbstractControl | never
   {
-    const errors = this._validatorsService.validate(this.form);
-    return errors[this.field.name] ? errors[this.field.name] : null;
+    const control = this.form.get(this.field.name);
+    if (control === null) throw new Error('Something went wrong, control is null!');
+    return control;
   }
-
-  // getConstraint(type: ValidatorType): string
-  // {
-  //   switch (this.field.type)
-  //   {
-  //     case FieldTypes.decimal:
-  //     case FieldTypes.integer:
-  //       return '';
-  //     default:
-  //     {
-  //       const validator = this.validators(type);
-  //       return validator ? validator.constraint : '';
-  //     }
-  //   }
-  // }
 }

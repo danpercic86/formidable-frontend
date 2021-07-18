@@ -16,6 +16,10 @@ import { autoAuthenticate } from './auth/utils/functions';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from './auth/services/auth.service';
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { defaultDataServiceConfig, entityConfig } from './entity-metadata';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +35,10 @@ import { AuthService } from './auth/services/auth.service';
     MatToolbarModule,
     MatIconModule,
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG }),
-    MatButtonModule
+    MatButtonModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    EntityDataModule.forRoot(entityConfig)
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -45,6 +52,10 @@ import { AuthService } from './auth/services/auth.service';
       useFactory: autoAuthenticate,
       deps: [AuthService, NGXLogger],
       multi: true
+    },
+    {
+      provide: DefaultDataServiceConfig,
+      useValue: defaultDataServiceConfig
     }
   ]
 })

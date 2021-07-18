@@ -1,19 +1,19 @@
-import { Injectable, Injector } from '@angular/core';
-import { ReadOnlyService } from './generics/read-only.service';
+import { Injectable } from '@angular/core';
 import { IForm } from '@formidable/models';
-import { IFormService } from '@formidable/shared';
+import {
+  EntityCollectionServiceBase,
+  EntityCollectionServiceElementsFactory
+} from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FormsService
-  extends ReadOnlyService<IForm>
-  implements IFormService
+export class FormsService extends EntityCollectionServiceBase<IForm>
 {
-  protected _modelName = 'forms';
-
-  constructor(protected _injector: Injector)
+  constructor(
+    private readonly _serviceElementsFactory: EntityCollectionServiceElementsFactory
+  )
   {
-    super(_injector);
+    super('forms', _serviceElementsFactory);
   }
 }

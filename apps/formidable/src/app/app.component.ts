@@ -10,17 +10,7 @@ export class AppComponent
 {
   title = 'formidable-frontend';
 
-  constructor(private readonly _authService: AuthService)
+  constructor(readonly authService: AuthService)
   {
-  }
-
-  isLoggedIn(): boolean
-  {
-    return this._authService.isLoggedIn();
-  }
-
-  logout(): void
-  {
-    this._authService.logout();
   }
 }

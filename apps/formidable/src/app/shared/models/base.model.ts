@@ -1,10 +1,10 @@
 export interface IModel
 {
-  id: string;
+  readonly id: string;
 }
 
 export interface ICreatedModifiedModel extends IModel
 {
-  created: string;
-  modified: string;
+  readonly created: string;
+  readonly modified: string;
 }

@@ -1,15 +1,14 @@
-import { Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export abstract class BaseService
+@Injectable()
+export abstract class Service
 {
   protected abstract readonly _modelName: string;
   protected _apiUrl = '/api/';
-  protected _http: HttpClient;
 
-  protected constructor(protected readonly _injector: Injector)
+  protected constructor(protected readonly _http: HttpClient)
   {
-    this._http = _injector.get(HttpClient);
   }
 
   protected get _url(): string

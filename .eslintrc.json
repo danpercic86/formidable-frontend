@@ -10,9 +10,7 @@
     {
       "files": [
         "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
+        "*.js"
       ],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
@@ -37,8 +35,7 @@
     },
     {
       "files": [
-        "*.ts",
-        "*.tsx"
+        "*.ts"
       ],
       "extends": [
         "plugin:@nrwl/nx/typescript",
@@ -48,16 +45,6 @@
       "plugins": [
         "@angular-eslint/eslint-plugin",
         "@typescript-eslint"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/javascript"
       ],
       "rules": {}
     },

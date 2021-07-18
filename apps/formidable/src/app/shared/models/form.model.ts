@@ -3,7 +3,7 @@ import { ISectionMinimal } from './section.model';
 
 export interface IForm extends ICreatedModifiedModel
 {
-  name: string;
-  description: string;
-  sections: ISectionMinimal[];
+  readonly name: string;
+  readonly description: string;
+  readonly sections: ISectionMinimal[];
 }

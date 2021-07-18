@@ -2158,6 +2158,34 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@ngrx/data@^12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/data/-/data-12.2.0.tgz#e7acdb94d065a56093289c1d578c8b254697c537"
+  integrity sha512-r0GIzcK0AGF4fyhhoOubWj9B4BPZVlo8FdwguRKl4niHj4RFwJ9t2Wy1r0VJUsetDTIhA5rDF0XQZDX7p6VHKw==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/effects@^12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-12.2.0.tgz#833f16339d8397905df5a30cf491b1afaa957b7b"
+  integrity sha512-TyXsUnUWiK7k9qq+Upw7NsvnOtxw1txvAjYhVI3PHLuiDyCtvcrpWHliKC/vsAiINJSytaUdVJu+wCQe3J/z4A==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/entity@^12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-12.2.0.tgz#304ba81e594096150e67c1bcf449927f3110d414"
+  integrity sha512-/J/TRF8I3veWpzKGaTGj7bWzvrL96ATK5Ye7GcIUU/4p8j7uHfdUgn8N5yfWp1Sch+lConh/YPc30bcAPAXqaA==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/store@^12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-12.2.0.tgz#3b413d95e1b311ea8598f6eaee3cc7ae890f8619"
+  integrity sha512-DV1Yu4VhuSV6OfeHFdKEhuQTcHTMkn0igT6V3/x/FpzJ8vaq7tAN78iALMydce+YX+FcdFgj3cr3URQfYfisMA==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngtools/webpack@12.1.2":
   version "12.1.2"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-12.1.2.tgz#ac828799c1b968391e73eb9db17367bc2219cfc7"
