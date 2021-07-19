@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IForm } from '@formidable/models';
+import { ISection } from '@builder/shared';
 import {
   EntityCollectionServiceBase,
   EntityCollectionServiceElementsFactory
@@ -8,12 +8,12 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class FormsService extends EntityCollectionServiceBase<IForm>
+export class SectionsService extends EntityCollectionServiceBase<ISection>
 {
   constructor(
     private readonly _serviceElementsFactory: EntityCollectionServiceElementsFactory
   )
   {
-    super('forms', _serviceElementsFactory);
+    super('sections', _serviceElementsFactory);
   }
 }

@@ -1,23 +1,33 @@
 <mat-stepper
-  (selectionChange)="stepSelectionChange($event)"
-  [orientation]="(stepperOrientation$ | async) || 'horizontal'"
+  (selectionChange)='stepSelectionChange($event)'
+  [orientation]="(stepperOrientation$ | async) ?? 'horizontal'"
 >
-  <mat-step *ngFor="let section of sections; trackBy: trackById">
+  <mat-step *ngFor='let section of sections; trackBy: trackByFn'>
     <ng-template matStepLabel>{{ section.name }}</ng-template>
+
     <ng-template matStepContent>
-      <ng-container *ngIf="isCurrentSection(section.id); else spinner">
-        <formidable-form-builder
-          (formSubmit)="submit($event)"
-          [buttonTemplate]="buttons"
-          [fields]="currentSection.fields"
-        >
-          <ng-template #buttons>
-            <div class="d-flex">
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </ng-template>
-        </formidable-form-builder>
+      <ng-container *ngIf='section$ | async as current'>
+        <ng-container
+          *ngIf='current.id === section.id'>
+          <formidable-form-builder
+            (formSubmit)='submit($event)'
+            [buttonTemplate]='buttons'
+            [fields]='current.fields'
+          >
+            <ng-template #buttons>
+              <div class='d-flex'>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </ng-template>
+          </formidable-form-builder>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf='loading$ | async'>
+        <div class='content-center'>
+          <mat-spinner class='m-auto'></mat-spinner>
+        </div>
       </ng-container>
     </ng-template>
   </mat-step>
@@ -30,9 +40,3 @@
     </ng-template>
   </mat-step>
 </mat-stepper>
-
-<ng-template #spinner>
-  <div class="content-center">
-    <mat-spinner class="m-auto"></mat-spinner>
-  </div>
-</ng-template>

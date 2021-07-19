@@ -8,6 +8,7 @@ import { FormBuilderModule } from '../form-builder';
 import { FormPageComponent } from './pages/form-page/form-page.component';
 import { GlobalSharedModule } from '@formidable/shared';
 import { MatStepperModule } from '@angular/material/stepper';
+import { FormBuilderSharedModule } from '@builder/shared';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatCardModule,
     FormBuilderModule,
     GlobalSharedModule,
-    MatStepperModule
+    MatStepperModule,
+    FormBuilderSharedModule
   ]
 })
 export class HomeModule

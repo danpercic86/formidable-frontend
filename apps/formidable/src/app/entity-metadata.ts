@@ -7,10 +7,10 @@ import { environment } from '@formidable/env';
 
 const entityMetadata: EntityMetadataMap = {
   forms: {},
-  section: {}
+  sections: {}
 };
 
-const pluralNames = { forms: 'forms' };
+const pluralNames = { forms: 'forms', sections: 'sections' };
 
 export const entityConfig: EntityDataModuleConfig = {
   entityMetadata,

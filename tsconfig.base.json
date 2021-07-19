@@ -11,20 +11,42 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@builder/models": ["apps/formidable/src/app/form-builder/models"],
-      "@builder/shared": ["apps/formidable/src/app/form-builder/shared"],
-      "@formidable/assets/*": ["apps/formidable/src/assets/*"],
-      "@formidable/core": ["apps/formidable/src/app/core"],
-      "@formidable/env": ["apps/formidable/src/environments"],
-      "@formidable/models": ["apps/formidable/src/app/shared/models"],
-      "@formidable/services": ["apps/formidable/src/app/core/services"],
-      "@formidable/shared": ["apps/formidable/src/app/shared"]
+      "@builder/core": [
+        "apps/formidable/src/app/form-builder"
+      ],
+      "@builder/shared": [
+        "apps/formidable/src/app/form-builder/shared"
+      ],
+      "@formidable/assets/*": [
+        "apps/formidable/src/assets/*"
+      ],
+      "@formidable/core": [
+        "apps/formidable/src/app/core"
+      ],
+      "@formidable/env": [
+        "apps/formidable/src/environments"
+      ],
+      "@formidable/models": [
+        "apps/formidable/src/app/shared/models"
+      ],
+      "@formidable/services": [
+        "apps/formidable/src/app/core/services"
+      ],
+      "@formidable/shared": [
+        "apps/formidable/src/app/shared"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

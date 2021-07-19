@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormsService } from '@formidable/services';
+import { FormsService } from '@builder/core';
 import { Observable } from 'rxjs';
-import { IForm } from '@formidable/models';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { IForm } from '@builder/shared';
 
 @Component({
   templateUrl: './form-page.component.html',

@@ -20,10 +20,4 @@ describe('FormsService', () =>
   {
     expect(service).toBeTruthy();
   });
-
-  it('should have "get" method', () =>
-  {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    expect(service.get).toBeTruthy();
-  });
 });

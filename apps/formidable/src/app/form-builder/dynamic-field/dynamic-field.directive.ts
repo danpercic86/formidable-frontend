@@ -18,7 +18,7 @@ import {
   Validator,
 } from '@angular/forms';
 import { FieldComponent, IField } from '@builder/shared';
-import { ValidatorsService } from '../../core/services/components/validators.service';
+import { ValidatorsService } from '@builder/core';
 import { filter, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 

@@ -7,9 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CommonModule } from '@angular/common';
 import { GlobalSharedModule } from '@formidable/shared';
+import { FormBuilderSharedModule } from '@builder/shared';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -26,9 +25,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    CommonModule,
-    GlobalSharedModule
+    GlobalSharedModule,
+    FormBuilderSharedModule
   ]
 })
 export class AuthModule

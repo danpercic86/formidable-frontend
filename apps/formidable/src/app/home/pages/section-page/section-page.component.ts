@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormsService, SectionsService } from '@formidable/services';
-import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
-import { IForm, ISection, ISectionMinimal } from '@formidable/models';
+import { BehaviorSubject, lastValueFrom, Observable, switchMap } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StepperOrientation, StepperSelectionEvent } from '@angular/cdk/stepper';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { IForm, ISection, ISectionMinimal, trackByFn } from '@builder/shared';
+import { FormsService, SectionsService } from '@builder/core';
 
 @Component({
   templateUrl: './section-page.component.html',
@@ -15,9 +15,10 @@ export class SectionPageComponent implements OnInit
 {
   sections: ISectionMinimal[];
   stepperOrientation$: Observable<StepperOrientation>;
-  currentSection: ISection;
-  currentStep = 0;
-  loading = true;
+  step$ = new BehaviorSubject(0);
+  section$ = this.step$.pipe(switchMap(step => this._getSectionByKey(step)));
+  loading$ = this._sectionsService.loading$;
+  trackByFn = trackByFn;
 
   constructor(
     private readonly _route: ActivatedRoute,
@@ -26,15 +27,14 @@ export class SectionPageComponent implements OnInit
     private readonly _formsService: FormsService
   )
   {
-    this.stepperOrientation$ = _breakpointObserver.observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => matches ? 'horizontal' : 'vertical'));
+    this.stepperOrientation$ = _breakpointObserver
+      .observe('(min-width: 800px)')
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
   }
 
   async ngOnInit(): Promise<void>
   {
     this.sections = (await this._getForm()).sections;
-    await this._fetchCurrentSection();
-    this.loading = false;
   }
 
   submit(data: Record<string, unknown>): void
@@ -43,39 +43,21 @@ export class SectionPageComponent implements OnInit
     console.log(data);
   }
 
-  trackById(index: number, item: ISectionMinimal): string
+  stepSelectionChange(event: StepperSelectionEvent): void
   {
-    return item.id;
+    let index = event.selectedIndex;
+    if (event.selectedIndex === this.sections.length) index--;
+    this.step$.next(index);
   }
 
-  async stepSelectionChange(event: StepperSelectionEvent): Promise<void>
+  private _getSectionByKey(step: number): Observable<ISection>
   {
-    this.currentStep = event.selectedIndex;
-    this.loading = true;
-    await this._fetchCurrentSection();
-    this.loading = false;
-  }
-
-  isCurrentSection(sectionId: string): boolean
-  {
-    return this.sections[this.currentStep].id === sectionId && !this.loading;
+    return this._sectionsService.getByKey(this.sections[step].id);
   }
 
   private _getForm(): Promise<IForm>
   {
     const id = this._route.snapshot.paramMap.get('id') as string;
     return lastValueFrom(this._formsService.getByKey(id));
-  }
-
-  private async _fetchCurrentSection(): Promise<void>
-  {
-    if (this.currentStep === this.sections.length)
-    {
-      this.currentStep--;
-      return;
-    }
-
-    const sectionId = this.sections[this.currentStep].id;
-    this.currentSection = await firstValueFrom(this._sectionsService.get(sectionId));
   }
 }

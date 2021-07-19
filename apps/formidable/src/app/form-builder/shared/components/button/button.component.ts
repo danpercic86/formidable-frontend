@@ -10,7 +10,7 @@ import {
   BtnColors,
   BtnType,
   BtnTypes
-} from '../../constants/button.constants';
+} from '../../../../shared';
 
 @Component({
   selector: 'formidable-button',

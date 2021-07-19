@@ -7,10 +7,10 @@ import {
   Output,
   TemplateRef
 } from '@angular/core';
-import { IField } from './shared/models';
+import { IField } from '@builder/shared';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { trackByFn } from './shared/functions';
-import { ValidatorsService } from '../core/services/components/validators.service';
+import { trackByFn } from '@builder/shared';
+import { ValidatorsService } from '@builder/core';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject } from 'rxjs';
 

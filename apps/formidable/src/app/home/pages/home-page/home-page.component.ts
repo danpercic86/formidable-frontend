@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsService } from '@formidable/services';
+import { FormsService } from '@builder/core';
 
 @Component({
   templateUrl: './home-page.component.html',

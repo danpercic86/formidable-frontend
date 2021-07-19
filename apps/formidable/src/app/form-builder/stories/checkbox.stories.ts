@@ -5,7 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { FieldTypes, IField } from '@builder/shared';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ValidatorsService } from '../../core/services/components/validators.service';
+import { ValidatorsService } from '../services/validators.service';
 
 export default {
   title: 'Form builder/Checkbox',

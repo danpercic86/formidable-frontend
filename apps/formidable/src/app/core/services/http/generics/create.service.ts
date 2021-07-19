@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { IModel } from '@formidable/models';
 import { Service } from './base.service';
+import { IModel } from '@builder/shared';
 
 export abstract class CreateService<T extends IModel> extends Service
 {

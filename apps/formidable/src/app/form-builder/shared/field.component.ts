@@ -2,11 +2,11 @@ import {
   FieldTypes,
   IField,
   IValidator,
+  trackByFn,
   ValidatorType,
   ValidatorTypes
-} from './models';
+} from '@builder/shared';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { trackByFn } from './functions';
 
 export abstract class FieldComponent
 {
@@ -32,18 +32,20 @@ export abstract class FieldComponent
     }
   }
 
-  validators(): IValidator[];
-  validators(byType: ValidatorType): IValidator | undefined;
-  validators(type?: ValidatorType): IValidator | IValidator[] | undefined
-  {
-    const validators = this.field.validators;
-    return type ? validators.find(v => v.type === type) : validators;
-  }
-
   get control(): AbstractControl | never
   {
     const control = this.form.get(this.field.name);
     if (control === null) throw new Error('Something went wrong, control is null!');
     return control;
+  }
+
+  validators(): IValidator[];
+
+  validators(byType: ValidatorType): IValidator | undefined;
+
+  validators(type?: ValidatorType): IValidator | IValidator[] | undefined
+  {
+    const validators = this.field.validators;
+    return type ? validators.find(v => v.type === type) : validators;
   }
 }
