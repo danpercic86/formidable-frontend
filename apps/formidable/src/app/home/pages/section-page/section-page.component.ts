@@ -13,7 +13,7 @@ import { FormsService, SectionsService } from '@builder/core';
 })
 export class SectionPageComponent implements OnInit
 {
-  sections: ISectionMinimal[];
+  sections!: ISectionMinimal[];
   stepperOrientation$: Observable<StepperOrientation>;
   step$ = new BehaviorSubject(0);
   section$ = this.step$.pipe(switchMap(step => this._getSectionByKey(step)));

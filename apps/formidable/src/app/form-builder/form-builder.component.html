@@ -20,6 +20,7 @@
 
 <ng-template #defaultButton>
   <formidable-button
+    *ngIf='buttonText'
     [loading]='(loading$ | async) ?? false'
     [text]='buttonText'
     class='d-flex justify-content-end'

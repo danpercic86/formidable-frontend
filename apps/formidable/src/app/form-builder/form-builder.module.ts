@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormBuilderComponent } from './form-builder.component';
 import { FormBuilderSharedModule } from '@builder/shared';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,7 +18,6 @@ import { DateComponent } from './components/date/date.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
-import { RouterModule } from '@angular/router';
 
 const matImports = [
   MatIconModule,
@@ -32,7 +30,7 @@ const matImports = [
   MatSelectModule,
   MatOptionModule,
   MatCheckboxModule,
-  MatRadioModule,
+  MatRadioModule
 ];
 
 @NgModule({

@@ -7,9 +7,8 @@ import {
   Output,
   TemplateRef
 } from '@angular/core';
-import { IField } from '@builder/shared';
+import { IField, trackByFn } from '@builder/shared';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { trackByFn } from '@builder/shared';
 import { ValidatorsService } from '@builder/core';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject } from 'rxjs';
@@ -22,13 +21,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FormBuilderComponent implements OnInit
 {
-  @Input() fields: IField[];
-  @Input() buttonText: string;
-  @Input() buttonTemplate: TemplateRef<unknown>;
+  @Input() fields!: IField[];
+  @Input() buttonText?: string;
+  @Input() buttonTemplate?: TemplateRef<unknown>;
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
-  form: FormGroup;
-  loading$ = new BehaviorSubject(false);
-  trackById = trackByFn;
+  form!: FormGroup;
+  readonly loading$ = new BehaviorSubject(false);
+  readonly trackById = trackByFn;
 
   constructor(
     private readonly _formBuilder: FormBuilder,

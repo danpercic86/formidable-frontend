@@ -19,9 +19,9 @@ import { NGXLogger } from 'ngx-logger';
 })
 export class AuthService
 {
-  private _refreshTokenTimeout: ReturnType<typeof setTimeout>;
-  private readonly _userSubject = new BehaviorSubject<IUser | null>(null);
-  readonly user = this._userSubject.asObservable();
+  private _refreshTokenTimeout?: ReturnType<typeof setTimeout>;
+  private readonly _user$ = new BehaviorSubject<IUser | null>(null);
+  readonly user$ = this._user$.asObservable();
   private readonly _httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -50,7 +50,7 @@ export class AuthService
       {
         this._tokenService.rawToken = res.access_token;
         this._tokenService.rawRefreshToken = res.refresh_token;
-        this._userSubject.next(res.user);
+        this._user$.next(res.user);
         this._startRefreshTokenTimer();
       })
     );

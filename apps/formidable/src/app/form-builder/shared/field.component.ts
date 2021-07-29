@@ -10,10 +10,10 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 
 export abstract class FieldComponent
 {
-  field: IField;
-  form: FormGroup;
+  field!: IField;
+  form!: FormGroup;
 
-  trackByFn = trackByFn;
+  readonly trackByFn = trackByFn;
 
   get isRequired(): boolean
   {
@@ -40,9 +40,7 @@ export abstract class FieldComponent
   }
 
   validators(): IValidator[];
-
   validators(byType: ValidatorType): IValidator | undefined;
-
   validators(type?: ValidatorType): IValidator | IValidator[] | undefined
   {
     const validators = this.field.validators;

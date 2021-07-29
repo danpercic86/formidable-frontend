@@ -55,11 +55,11 @@ export class DynamicFieldDirective
   extends FieldComponent
   implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
-  @Input() field: IField;
+  @Input() field!: IField;
   private _touched = false;
-  private _onTouched: () => unknown;
-  private _onChange: (value: unknown) => unknown;
-  private _subscriptions = new Subscription();
+  private _onTouched?: () => unknown;
+  private _onChange?: (value: unknown) => unknown;
+  private readonly _subscriptions = new Subscription();
 
   constructor(
     private readonly _resolver: ComponentFactoryResolver,
@@ -137,14 +137,14 @@ export class DynamicFieldDirective
   private set _value(value: unknown)
   {
     this.writeValue(value);
-    this._onChange(value);
+    this._onChange?.(value);
   }
 
   private _markAsTouched(): void
   {
     if (!this._touched)
     {
-      this._onTouched();
+      this._onTouched?.();
       this._touched = true;
     }
   }

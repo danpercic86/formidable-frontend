@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomErrorStateMatcher } from '../../utils/error-state-matcher';
 import { AuthService } from '../../services/auth.service';
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'formidable-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['../../auth.component.scss']
 })
-export class RegisterPageComponent implements OnInit
+export class RegisterPageComponent
 {
-  form: FormGroup;
+  readonly form = this._formBuilder.group({
+    email: [null, Validators.required],
+    password1: [null, Validators.required],
+    password2: [null, Validators.required],
+    first_name: [null, Validators.required],
+    last_name: [null, Validators.required]
+  });
   isLoading = false;
-  matcher = new CustomErrorStateMatcher();
+  readonly matcher = new CustomErrorStateMatcher();
 
   constructor(
     private readonly _authService: AuthService,
@@ -22,17 +27,6 @@ export class RegisterPageComponent implements OnInit
     private readonly _formBuilder: FormBuilder
   )
   {
-  }
-
-  ngOnInit(): void
-  {
-    this.form = this._formBuilder.group({
-      email: [null, Validators.required],
-      password1: [null, Validators.required],
-      password2: [null, Validators.required],
-      first_name: [null, Validators.required],
-      last_name: [null, Validators.required]
-    });
   }
 
   onFormSubmit(): void
