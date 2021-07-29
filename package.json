@@ -84,7 +84,7 @@
     "@angular/cli": "12.1.4",
     "@angular/compiler-cli": "12.1.4",
     "@angular/elements": "12.1.4",
-    "@babel/core": "^7.14.6",
+    "@babel/core": "^7.14.8",
     "@compodoc/compodoc": "^1.1.14",
     "@nrwl/cli": "12.6.2",
     "@nrwl/cypress": "12.6.2",
