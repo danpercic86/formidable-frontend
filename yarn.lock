@@ -158,10 +158,10 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/cdk@^12.1.2":
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-12.1.2.tgz#5c2407324d860737374d873bd4381bf7f90f8a61"
-  integrity sha512-ALupZejZDsVYcbNZcEH1cV8SDgVBL40FAwDnlSZxCgd0HOBHH0ZqQV+8z0uCQeMatoNM+SwmJ8Y1JXYh9Bqfiw==
+"@angular/cdk@^12.1.4":
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-12.1.4.tgz#321bbbdd79f1173b61314608927a8412576b3ac8"
+  integrity sha512-so8HP7jRNkGfdTkPmFVqyW4pj1vU0ASG1NaZMDXnin44PVjbJpaKhQsArhQ/yOmRP9XzP6TR3zHzmxszfGiaKg==
   dependencies:
     tslib "^2.2.0"
   optionalDependencies:
@@ -247,10 +247,10 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/material-moment-adapter@^12.1.2":
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-12.1.2.tgz#cefecbf2d28124ac64e72b7921b14bf10af6b533"
-  integrity sha512-Y3v1nqOB7pMS+oWpjyp8n/34bgTnXM8ydGLs6OfoY9ALpEjbJYSEzFBLQEvnYBppHFwJbIn3VNHmo1hulmdlMA==
+"@angular/material-moment-adapter@^12.1.4":
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-12.1.4.tgz#9933b1a6cb0981c2f7adfd4eee975a09bf8a8aa3"
+  integrity sha512-kSpS3M5YBZ6/DricGWIxP36gjTWh3x4GOKXS7u/arEqEive61ddbaQKIwaNVvPpGsQ+TxqWWnPgj9ElxfsTBYQ==
   dependencies:
     tslib "^2.2.0"
 
@@ -275,10 +275,10 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/platform-server@^12.1.2":
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-12.1.2.tgz#8862ec02d069254a54c08f03196b320c236470a1"
-  integrity sha512-vT5uJ8CKyC5TrdmL1x4LYdPok4poq5BCyEMgsxZ6mrCQyuk4d4MatZHRdBpOZlh7vtRKkjE0ymjYQG0cWt4Edw==
+"@angular/platform-server@^12.1.4":
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-12.1.4.tgz#ec4b661f90e14275c4b1fe67134bde963f3129d9"
+  integrity sha512-pT2uDuhO7ZwG+lDIjND0bWVPQjw4P6ixVly8vgfKimFHvxzL2YJ702+G3q+2QNyybOSwtUiLpkT/bKSXoUyAzA==
   dependencies:
     domino "^2.1.2"
     tslib "^2.2.0"
