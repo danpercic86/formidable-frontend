@@ -115,7 +115,7 @@
     "eslint-plugin-cypress": "^2.10.3",
     "jest": "27.0.6",
     "jest-preset-angular": "9.0.4",
-    "postcss": "^8.3.5",
+    "postcss": "^8.3.6",
     "prettier": "2.3.2",
     "storybook-addon-angular-ivy": "^0.0.1",
     "stylelint": "^13.13.1",
