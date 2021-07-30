@@ -18,7 +18,7 @@
     <mat-toolbar color='primary'>
       <button
         (click)='drawer.toggle()'
-        *ngIf='isHandset$ | async'
+        *ngIf='(isHandset$ | async) === true'
         aria-label='Toggle sidenav'
         mat-icon-button
         type='button'

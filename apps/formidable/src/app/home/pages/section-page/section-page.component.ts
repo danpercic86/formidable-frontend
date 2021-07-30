@@ -1,40 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, lastValueFrom, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, switchMap } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { StepperOrientation, StepperSelectionEvent } from '@angular/cdk/stepper';
+import { StepperOrientation } from '@angular/cdk/stepper';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { IForm, ISection, ISectionMinimal, trackByFn } from '@builder/shared';
+import { ISection, ISectionMinimal, trackBy } from '@builder/shared';
 import { FormsService, SectionsService } from '@builder/core';
 
 @Component({
   templateUrl: './section-page.component.html',
-  styleUrls: ['./section-page.component.scss']
+  styleUrls: ['./section-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SectionPageComponent implements OnInit
+export class SectionPageComponent
 {
-  sections!: ISectionMinimal[];
-  stepperOrientation$: Observable<StepperOrientation>;
-  step$ = new BehaviorSubject(0);
-  section$ = this.step$.pipe(switchMap(step => this._getSectionByKey(step)));
-  loading$ = this._sectionsService.loading$;
-  trackByFn = trackByFn;
+  readonly step$ = new BehaviorSubject(0);
+  readonly minimalSections$ = this._minimalSections$;
+  readonly stepperOrientation$ = this._stepperOrientation$;
+  readonly section$ = this._section$;
+  readonly trackByFn = trackBy();
 
   constructor(
+    readonly sectionsService: SectionsService,
     private readonly _route: ActivatedRoute,
-    private readonly _sectionsService: SectionsService,
     private readonly _breakpointObserver: BreakpointObserver,
     private readonly _formsService: FormsService
   )
   {
-    this.stepperOrientation$ = _breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
-  }
-
-  async ngOnInit(): Promise<void>
-  {
-    this.sections = (await this._getForm()).sections;
   }
 
   submit(data: Record<string, unknown>): void
@@ -43,21 +35,24 @@ export class SectionPageComponent implements OnInit
     console.log(data);
   }
 
-  stepSelectionChange(event: StepperSelectionEvent): void
+  private get _section$(): Observable<ISection>
   {
-    let index = event.selectedIndex;
-    if (event.selectedIndex === this.sections.length) index--;
-    this.step$.next(index);
+    return combineLatest([this.step$.asObservable(), this.minimalSections$]).pipe(
+      map(([step, sections]) => (sections[step === sections.length ? step - 1 : step])),
+      switchMap(section => this.sectionsService.getByKey(section.id))
+    );
   }
 
-  private _getSectionByKey(step: number): Observable<ISection>
-  {
-    return this._sectionsService.getByKey(this.sections[step].id);
-  }
-
-  private _getForm(): Promise<IForm>
+  private get _minimalSections$(): Observable<ISectionMinimal[]>
   {
     const id = this._route.snapshot.paramMap.get('id') as string;
-    return lastValueFrom(this._formsService.getByKey(id));
+    return this._formsService.getByKey(id).pipe(map(form => form.sections));
+  }
+
+  private get _stepperOrientation$(): Observable<StepperOrientation>
+  {
+    return this._breakpointObserver
+      .observe('(min-width: 800px)')
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
   }
 }

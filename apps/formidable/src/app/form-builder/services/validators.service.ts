@@ -40,9 +40,9 @@ export class ValidatorsService
     }
   }
 
-  validate(form: FormGroup): { [key: string]: ValidationErrors }
+  validate(form: FormGroup): Record<string, ValidationErrors>
   {
-    const errors: { [key: string]: ValidationErrors } = {};
+    const errors: Record<string, ValidationErrors> = {};
 
     Object.keys(form.controls).forEach(fieldName =>
     {

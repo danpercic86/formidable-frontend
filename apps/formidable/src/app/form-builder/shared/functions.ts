@@ -1,11 +1,16 @@
 type Model = { readonly id?: string, readonly name?: string }
 
-export function trackByFn<T extends Model>(index: number, item: T): number | string
+export function trackBy<T extends Model>(fn?: (item: T) => string)
 {
-  if ('id' in item && item.id)
-    return item.id;
-  if ('name' in item && item.name)
-    return item.name;
+  return function(index: number, item: T): number | string
+  {
+    if (fn) return fn(item);
 
-  return index;
+    if ('id' in item && item.id)
+      return item.id;
+    if ('name' in item && item.name)
+      return item.name;
+
+    return index;
+  };
 }

@@ -7,7 +7,7 @@ import {
   Output,
   TemplateRef
 } from '@angular/core';
-import { IField, trackByFn } from '@builder/shared';
+import { IField, trackBy } from '@builder/shared';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ValidatorsService } from '@builder/core';
 import { NGXLogger } from 'ngx-logger';
@@ -27,7 +27,7 @@ export class FormBuilderComponent implements OnInit
   @Output() formSubmit = new EventEmitter<Record<string, unknown>>();
   form!: FormGroup;
   readonly loading$ = new BehaviorSubject(false);
-  readonly trackById = trackByFn;
+  readonly trackById = trackBy();
 
   constructor(
     private readonly _formBuilder: FormBuilder,

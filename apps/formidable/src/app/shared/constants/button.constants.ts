@@ -1,3 +1,5 @@
+import { KeysOf, ValuesOf } from '../utils/typings';
+
 export const BtnColors =
   {
     primary: 'primary',
@@ -6,7 +8,7 @@ export const BtnColors =
     link: 'link'
   } as const;
 
-export type BtnColor = keyof typeof BtnColors
+export type BtnColor = KeysOf<typeof BtnColors>
 
 export const BtnTypes =
   {
@@ -15,4 +17,5 @@ export const BtnTypes =
     reset: 'reset'
   } as const;
 
-export type BtnType = keyof typeof BtnTypes
+export type BtnType = KeysOf<typeof BtnTypes>
+export type BtnValues = ValuesOf<typeof BtnTypes>

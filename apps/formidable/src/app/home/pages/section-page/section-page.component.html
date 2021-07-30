@@ -1,8 +1,8 @@
 <mat-stepper
-  (selectionChange)='stepSelectionChange($event)'
+  (selectionChange)='step$.next($event.selectedIndex)'
   [orientation]="(stepperOrientation$ | async) ?? 'horizontal'"
 >
-  <mat-step *ngFor='let section of sections; trackBy: trackByFn'>
+  <mat-step *ngFor='let section of minimalSections$ | async; trackBy: trackByFn'>
     <ng-template matStepLabel>{{ section.name }}</ng-template>
 
     <ng-template matStepContent>
@@ -24,7 +24,7 @@
         </ng-container>
       </ng-container>
 
-      <ng-container *ngIf='loading$ | async'>
+      <ng-container *ngIf='sectionsService.loading$ | async'>
         <div class='content-center'>
           <mat-spinner class='m-auto'></mat-spinner>
         </div>

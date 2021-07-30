@@ -2,7 +2,7 @@ import {
   FieldTypes,
   IField,
   IValidator,
-  trackByFn,
+  trackBy,
   ValidatorType,
   ValidatorTypes
 } from '@builder/shared';
@@ -13,7 +13,7 @@ export abstract class FieldComponent
   field!: IField;
   form!: FormGroup;
 
-  readonly trackByFn = trackByFn;
+  readonly trackByFn = trackBy();
 
   get isRequired(): boolean
   {

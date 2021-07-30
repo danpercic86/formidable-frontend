@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsService } from '@builder/core';
-import { Observable } from 'rxjs';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { filter, Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { IForm } from '@builder/shared';
+import { error } from '@formidable/shared';
 
 @Component({
   templateUrl: './form-page.component.html',
-  styleUrls: ['./form-page.component.scss']
+  styleUrls: ['./form-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormPageComponent
 {
-  form$ = this._route.paramMap.pipe(switchMap(params => this._getForm(params)));
+  readonly form$ = this._form$;
 
   constructor(
     private readonly _formsService: FormsService,
@@ -26,8 +28,13 @@ export class FormPageComponent
     await this._router.navigate(['home', 'forms', formId, 'sections']);
   }
 
-  private _getForm(params: ParamMap): Observable<IForm>
+  private get _form$(): Observable<IForm>
   {
-    return this._formsService.getByKey(params.get('id') as string);
+    return this._route.paramMap.pipe(
+      map(params => params.get('id') ?? error('Id null!')),
+      catchError(() => this._router.navigate(['home'])),
+      filter(v => !!v),
+      switchMap(id => this._formsService.getByKey(id))
+    );
   }
 }
