@@ -1,22 +1,22 @@
 import {
   DefaultDataServiceConfig,
   EntityDataModuleConfig,
-  EntityMetadataMap
+  EntityMetadataMap,
 } from '@ngrx/data';
 import { environment } from '@formidable/env';
 
-const entityMetadata: EntityMetadataMap = {
+const entityMetadata: Readonly<EntityMetadataMap> = {
   forms: {},
-  sections: {}
+  sections: {},
 } as const;
 
 const pluralNames = { forms: 'forms', sections: 'sections' } as const;
 
-export const entityConfig: EntityDataModuleConfig = {
+export const entityConfig: Readonly<EntityDataModuleConfig> = {
   entityMetadata,
-  pluralNames
+  pluralNames,
 } as const;
 
-export const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: environment.apiUrl
+export const defaultDataServiceConfig: Readonly<DefaultDataServiceConfig> = {
+  root: environment.apiUrl,
 } as const;

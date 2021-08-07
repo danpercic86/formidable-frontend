@@ -1,32 +1,39 @@
 <mat-stepper
-  (selectionChange)='step$.next($event.selectedIndex)'
+  (selectionChange)="step$.next($event.selectedIndex)"
   [orientation]="(stepperOrientation$ | async) ?? 'horizontal'"
 >
-  <mat-step *ngFor='let section of minimalSections$ | async; trackBy: trackByFn'>
+  <mat-step *ngFor="let section of minimalSections$ | async; trackBy: trackByFn">
     <ng-template matStepLabel>{{ section.name }}</ng-template>
 
     <ng-template matStepContent>
-      <ng-container *ngIf='section$ | async as current'>
-        <ng-container
-          *ngIf='current.id === section.id'>
+      <ng-container *ngIf="section$ | async as current">
+        <ng-container *ngIf="current.id === section.id">
           <formidable-form-builder
-            (formSubmit)='submit($event)'
-            [buttonTemplate]='buttons'
-            [fields]='current.fields'
+            #formBuilder
+            (formSubmit)="submit($event, current.id)"
+            [buttonTemplate]="buttons"
+            [fields]="current.fields"
+            [formControl]="formControl"
           >
             <ng-template #buttons>
-              <div class='d-flex'>
+              <div class="d-flex">
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button
+                  (click)="formBuilder.onSubmit($event)"
+                  mat-button
+                  matStepperNext
+                >
+                  Next
+                </button>
               </div>
             </ng-template>
           </formidable-form-builder>
         </ng-container>
       </ng-container>
 
-      <ng-container *ngIf='sectionsService.loading$ | async'>
-        <div class='content-center'>
-          <mat-spinner class='m-auto'></mat-spinner>
+      <ng-container *ngIf="sectionsService.loading$ | async">
+        <div class="content-center">
+          <mat-spinner class="m-auto"></mat-spinner>
         </div>
       </ng-container>
     </ng-template>

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { IValidator, ValidatorTypes } from '@builder/shared';
 import { FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Set } from 'immutable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValidatorsService
 {
-  static compose(rawValidators: IValidator[]): ValidatorFn[]
+  static compose(rawValidators: Set<IValidator>): ValidatorFn[]
   {
     const validators = rawValidators.map(ValidatorsService._getValidatorFn);
-    const composedValidators = Validators.compose(validators);
+    const composedValidators = Validators.compose([...validators]);
     return composedValidators ? [composedValidators] : [];
   }
 

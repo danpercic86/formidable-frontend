@@ -1,14 +1,15 @@
 import { FieldType, IChoice, IModel, IValidator } from '@builder/shared';
+import { Set } from 'immutable';
 
 export interface IField extends IModel
 {
-  name: string;
-  value: string;
-  is_required: boolean;
-  placeholder: string;
-  dependent_value: string;
-  dependent_field?: number;
-  choices: IChoice[];
-  validators: IValidator[];
-  type: FieldType;
+  readonly name: string;
+  readonly value: string;
+  readonly is_required: boolean;
+  readonly placeholder: string;
+  readonly dependent_value: string;
+  readonly dependent_field?: number;
+  readonly choices: Set<IChoice>;
+  readonly validators: Set<IValidator>;
+  readonly type: FieldType;
 }

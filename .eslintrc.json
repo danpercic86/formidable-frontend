@@ -90,18 +90,9 @@
           }
         ],
         "@typescript-eslint/member-ordering": "error",
+        "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/naming-convention": [
           "error",
-          {
-            "selector": "memberLike",
-            "modifiers": [
-              "readonly"
-            ],
-            "format": [
-              "UPPER_CASE",
-              "camelCase"
-            ]
-          },
           {
             "selector": "memberLike",
             "modifiers": [
@@ -125,8 +116,7 @@
           {
             "selector": "memberLike",
             "modifiers": [
-              "private",
-              "readonly"
+              "private"
             ],
             "format": [
               "UPPER_CASE",
@@ -174,6 +164,11 @@
         "object-curly-spacing": [
           "error",
           "always"
+        ],
+        "no-param-reassign": "error",
+        "max-lines": [
+          "error",
+          400
         ]
       },
       "plugins": [

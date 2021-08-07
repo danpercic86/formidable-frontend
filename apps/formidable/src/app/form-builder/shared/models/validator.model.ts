@@ -3,9 +3,9 @@ import { ValidatorType } from '../types/validator.type';
 
 export interface IValidator extends IModel
 {
-  message: string;
-  constraint: string;
-  inverse_match: boolean;
-  flags: string;
-  type: ValidatorType;
+  readonly message: string;
+  readonly constraint: string;
+  readonly inverse_match: boolean;
+  readonly flags: string;
+  readonly type: ValidatorType;
 }

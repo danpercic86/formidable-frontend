@@ -4,7 +4,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import { InputComponent } from '../components/input/input.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
@@ -15,12 +15,13 @@ import {
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
-  Validator,
+  Validator
 } from '@angular/forms';
 import { FieldComponent, IField } from '@builder/shared';
 import { ValidatorsService } from '@builder/core';
 import { filter, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Required } from '../shared/decorators/required.decorator';
 
 const componentMapper = {
   text: InputComponent,
@@ -29,7 +30,7 @@ const componentMapper = {
   tel: InputComponent,
   integer: InputComponent,
   decimal: InputComponent,
-  checkbox: CheckboxComponent,
+  checkbox: CheckboxComponent
   // file: InputComponent,
   // select: SelectComponent,
   // date: DateComponent,
@@ -42,20 +43,20 @@ const componentMapper = {
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: DynamicFieldDirective,
+      useExisting: DynamicFieldDirective
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: DynamicFieldDirective,
-    },
-  ],
+      useExisting: DynamicFieldDirective
+    }
+  ]
 })
 export class DynamicFieldDirective
   extends FieldComponent
   implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
-  @Input() field!: IField;
+  @Input() @Required() field!: Readonly<IField>;
   private _touched = false;
   private _onTouched?: () => unknown;
   private _onChange?: (value: unknown) => unknown;
@@ -69,6 +70,17 @@ export class DynamicFieldDirective
   )
   {
     super();
+  }
+
+  private set _value(value: unknown)
+  {
+    this.writeValue(value);
+    this._onChange?.(value);
+  }
+
+  private set _addSubscription(subscription: Subscription)
+  {
+    this._subscriptions.add(subscription);
   }
 
   ngOnInit(): void
@@ -108,8 +120,8 @@ export class DynamicFieldDirective
     return this._formBuilder.group({
       [this.field.name]: [
         this.field.value,
-        ValidatorsService.compose(this.field.validators),
-      ],
+        ValidatorsService.compose(this.field.validators)
+      ]
     });
   }
 
@@ -134,12 +146,6 @@ export class DynamicFieldDirective
     componentRef.instance.form = this.form;
   }
 
-  private set _value(value: unknown)
-  {
-    this.writeValue(value);
-    this._onChange?.(value);
-  }
-
   private _markAsTouched(): void
   {
     if (!this._touched)
@@ -147,10 +153,5 @@ export class DynamicFieldDirective
       this._onTouched?.();
       this._touched = true;
     }
-  }
-
-  private set _addSubscription(subscription: Subscription)
-  {
-    this._subscriptions.add(subscription);
   }
 }

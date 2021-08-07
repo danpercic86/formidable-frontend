@@ -1,5 +1,6 @@
 import { IModel } from './base.model';
 import { IField } from '@builder/shared';
+import { Set } from 'immutable';
 
 export interface ISectionMinimal extends IModel
 {
@@ -8,7 +9,7 @@ export interface ISectionMinimal extends IModel
 
 export interface ISection extends ISectionMinimal
 {
-  readonly fields: IField[];
+  readonly fields: Set<IField>;
   readonly description: string;
   readonly buttonText: string;
 }

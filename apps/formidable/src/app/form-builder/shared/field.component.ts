@@ -7,6 +7,7 @@ import {
   ValidatorTypes
 } from '@builder/shared';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { Set } from 'immutable';
 
 export abstract class FieldComponent
 {
@@ -39,9 +40,9 @@ export abstract class FieldComponent
     return control;
   }
 
-  validators(): IValidator[];
+  validators(): Set<IValidator>;
   validators(byType: ValidatorType): IValidator | undefined;
-  validators(type?: ValidatorType): IValidator | IValidator[] | undefined
+  validators(type?: ValidatorType): IValidator | Set<IValidator> | undefined
   {
     const validators = this.field.validators;
     return type ? validators.find(v => v.type === type) : validators;
