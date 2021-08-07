@@ -1,5 +1,6 @@
 import {
   ComponentFactoryResolver,
+  ComponentRef,
   Directive,
   Input,
   OnDestroy,
@@ -21,7 +22,6 @@ import { FieldComponent, IField } from '@builder/shared';
 import { ValidatorsService } from '@builder/core';
 import { filter, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Required } from '../shared/decorators/required.decorator';
 
 const componentMapper = {
   text: InputComponent,
@@ -56,11 +56,12 @@ export class DynamicFieldDirective
   extends FieldComponent
   implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
-  @Input() @Required() field!: Readonly<IField>;
+  @Input() field!: Readonly<IField>;
   private _touched = false;
   private _onTouched?: () => unknown;
   private _onChange?: (value: unknown) => unknown;
   private readonly _subscriptions = new Subscription();
+  private _componentRef?: ComponentRef<FieldComponent>;
 
   constructor(
     private readonly _resolver: ComponentFactoryResolver,
@@ -92,6 +93,7 @@ export class DynamicFieldDirective
 
   ngOnDestroy(): void
   {
+    this._componentRef?.destroy();
     this._subscriptions.unsubscribe();
   }
 
@@ -131,7 +133,7 @@ export class DynamicFieldDirective
     const formIsEnabled = () => !this.form.disabled;
     const onValueChanges = (value: unknown) => (this._value = value);
 
-    this._addSubscription = this.control.valueChanges
+    this._addSubscription = this._control.valueChanges
       .pipe(tap(markAsTouched), filter(formIsEnabled))
       .subscribe(onValueChanges);
   }
@@ -141,9 +143,9 @@ export class DynamicFieldDirective
     const factory = this._resolver.resolveComponentFactory(
       componentMapper[this.field.type]
     );
-    const componentRef = this._container.createComponent(factory);
-    componentRef.instance.field = this.field;
-    componentRef.instance.form = this.form;
+    this._componentRef = this._container.createComponent(factory);
+    this._componentRef.instance.field = this.field;
+    this._componentRef.instance.form = this.form;
   }
 
   private _markAsTouched(): void
