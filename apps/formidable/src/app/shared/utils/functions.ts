@@ -1,6 +1,6 @@
 import { EntityCollectionServiceBase } from '@ngrx/data';
 import { IModel } from '@builder/shared';
-import { OperatorFunction, switchMap } from 'rxjs';
+import { MonoTypeOperatorFunction, OperatorFunction, switchMap, tap } from 'rxjs';
 
 type NullableString = string | null | undefined;
 
@@ -16,8 +16,16 @@ export function error(message?: string): never {
   throw new Error(message || 'Unknown error occurred!');
 }
 
-export function getDataByKey<K extends IModel, T extends EntityCollectionServiceBase<K>>(
-  service: T,
+export function getDataByKey<K extends IModel>(
+  service: EntityCollectionServiceBase<K>,
 ): OperatorFunction<string, K> {
   return switchMap((key: string) => service.getByKey(key));
+}
+
+export function getAllIfEmpty<T extends IModel>(
+  service: EntityCollectionServiceBase<T>,
+): MonoTypeOperatorFunction<T[]> {
+  return tap<T[]>(({ length }) => {
+    if (length === 0) service.getAll();
+  });
 }

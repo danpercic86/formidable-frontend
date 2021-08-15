@@ -1,16 +1,15 @@
 <mat-stepper
-  (selectionChange)='step$.next($event.selectedIndex)'
   [orientation]="(stepperOrientation$ | async) ?? 'horizontal'"
 >
-  <mat-step *ngFor='let section of minimalSections$ | async; trackBy: trackByFn'>
+  <mat-step *ngFor="let section of minimalSections$ | async; trackBy: trackByFn">
     <ng-template matStepLabel>{{ section.name }}</ng-template>
 
     <ng-template matStepContent>
-      <formidable-form-step [sectionId]='section.id'></formidable-form-step>
+      <formidable-form-step [sectionId]="section.id"></formidable-form-step>
 
-      <ng-container *ngIf='sectionsService.loading$ | async'>
-        <div class='content-center'>
-          <mat-spinner class='m-auto'></mat-spinner>
+      <ng-container *ngIf="sectionsService.loading$ | async">
+        <div class="content-center">
+          <mat-spinner class="m-auto"></mat-spinner>
         </div>
       </ng-container>
     </ng-template>
