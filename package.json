@@ -93,7 +93,7 @@
     "@storybook/addon-links": "^6.3.6",
     "@storybook/addon-storyshots": "^6.3.6",
     "@storybook/angular": "^6.3.6",
-    "@storybook/builder-webpack5": "^6.3.6",
+    "@storybook/builder-webpack5": "^6.3.7",
     "@storybook/manager-webpack5": "^6.3.6",
     "@types/jest": "26.0.24",
     "@types/node": "16.4.13",
