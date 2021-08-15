@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomErrorStateMatcher } from '../../utils/error-state-matcher';
 import { AuthService } from '../../services/auth.service';
 import { NGXLogger } from 'ngx-logger';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 @Component({
   templateUrl: './login-page.component.html',
-  styleUrls: ['../../auth.component.scss']
+  styleUrls: ['../../auth.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent
 {
@@ -16,8 +17,8 @@ export class LoginPageComponent
     email: [null, Validators.required],
     password: [null, Validators.required]
   });
-  isLoading = false;
-  authError = false;
+  readonly isLoading$ = new BehaviorSubject(false);
+  readonly isAuthError$ = new BehaviorSubject(false);
   readonly matcher = new CustomErrorStateMatcher();
 
   constructor(
@@ -29,16 +30,16 @@ export class LoginPageComponent
   {
   }
 
-  async onSubmit(): Promise<void>
+  onSubmit(): Promise<void>
   {
-    this.isLoading = true;
+    this.isLoading$.next(true);
 
-    await firstValueFrom(this._authService.login(this.form.value)).then(
+    return firstValueFrom(this._authService.login(this.form.value)).then(
       () => void this._router.navigate(['/home']),
       () =>
       {
-        this.authError = true;
-        this.isLoading = false;
+        this.isAuthError$.next(true);
+        this.isLoading$.next(false);
       }
     );
   }

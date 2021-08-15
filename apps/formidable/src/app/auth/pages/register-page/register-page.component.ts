@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomErrorStateMatcher } from '../../utils/error-state-matcher';
 import { AuthService } from '../../services/auth.service';
-import { take } from 'rxjs/operators';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 @Component({
   templateUrl: './register-page.component.html',
-  styleUrls: ['../../auth.component.scss']
+  styleUrls: ['../../auth.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterPageComponent
 {
@@ -18,7 +19,7 @@ export class RegisterPageComponent
     first_name: [null, Validators.required],
     last_name: [null, Validators.required]
   });
-  isLoading = false;
+  readonly isLoading$ = new BehaviorSubject(false);
   readonly matcher = new CustomErrorStateMatcher();
 
   constructor(
@@ -29,12 +30,12 @@ export class RegisterPageComponent
   {
   }
 
-  onFormSubmit(): void
+  onFormSubmit(): Promise<void>
   {
-    this.isLoading = true;
-    this._authService.register(this.form.value).pipe(take(1)).subscribe(
+    this.isLoading$.next(true);
+    return firstValueFrom(this._authService.register(this.form.value)).then(
       () => void this._router.navigate(['auth', 'login']),
-      () => this.isLoading = false
+      () => this.isLoading$.next(false)
     );
   }
 }

@@ -1,7 +1,7 @@
 <div class='auth-container'>
-  <mat-spinner *ngIf='isLoading'></mat-spinner>
+  <mat-spinner *ngIf='isLoading$ | async'></mat-spinner>
 
-  <mat-card *ngIf='!isLoading'>
+  <mat-card *ngIf='(isLoading$ | async) === false as notLoading'>
     <form (ngSubmit)='onFormSubmit()' [formGroup]='form'>
 
       <h2>Register</h2>
@@ -92,7 +92,7 @@
       <formidable-button
         (action)='onFormSubmit()'
         [disabled]='!form.valid'
-        [loading]='isLoading'
+        [loading]='!notLoading'
         label='Register'
         matIcon='how_to_reg'
       ></formidable-button>

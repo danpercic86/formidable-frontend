@@ -37,7 +37,8 @@
       </mat-form-field>
 
       <mat-error>
-        <p *ngIf='authError' class='text-center'>Incorrect email or password</p>
+        <p *ngIf='isAuthError$ | async' class='text-center'>Incorrect email or
+          password</p>
       </mat-error>
 
       <formidable-button
@@ -45,7 +46,7 @@
         [disabled]="
           (!form.get('email')?.value && !form.get('password')?.value) || !form.valid
         "
-        [loading]='isLoading'
+        [loading]='(isLoading$ | async) ?? false'
         [text]="'Login'"
         [type]="'submit'"
         class='flex-column align-self-center'
@@ -53,6 +54,7 @@
       ></formidable-button>
 
       <h6 class='text-center fw-light pt-4'>Don't have an account?</h6>
+
       <formidable-button
         [color]="'link'"
         [routerLink]="'/auth/register'"
