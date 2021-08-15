@@ -25,8 +25,6 @@ export abstract class FieldComponent
   constructor(protected readonly _injector: Injector
   )
   {
-    console.log(this.field);
-    console.log(this.form);
   }
 
   protected get _type(): string
@@ -59,7 +57,6 @@ export abstract class FieldComponent
     type?: ValidatorType
   ): IValidator | Set<IValidator> | undefined
   {
-    console.log('validators');
     const validators = this.field.validators;
     return type ? validators.find(v => v.type === type) : validators;
   }

@@ -6,29 +6,7 @@
     <ng-template matStepLabel>{{ section.name }}</ng-template>
 
     <ng-template matStepContent>
-      <ng-container *ngIf='section$ | async as current'>
-        <ng-container *ngIf='current.id === section.id'>
-          <formidable-form-builder
-            #formBuilder
-            (formSubmit)='submit($event, current.id)'
-            [buttonTemplate]='buttons'
-            [fields]='current.fields'
-          >
-            <ng-template #buttons>
-              <div class='d-flex'>
-                <button mat-button matStepperPrevious>Back</button>
-                <button
-                  (click)='formBuilder.onSubmit($event)'
-                  mat-button
-                  matStepperNext
-                >
-                  Next
-                </button>
-              </div>
-            </ng-template>
-          </formidable-form-builder>
-        </ng-container>
-      </ng-container>
+      <formidable-form-step [sectionId]='section.id'></formidable-form-step>
 
       <ng-container *ngIf='sectionsService.loading$ | async'>
         <div class='content-center'>

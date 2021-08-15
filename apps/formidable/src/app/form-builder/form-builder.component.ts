@@ -16,7 +16,7 @@ import { Set } from 'immutable';
 import { Required } from '@danpercic86/helpful-decorators';
 
 @Component({
-  selector: 'formidable-form-builder',
+  selector: 'formidable-form-builder [fields]',
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -75,7 +75,7 @@ export class FormBuilderComponent implements OnInit
       group.addControl(field.id, this._createControl(field));
     });
 
-    this._logger.debug('Form created: ', group);
+    // this._logger.debug('Form created: ', group);
 
     return group;
   }

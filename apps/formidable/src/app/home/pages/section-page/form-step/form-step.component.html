@@ -1,0 +1,21 @@
+<ng-container *ngIf='section$ | async as section'>
+  <formidable-form-builder
+    #formBuilder
+    (formSubmit)='submit($event)'
+    [buttonTemplate]='buttons'
+    [fields]='section.fields'
+  >
+    <ng-template #buttons>
+      <div class='d-flex'>
+        <button mat-button matStepperPrevious>Back</button>
+        <button
+          (click)='formBuilder.onSubmit($event)'
+          mat-button
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </ng-template>
+  </formidable-form-builder>
+</ng-container>

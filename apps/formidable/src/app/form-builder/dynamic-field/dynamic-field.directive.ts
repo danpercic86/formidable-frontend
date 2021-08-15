@@ -80,7 +80,6 @@ export class DynamicFieldDirective extends AutoUnsubscribeComponent
 
   protected get _control(): AbstractControl | never
   {
-    console.log('control');
     const control = this.form.get(this.field.id.toString());
     if (control === null) throw new Error('Something went wrong, control is null!');
     return control;
@@ -88,8 +87,6 @@ export class DynamicFieldDirective extends AutoUnsubscribeComponent
 
   ngOnInit(): void
   {
-    console.log(this.form);
-    console.log(this.field);
     this._subscribeToFormChanges();
     this._createComponent();
   }
@@ -111,7 +108,6 @@ export class DynamicFieldDirective extends AutoUnsubscribeComponent
 
   validate(): ValidationErrors
   {
-    console.log('validate');
     return this._validatorsService.validateControl(this.form, this.field.id.toString());
   }
 
@@ -122,7 +118,6 @@ export class DynamicFieldDirective extends AutoUnsubscribeComponent
 
   private _subscribeToFormChanges(): void
   {
-    console.log('subscribe to form changes');
     const markAsTouched = () => this._markAsTouched();
     const formIsEnabled = () => !this.form.disabled;
 
@@ -150,7 +145,6 @@ export class DynamicFieldDirective extends AutoUnsubscribeComponent
 
   private _markAsTouched(): void
   {
-    console.log('mark as touched');
     if (!this._touched)
     {
       this._onTouched?.();

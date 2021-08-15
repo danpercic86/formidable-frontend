@@ -74,7 +74,7 @@ export class AuthService
       catchError(err =>
       {
         this.logout();
-        return throwError(err);
+        return throwError(() => new Error(err));
       })
     );
   }
