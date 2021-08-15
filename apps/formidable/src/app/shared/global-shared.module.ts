@@ -22,8 +22,7 @@ const modules = [
 ];
 
 @NgModule({
-  eclarations: [],
-  mports: [...modules],
-  xports: [...modules],
+  imports: [...modules],
+  exports: [...modules],
 })
 export class GlobalSharedModule {}
