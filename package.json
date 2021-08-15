@@ -35,9 +35,7 @@
   },
   "private": true,
   "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --fix"
-    ]
+    "*.{js,ts}": "eslint --fix"
   },
   "dependencies": {
     "@angular/animations": "12.2.0",
