@@ -1,8 +1,8 @@
 export interface IUser
 {
-  pk: number;
-  username: string;
-  email: string;
-  first_name: string;
-  last_name: string;
+  readonly pk: number;
+  readonly username: string;
+  readonly email: string;
+  readonly first_name: string;
+  readonly last_name: string;
 }

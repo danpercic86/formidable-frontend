@@ -26,14 +26,12 @@ export class AuthGuard implements CanActivate
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
   {
-    return this._authService.isLoggedIn() ? true : this._toLogin(state.url);
+    return this._authService.isLoggedIn() ?? this._toLogin(state.url);
   }
 
-  private _toLogin(url: string): boolean
+  private async _toLogin(returnUrl: string): Promise<boolean>
   {
-    void this._router
-      .navigate(['auth', 'login'], { queryParams: { returnUrl: url } })
-      .then();
-    return false;
+    const queryParams = { returnUrl };
+    return this._router.navigate(['auth', 'login'], { queryParams });
   }
 }

@@ -56,4 +56,12 @@ export class ValidatorsService
 
     return errors;
   }
+
+  validateControl(form: FormGroup, formControlName: string): ValidationErrors
+  {
+    const control = form.controls[formControlName];
+    control.markAsTouched({ onlySelf: true });
+
+    return control.errors ?? {};
+  }
 }

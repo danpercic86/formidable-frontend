@@ -15,8 +15,8 @@ import { NGXLogger } from 'ngx-logger';
 
 interface IError
 {
-  code: string;
-  detail: string;
+  readonly code: string;
+  readonly detail: string;
 }
 
 @Injectable()
@@ -39,9 +39,7 @@ export class AuthInterceptor implements HttpInterceptor
 
     if (!request.withCredentials) return next.handle(request);
 
-    request = this._setAuthHeaders(request);
-
-    return next.handle(request).pipe(
+    return next.handle(this._setAuthHeaders(request)).pipe(
       tap(event => this._log(event)),
       catchError(error => this._handleError(error))
     );
@@ -59,14 +57,14 @@ export class AuthInterceptor implements HttpInterceptor
       refreshTokenRequest.subscribe(() => location.reload());
     }
 
-    return throwError(error);
+    return throwError(() => new Error(error.message));
   }
 
   private _setAuthHeaders(request: HttpRequest<unknown>): HttpRequest<unknown>
   {
     if (this._tokenService.rawToken)
     {
-      request = request.clone({
+      return request.clone({
         setHeaders: {
           Authorization: 'Bearer ' + this._tokenService.rawToken
         }

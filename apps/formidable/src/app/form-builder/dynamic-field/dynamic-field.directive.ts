@@ -2,6 +2,7 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
@@ -10,6 +11,7 @@ import {
 import { InputComponent } from '../components/input/input.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import {
+  AbstractControl,
   ControlValueAccessor,
   FormBuilder,
   FormGroup,
@@ -20,8 +22,10 @@ import {
 } from '@angular/forms';
 import { FieldComponent, IField } from '@builder/shared';
 import { ValidatorsService } from '@builder/core';
-import { filter, Subscription } from 'rxjs';
+import { debounceTime, filter } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { FIELD, FORM } from '../shared/tokens';
+import { AutoUnsubscribeComponent } from '../shared/components/auto-unsubscribe.component';
 
 const componentMapper = {
   text: InputComponent,
@@ -38,7 +42,8 @@ const componentMapper = {
 } as const;
 
 @Directive({
-  selector: '[formidableDynamicField]',
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: 'formidable-dynamic-field',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -52,41 +57,39 @@ const componentMapper = {
     }
   ]
 })
-export class DynamicFieldDirective
-  extends FieldComponent
+export class DynamicFieldDirective extends AutoUnsubscribeComponent
   implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
-  @Input() field!: Readonly<IField>;
+  @Input() form!: FormGroup;
+  @Input() field!: IField;
   private _touched = false;
   private _onTouched?: () => unknown;
   private _onChange?: (value: unknown) => unknown;
-  private readonly _subscriptions = new Subscription();
   private _componentRef?: ComponentRef<FieldComponent>;
 
   constructor(
-    private readonly _resolver: ComponentFactoryResolver,
-    private readonly _container: ViewContainerRef,
+    private readonly _injector: Injector,
     private readonly _formBuilder: FormBuilder,
+    private readonly _resolver: ComponentFactoryResolver,
+    private readonly _viewContainerRef: ViewContainerRef,
     private readonly _validatorsService: ValidatorsService
   )
   {
     super();
   }
 
-  private set _value(value: unknown)
+  protected get _control(): AbstractControl | never
   {
-    this.writeValue(value);
-    this._onChange?.(value);
-  }
-
-  private set _addSubscription(subscription: Subscription)
-  {
-    this._subscriptions.add(subscription);
+    console.log('control');
+    const control = this.form.get(this.field.id.toString());
+    if (control === null) throw new Error('Something went wrong, control is null!');
+    return control;
   }
 
   ngOnInit(): void
   {
-    this.form = this._buildForm();
+    console.log(this.form);
+    console.log(this.field);
     this._subscribeToFormChanges();
     this._createComponent();
   }
@@ -94,7 +97,7 @@ export class DynamicFieldDirective
   ngOnDestroy(): void
   {
     this._componentRef?.destroy();
-    this._subscriptions.unsubscribe();
+    super.ngOnDestroy();
   }
 
   registerOnChange = (fn: (value: unknown) => unknown) => (this._onChange = fn);
@@ -103,13 +106,13 @@ export class DynamicFieldDirective
 
   writeValue(value: unknown): void
   {
-    this.form.setValue({ [this.field.name]: value }, { emitEvent: false });
+    console.log(value, this.field.id.toString());
   }
 
-  validate(): ValidationErrors | null
+  validate(): ValidationErrors
   {
-    const errors = this._validatorsService.validate(this.form);
-    return errors[this.field.name];
+    console.log('validate');
+    return this._validatorsService.validateControl(this.form, this.field.id.toString());
   }
 
   setDisabledState(isDisabled: boolean): void
@@ -117,25 +120,15 @@ export class DynamicFieldDirective
     isDisabled ? this.form.disable() : this.form.enable();
   }
 
-  private _buildForm(): FormGroup
+  private _subscribeToFormChanges(): void
   {
-    return this._formBuilder.group({
-      [this.field.name]: [
-        this.field.value,
-        ValidatorsService.compose(this.field.validators)
-      ]
-    });
-  }
-
-  private _subscribeToFormChanges(): void | never
-  {
+    console.log('subscribe to form changes');
     const markAsTouched = () => this._markAsTouched();
     const formIsEnabled = () => !this.form.disabled;
-    const onValueChanges = (value: unknown) => (this._value = value);
 
-    this._addSubscription = this._control.valueChanges
-      .pipe(tap(markAsTouched), filter(formIsEnabled))
-      .subscribe(onValueChanges);
+    this.subscriptions = this._control.valueChanges
+      .pipe(debounceTime(300), tap(markAsTouched), filter(formIsEnabled))
+      .subscribe(console.log);
   }
 
   private _createComponent()
@@ -143,13 +136,21 @@ export class DynamicFieldDirective
     const factory = this._resolver.resolveComponentFactory(
       componentMapper[this.field.type]
     );
-    this._componentRef = this._container.createComponent(factory);
-    this._componentRef.instance.field = this.field;
-    this._componentRef.instance.form = this.form;
+
+    const injector: Injector = Injector.create(
+      {
+        providers: [{
+          provide: FIELD, useValue: this.field
+        }, {
+          provide: FORM, useValue: this.form
+        }], parent: this._injector
+      });
+    this._componentRef = this._viewContainerRef.createComponent(factory, 0, injector);
   }
 
   private _markAsTouched(): void
   {
+    console.log('mark as touched');
     if (!this._touched)
     {
       this._onTouched?.();

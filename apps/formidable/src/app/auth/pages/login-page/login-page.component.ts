@@ -3,8 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomErrorStateMatcher } from '../../utils/error-state-matcher';
 import { AuthService } from '../../services/auth.service';
-import { take } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   templateUrl: './login-page.component.html',
@@ -29,18 +29,17 @@ export class LoginPageComponent
   {
   }
 
-  onSubmit(): void
+  async onSubmit(): Promise<void>
   {
     this.isLoading = true;
 
-    this._authService.login(this.form.value).pipe(take(1))
-      .subscribe(
-        () => void this._router.navigate(['/home']),
-        () =>
-        {
-          this.authError = true;
-          this.isLoading = false;
-        }
-      );
+    await firstValueFrom(this._authService.login(this.form.value)).then(
+      () => void this._router.navigate(['/home']),
+      () =>
+      {
+        this.authError = true;
+        this.isLoading = false;
+      }
+    );
   }
 }

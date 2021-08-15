@@ -5,12 +5,7 @@ import {
   Input,
   Output
 } from '@angular/core';
-import {
-  BtnColor,
-  BtnColors,
-  BtnType,
-  BtnTypes
-} from '../../../../shared';
+import { BtnColor, BtnColors, BtnType, BtnTypes } from '../../../../shared';
 
 @Component({
   selector: 'formidable-button',
@@ -37,5 +32,5 @@ export class ButtonComponent
   @Input()
   type: BtnType = BtnTypes.button;
   @Output()
-  action = new EventEmitter<Event | Record<string, unknown>>();
+  readonly action = new EventEmitter<Event | Record<string, unknown>>();
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
 import {
   FieldComponent,
   FieldTypes,
@@ -10,14 +10,19 @@ import {
   templateUrl: './input.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent extends FieldComponent implements OnInit
+export class InputComponent extends FieldComponent
 {
-  step = '';
-  pattern = '';
-  minlength = '';
-  maxlength = '';
-  min = '';
-  max = '';
+  readonly step = this._step;
+  readonly pattern = this._getConstraint(ValidatorTypes.pattern);
+  readonly minlength = this._getConstraint(ValidatorTypes.minlength);
+  readonly maxlength = this._getConstraint(ValidatorTypes.maxlength);
+  readonly min = this._getConstraint(ValidatorTypes.min);
+  readonly max = this._getConstraint(ValidatorTypes.max);
+
+  constructor(protected readonly _injector: Injector)
+  {
+    super(_injector);
+  }
 
   private get _step(): string
   {
@@ -30,17 +35,6 @@ export class InputComponent extends FieldComponent implements OnInit
       default:
         return '';
     }
-  }
-
-  ngOnInit(): void
-  {
-    super.ngOnInit();
-    this.step = this._step;
-    this.pattern = this._getConstraint(ValidatorTypes.pattern);
-    this.minlength = this._getConstraint(ValidatorTypes.minlength);
-    this.maxlength = this._getConstraint(ValidatorTypes.maxlength);
-    this.min = this._getConstraint(ValidatorTypes.min);
-    this.max = this._getConstraint(ValidatorTypes.max);
   }
 
   private _getConstraint(type: ValidatorType): string

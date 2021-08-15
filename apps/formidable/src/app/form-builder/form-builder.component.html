@@ -1,29 +1,27 @@
-<form (submit)="onSubmit($event)" [formGroup]="form" autocomplete="off">
-  <div class="row overflow-hidden">
-    <div *ngFor="let field of fields; trackBy: trackById" class="col-12">
-      <ng-container
-        [field]="field"
-        formControlName="{{ controlNameOf(field) }}"
-        formidableDynamicField
-      ></ng-container>
-    </div>
+<form (submit)='onSubmit($event)' [formGroup]='form' autocomplete='off'>
+  <div class='row overflow-hidden'>
+    <formidable-dynamic-field
+      *ngFor='let field of fields; trackBy: trackById' [field]='field' [formControlName]='field.id'
+      [form]='form'
+      class='col-12'
+    ></formidable-dynamic-field>
 
     <div>
       {{ form.value | json }}
     </div>
 
     <ng-container
-      *ngTemplateOutlet="buttonTemplate ? buttonTemplate : defaultButton"
+      *ngTemplateOutlet='buttonTemplate ? buttonTemplate : defaultButton'
     ></ng-container>
   </div>
 </form>
 
 <ng-template #defaultButton>
   <formidable-button
-    *ngIf="buttonText"
-    [loading]="(loading$ | async) ?? false"
-    [text]="buttonText"
-    class="d-flex justify-content-end"
-    type="submit"
+    *ngIf='buttonText'
+    [loading]='(loading$ | async) ?? false'
+    [text]='buttonText'
+    class='d-flex justify-content-end'
+    type='submit'
   ></formidable-button>
 </ng-template>

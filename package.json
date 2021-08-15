@@ -65,6 +65,7 @@
     "@angular/platform-browser-dynamic": "12.2.0",
     "@angular/platform-server": "^12.2.0",
     "@angular/router": "12.2.0",
+    "@danpercic86/helpful-decorators": "^2.3.0",
     "@ngrx/data": "^12.3.0",
     "@ngrx/effects": "12.3.0",
     "@ngrx/entity": "12.3.0",

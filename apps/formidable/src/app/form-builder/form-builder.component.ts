@@ -12,8 +12,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ValidatorsService } from '@builder/core';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject } from 'rxjs';
-import { Required } from './shared/decorators/required.decorator';
 import { Set } from 'immutable';
+import { Required } from '@danpercic86/helpful-decorators';
 
 @Component({
   selector: 'formidable-form-builder',
@@ -24,7 +24,6 @@ import { Set } from 'immutable';
 export class FormBuilderComponent implements OnInit
 {
   @Input() @Required() fields!: Set<IField>;
-  @Input() formControl?: (field: IField) => string;
   @Input() buttonText?: string;
   @Input() buttonTemplate?: TemplateRef<unknown>;
   @Output() readonly formSubmit = new EventEmitter<Record<string, unknown>>();
@@ -48,7 +47,6 @@ export class FormBuilderComponent implements OnInit
   ngOnInit(): void
   {
     this.form = this._createFormGroup();
-    this._logger.debug('Form created: ', this.form);
   }
 
   onSubmit(event: Event): void
@@ -69,15 +67,16 @@ export class FormBuilderComponent implements OnInit
     this.loading$.next(false);
   }
 
-  controlNameOf = (field: IField): string => this.formControl?.(field) ?? field.name;
-
   private _createFormGroup(): FormGroup
   {
     const group = this._formBuilder.group({});
     this.fields.forEach(field =>
     {
-      group.addControl(this.controlNameOf(field), this._createControl(field));
+      group.addControl(field.id, this._createControl(field));
     });
+
+    this._logger.debug('Form created: ', group);
+
     return group;
   }
 

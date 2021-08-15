@@ -2,32 +2,32 @@ import { IUser } from './user';
 
 export interface ILoginRequest
 {
-  email: string;
-  password: string;
+  readonly email: string;
+  readonly password: string;
 }
 
 export interface ILoginResponse
 {
-  access_token: string;
-  refresh_token: string;
-  user: IUser;
+  readonly access_token: string;
+  readonly refresh_token: string;
+  readonly user: IUser;
 }
 
 export interface IRegisterRequest
 {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password1: string;
-  password2: string;
+  readonly first_name: string;
+  readonly last_name: string;
+  readonly email: string;
+  readonly password1: string;
+  readonly password2: string;
 }
 
 export interface IRefreshTokenResponse
 {
-  access: string;
+  readonly access: string;
 }
 
 export interface IVerifyTokenRequest
 {
-  token: string;
+  readonly token: string;
 }

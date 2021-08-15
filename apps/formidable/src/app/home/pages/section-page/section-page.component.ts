@@ -4,7 +4,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { IField, ISection, ISectionMinimal, trackBy } from '@builder/shared';
+import { ISection, ISectionMinimal, trackBy } from '@builder/shared';
 import { FormsService, SectionsService } from '@builder/core';
 import { getDataByKey } from '@formidable/shared';
 import { ResponsesService } from '../../../form-builder/services/responses.service';
@@ -60,8 +60,6 @@ export class SectionPageComponent
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
   }
-
-  formControl = (field: IField): string => field.id;
 
   submit(data: Record<string, unknown>, sectionId: string): void
   {

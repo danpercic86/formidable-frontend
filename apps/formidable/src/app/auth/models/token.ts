@@ -2,8 +2,8 @@ export type TokenType = 'access' | 'refresh'
 
 export interface IToken
 {
-  exp: number,
-  jti: string,
-  token_type: TokenType,
-  user_id: number
+  readonly exp: number,
+  readonly jti: string,
+  readonly token_type: TokenType,
+  readonly user_id: number
 }

@@ -5,28 +5,46 @@
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "importHelpers": true,
-    "target": "es2019",
-    "module": "esnext",
-    "lib": ["es2018", "dom"],
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@builder/core": ["apps/formidable/src/app/form-builder"],
-      "@builder/shared": ["apps/formidable/src/app/form-builder/shared"],
-      "@formidable/assets/*": ["apps/formidable/src/assets/*"],
-      "@formidable/core": ["apps/formidable/src/app/core"],
-      "@formidable/env": ["apps/formidable/src/environments"],
-      "@formidable/models": ["apps/formidable/src/app/shared/models"],
-      "@formidable/services": ["apps/formidable/src/app/core/services"],
-      "@formidable/shared": ["apps/formidable/src/app/shared"]
+      "@builder/core": [
+        "apps/formidable/src/app/form-builder"
+      ],
+      "@builder/shared": [
+        "apps/formidable/src/app/form-builder/shared"
+      ],
+      "@formidable/assets/*": [
+        "apps/formidable/src/assets/*"
+      ],
+      "@formidable/core": [
+        "apps/formidable/src/app/core"
+      ],
+      "@formidable/env": [
+        "apps/formidable/src/environments"
+      ],
+      "@formidable/models": [
+        "apps/formidable/src/app/shared/models"
+      ],
+      "@formidable/services": [
+        "apps/formidable/src/app/core/services"
+      ],
+      "@formidable/shared": [
+        "apps/formidable/src/app/shared"
+      ]
     }
   },
   "angularCompilerOptions": {
@@ -34,5 +52,8 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
