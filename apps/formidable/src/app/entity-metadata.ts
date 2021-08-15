@@ -6,11 +6,11 @@ const entityMetadata: Readonly<EntityMetadataMap> = {
   sections: {},
 } as const;
 
-const pluralNames = { forms: 'forms', sections: 'sections' } as const;
+const plural = { forms: 'forms', sections: 'sections' } as const;
 
 export const entityConfig: Readonly<EntityDataModuleConfig> = {
   entityMetadata,
-  pluralNames,
+  pluralNames: plural,
 } as const;
 
 export const defaultDataServiceConfig: Readonly<DefaultDataServiceConfig> = {
