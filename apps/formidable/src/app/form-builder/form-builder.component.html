@@ -1,7 +1,9 @@
 <form (submit)='onSubmit($event)' [formGroup]='form' autocomplete='off'>
   <div class='row overflow-hidden'>
     <formidable-dynamic-field
-      *ngFor='let field of fields; trackBy: trackById' [field]='field' [formControlName]='field.id'
+      *ngFor='let field of fields; trackBy: trackById'
+      [field]='field'
+      [formControlName]='field.id'
       [form]='form'
       class='col-12'
     ></formidable-dynamic-field>

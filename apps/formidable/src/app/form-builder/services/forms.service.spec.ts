@@ -1,23 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FormsService } from './forms.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsService } from './forms.service';
 
-describe('FormsService', () =>
-{
+describe('FormsService', () => {
   let service: FormsService;
 
-  beforeEach(() =>
-  {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [FormsService]
+      providers: [FormsService],
     });
     service = TestBed.inject(FormsService);
   });
 
-  it('should be created', () =>
-  {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });

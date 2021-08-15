@@ -4,25 +4,15 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class NotAuthenticatedGuard implements CanActivate
-{
-  constructor(
-    private readonly _authService: AuthService,
-    private readonly _router: Router
-  )
-  {
-  }
+export class NotAuthenticatedGuard implements CanActivate {
+  constructor(private readonly _router: Router) {}
 
-  canActivate():
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree
-  {
-    if (!this._authService.isLoggedIn()) return true;
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if (!AuthService.isLoggedIn()) return true;
 
+    // eslint-disable-next-line no-void
     void this._router.navigate(['/']);
 
     return false;

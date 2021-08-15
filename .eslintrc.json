@@ -9,56 +9,20 @@
   "overrides": [
     {
       "files": [
-        "*.ts",
-        "*.js"
-      ],
-      "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [
-              "@formidable/**",
-              "@builder/**"
-            ],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "files": [
         "*.ts"
       ],
       "extends": [
         "plugin:@nrwl/nx/typescript",
         "plugin:@nrwl/nx/angular",
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ],
-      "plugins": [
-        "@angular-eslint/eslint-plugin",
-        "@typescript-eslint"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:@angular-eslint/recommended--extra"
+        "plugin:@angular-eslint/recommended--extra",
+        "airbnb-typescript/base",
+        "prettier",
+        "plugin:prettier/recommended"
       ],
       "rules": {
         "@angular-eslint/prefer-on-push-component-change-detection": "error",
@@ -132,6 +96,26 @@
             "leadingUnderscore": "require"
           }
         ],
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [
+              "@formidable/**",
+              "@builder/**"
+            ],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        ],
+        "import/prefer-default-export": "off",
+        "no-underscore-dangle": "off",
         "quotes": [
           2,
           "single",
@@ -139,25 +123,11 @@
             "avoidEscape": true
           }
         ],
-        "max-len": [
-          "error",
-          {
-            "code": 88,
-            "tabWidth": 2
-          }
-        ],
         "indent": [
           "error",
           2,
           {
             "SwitchCase": 1
-          }
-        ],
-        "brace-style": [
-          "error",
-          "allman",
-          {
-            "allowSingleLine": true
           }
         ],
         "arrow-parens": [
@@ -191,7 +161,9 @@
         "plugin:@angular-eslint/template/recommended",
         "plugin:@nrwl/nx/angular-template"
       ],
-      "rules": {}
+      "plugins": [
+        "prettier"
+      ]
     }
   ]
 }

@@ -1,8 +1,7 @@
 import { FieldType, IChoice, IModel, IValidator } from '@builder/shared';
 import { Set } from 'immutable';
 
-export interface IField extends IModel
-{
+export interface IField extends IModel {
   readonly name: string;
   readonly value: string;
   readonly is_required: boolean;

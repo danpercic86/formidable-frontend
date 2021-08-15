@@ -3,8 +3,6 @@ import { FieldComponent } from '@builder/shared';
 
 @Component({
   templateUrl: './date.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateComponent extends FieldComponent
-{
-}
+export class DateComponent extends FieldComponent {}

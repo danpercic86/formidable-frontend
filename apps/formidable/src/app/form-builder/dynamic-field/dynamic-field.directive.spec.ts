@@ -1,32 +1,28 @@
-import { DynamicFieldDirective } from './dynamic-field.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FieldTypes, IField } from '@builder/shared';
+import { DynamicFieldDirective } from './dynamic-field.directive';
 
-describe('DynamicFieldDirective', () =>
-{
+describe('DynamicFieldDirective', () => {
   let component: DynamicFieldDirective;
   let fixture: ComponentFixture<DynamicFieldDirective>;
-  const field: IField = {
-    choices: [],
-    dependent_value: '',
-    id: 'adfsdafasf',
-    is_required: false,
-    placeholder: 'Field placeholder',
-    type: FieldTypes.text,
-    validators: [],
-    value: 'Field value',
-    name: 'Some field here'
-  };
+  // const field: IField = {
+  //   choices: Set(),
+  //   dependent_value: '',
+  //   id: 'adfsdafasf',
+  //   is_required: false,
+  //   placeholder: 'Field placeholder',
+  //   type: FieldTypes.text,
+  //   validators: Set(),
+  //   value: 'Field value',
+  //   name: 'Some field here',
+  // };
 
-  beforeEach(async () =>
-  {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DynamicFieldDirective]
+      declarations: [DynamicFieldDirective],
     }).compileComponents();
   });
 
-  beforeEach(() =>
-  {
+  beforeEach(() => {
     fixture = TestBed.createComponent(DynamicFieldDirective);
     component = fixture.componentInstance;
     // component.field = field;
@@ -39,14 +35,11 @@ describe('DynamicFieldDirective', () =>
     fixture.detectChanges();
   });
 
-  it('should create an instance', () =>
-  {
+  it('should create an instance', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create an instance of a InputComponent', () =>
-  {
-    console.log(component);
+  it('should create an instance of a InputComponent', () => {
     expect(component).toBeTruthy();
   });
 });

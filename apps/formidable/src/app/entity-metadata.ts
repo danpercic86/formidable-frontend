@@ -1,8 +1,4 @@
-import {
-  DefaultDataServiceConfig,
-  EntityDataModuleConfig,
-  EntityMetadataMap,
-} from '@ngrx/data';
+import { DefaultDataServiceConfig, EntityDataModuleConfig, EntityMetadataMap } from '@ngrx/data';
 import { environment } from '@formidable/env';
 
 const entityMetadata: Readonly<EntityMetadataMap> = {

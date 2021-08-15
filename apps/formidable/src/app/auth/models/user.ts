@@ -1,5 +1,4 @@
-export interface IUser
-{
+export interface IUser {
   readonly pk: number;
   readonly username: string;
   readonly email: string;

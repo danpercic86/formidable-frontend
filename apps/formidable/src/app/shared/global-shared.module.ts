@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,16 +18,12 @@ const modules = [
   MatIconModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
 ];
 
-const components = [NavbarComponent];
-
 @NgModule({
-  declarations: [...components],
-  imports: [...modules],
-  exports: [...components, ...modules]
+  eclarations: [],
+  mports: [...modules],
+  xports: [...modules],
 })
-export class GlobalSharedModule
-{
-}
+export class GlobalSharedModule {}

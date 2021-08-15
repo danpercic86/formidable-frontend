@@ -3,8 +3,6 @@ import { FieldComponent } from '@builder/shared';
 
 @Component({
   templateUrl: './checkbox.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckboxComponent extends FieldComponent
-{
-}
+export class CheckboxComponent extends FieldComponent {}

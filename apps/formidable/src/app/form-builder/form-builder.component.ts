@@ -5,7 +5,7 @@ import {
   Input,
   OnInit,
   Output,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { IField, trackBy } from '@builder/shared';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -19,59 +19,50 @@ import { Required } from '@danpercic86/helpful-decorators';
   selector: 'formidable-form-builder [fields]',
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormBuilderComponent implements OnInit
-{
+export class FormBuilderComponent implements OnInit {
   @Input() @Required() fields!: Set<IField>;
+
   @Input() buttonText?: string;
+
   @Input() buttonTemplate?: TemplateRef<unknown>;
+
   @Output() readonly formSubmit = new EventEmitter<Record<string, unknown>>();
+
   form!: FormGroup;
+
   readonly loading$ = new BehaviorSubject(false);
+
   readonly trackById = trackBy();
 
-  constructor(
-    private readonly _formBuilder: FormBuilder,
-    private readonly _validatorsService: ValidatorsService,
-    private readonly _logger: NGXLogger
-  )
-  {
-  }
+  constructor(private readonly _formBuilder: FormBuilder, private readonly _logger: NGXLogger) {}
 
-  get value(): Record<string, unknown>
-  {
+  get value(): Record<string, unknown> {
     return this.form.value as Record<string, unknown>;
   }
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
     this.form = this._createFormGroup();
   }
 
-  onSubmit(event: Event): void
-  {
+  onSubmit(event: Event): void {
     this.loading$.next(true);
     event.preventDefault();
     event.stopPropagation();
 
-    if (this.form.valid)
-    {
+    if (this.form.valid) {
       this.formSubmit.emit(this.value);
-    }
-    else
-    {
-      this._validatorsService.validate(this.form);
+    } else {
+      ValidatorsService.validate(this.form);
     }
 
     this.loading$.next(false);
   }
 
-  private _createFormGroup(): FormGroup
-  {
+  private _createFormGroup(): FormGroup {
     const group = this._formBuilder.group({});
-    this.fields.forEach(field =>
-    {
+    this.fields.forEach(field => {
       group.addControl(field.id, this._createControl(field));
     });
 
@@ -80,8 +71,7 @@ export class FormBuilderComponent implements OnInit
     return group;
   }
 
-  private _createControl({ validators, value }: IField): FormControl
-  {
+  private _createControl({ validators, value }: IField): FormControl {
     return this._formBuilder.control(value, ValidatorsService.compose(validators));
   }
 }

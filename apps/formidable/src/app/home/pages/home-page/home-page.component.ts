@@ -6,13 +6,10 @@ import { Set } from 'immutable';
 @Component({
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePageComponent
-{
+export class HomePageComponent {
   readonly forms$ = this._formsService.getAll().pipe(map(forms => Set(forms)));
 
-  constructor(private readonly _formsService: FormsService)
-  {
-  }
+  constructor(private readonly _formsService: FormsService) {}
 }

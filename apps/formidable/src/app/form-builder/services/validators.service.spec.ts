@@ -2,18 +2,15 @@ import { TestBed } from '@angular/core/testing';
 
 import { ValidatorsService } from './validators.service';
 
-describe('ValidatorsService', () =>
-{
+describe('ValidatorsService', () => {
   let service: ValidatorsService;
 
-  beforeEach(() =>
-  {
+  beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(ValidatorsService);
   });
 
-  it('should be created', () =>
-  {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });

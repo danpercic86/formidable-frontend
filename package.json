@@ -33,23 +33,14 @@
     "build-storybook": "yarn docs:json && build-storybook"
   },
   "private": true,
-  "prettier": {
-    "tabWidth": 2,
-    "printWidth": 88,
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "arrowParens": "avoid",
-    "bracketSpacing": true,
-    "overrides": [
-      {
-        "files": [
-          "*.html"
-        ],
-        "options": {
-          "singleQuote": true,
-          "parser": "angular"
-        }
-      }
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --relative"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix"
     ]
   },
   "dependencies": {
@@ -113,12 +104,17 @@
     "cypress": "^7.7.0",
     "dotenv": "10.0.0",
     "eslint": "7.32.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.1",
     "jest": "27.0.6",
     "jest-preset-angular": "9.0.5",
+    "lint-staged": "^11.1.2",
     "postcss": "^8.3.6",
-    "prettier": "2.3.2",
+    "prettier": "^2.3.2",
     "storybook-addon-angular-ivy": "^0.0.1",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended-scss": "^4.3.0",

@@ -2,18 +2,15 @@ import { TestBed } from '@angular/core/testing';
 
 import { NotAuthenticatedGuard } from './not-authenticated.guard';
 
-describe('NotAuthenticatedGuardGuard', () =>
-{
+describe('NotAuthenticatedGuardGuard', () => {
   let guard: NotAuthenticatedGuard;
 
-  beforeEach(() =>
-  {
+  beforeEach(() => {
     TestBed.configureTestingModule({});
     guard = TestBed.inject(NotAuthenticatedGuard);
   });
 
-  it('should be created', () =>
-  {
+  it('should be created', () => {
     expect(guard).toBeTruthy();
   });
 });

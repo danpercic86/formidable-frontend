@@ -7,33 +7,30 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    canActivate: [NotAuthenticatedGuard]
+    canActivate: [NotAuthenticatedGuard],
   },
   {
     path: '',
-    loadChildren: () =>
-      import('./landing-page/landing-page.module').then(m => m.LandingPageModule),
-    pathMatch: 'full'
+    loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule),
+    pathMatch: 'full',
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled'
-    })
+      initialNavigation: 'enabled',
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule
-{
-}
+export class AppRoutingModule {}

@@ -6,7 +6,7 @@ karma.conf.js
 .git
 .gitignore
 .editorconfig
-.prettierrc.json
+.prettierrc
 .eslintrc.json
 .stylelintrc
 .dockerignore

@@ -3,8 +3,6 @@ import { FieldComponent } from '@builder/shared';
 
 @Component({
   templateUrl: './select.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent extends FieldComponent
-{
-}
+export class SelectComponent extends FieldComponent {}

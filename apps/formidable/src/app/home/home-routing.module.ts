@@ -8,18 +8,16 @@ const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   {
     path: 'forms/:id',
-    component: FormPageComponent
+    component: FormPageComponent,
   },
   {
     path: 'forms/:id/sections',
-    component: SectionPageComponent
-  }
+    component: SectionPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HomeRoutingModule
-{
-}
+export class HomeRoutingModule {}

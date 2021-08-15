@@ -2,27 +2,23 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SectionPageComponent } from './section-page.component';
 
-describe('SectionComponent', () =>
-{
+describe('SectionComponent', () => {
   let component: SectionPageComponent;
   let fixture: ComponentFixture<SectionPageComponent>;
 
-  beforeEach(async () =>
-  {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SectionPageComponent]
+      declarations: [SectionPageComponent],
     }).compileComponents();
   });
 
-  beforeEach(() =>
-  {
+  beforeEach(() => {
     fixture = TestBed.createComponent(SectionPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () =>
-  {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

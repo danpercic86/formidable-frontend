@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormBuilderComponent } from './form-builder.component';
 import { FormBuilderSharedModule } from '@builder/shared';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +11,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { FormBuilderComponent } from './form-builder.component';
 import { InputComponent } from './components/input/input.component';
 import { SelectComponent } from './components/select/select.component';
 import { DateComponent } from './components/date/date.component';
@@ -30,7 +30,7 @@ const matImports = [
   MatSelectModule,
   MatOptionModule,
   MatCheckboxModule,
-  MatRadioModule
+  MatRadioModule,
 ];
 
 @NgModule({
@@ -41,15 +41,9 @@ const matImports = [
     DateComponent,
     RadioComponent,
     CheckboxComponent,
-    DynamicFieldDirective
+    DynamicFieldDirective,
   ],
-  imports: [
-    FormBuilderSharedModule,
-    ReactiveFormsModule,
-    ...matImports
-  ],
-  exports: [FormBuilderComponent]
+  imports: [FormBuilderSharedModule, ReactiveFormsModule, ...matImports],
+  exports: [FormBuilderComponent],
 })
-export class FormBuilderModule
-{
-}
+export class FormBuilderModule {}

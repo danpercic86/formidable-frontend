@@ -1,3 +1,17 @@
-.container {
-  height: calc(100% - 70px);
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  z-index: 1;
+  top: 0;
 }
