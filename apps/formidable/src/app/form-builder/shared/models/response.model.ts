@@ -9,6 +9,8 @@ export interface IResponseRequest {
   readonly responses: IResponse[];
 }
 
-export interface IResponseGet extends IModel, IResponse {
+export interface IResponseGet extends IModel {
+  readonly value: string;
   readonly errors: string;
+  readonly status: string;
 }

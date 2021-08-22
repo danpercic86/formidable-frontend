@@ -18,28 +18,30 @@ interface IError {
   readonly detail: string;
 }
 
+function setAuthHeaders(request: HttpRequest<unknown>): HttpRequest<unknown> {
+  if (TokenService.rawToken) {
+    return request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${TokenService.rawToken}`,
+      },
+    });
+  }
+
+  return request;
+}
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private readonly _authService: AuthService, private readonly _logger: NGXLogger) {}
 
-  private static _setAuthHeaders(request: HttpRequest<unknown>): HttpRequest<unknown> {
-    if (TokenService.rawToken) {
-      return request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${TokenService.rawToken}`,
-        },
-      });
-    }
-
-    return request;
-  }
-
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this._logger.debug('Intercepted request: ', request);
+    const { withCredentials, url } = request;
 
-    if (!request.withCredentials) return next.handle(request);
+    if ((!withCredentials && url.includes('/auth/')) || !url.includes('api/'))
+      return next.handle(request);
 
-    return next.handle(AuthInterceptor._setAuthHeaders(request)).pipe(
+    return next.handle(setAuthHeaders(request)).pipe(
       tap(event => this._log(event)),
       catchError(error => this._handleError(error)),
     );
@@ -48,9 +50,9 @@ export class AuthInterceptor implements HttpInterceptor {
   private _handleError(error: HttpErrorResponse): Observable<never> {
     this._logger.debug('Https response error: ', error);
 
-    if (AuthService.isLoggedIn()) this._authService.logout();
-
     if ((<IError>error.error).code === 'token_not_valid') {
+      this._authService.logout();
+
       const refreshTokenRequest = this._authService.refreshToken().pipe(take(1));
       refreshTokenRequest.subscribe(() => window.location.reload());
     }

@@ -1,21 +1,21 @@
-<mat-form-field [formGroup]='form'>
+<mat-form-field [formGroup]="form">
   <mat-label>{{ field.name }}</mat-label>
   <input
-    [formControlName]='field.id'
-    [id]='field.id'
-    [max]='max'
-    [maxlength]='maxlength'
-    [min]='min'
-    [minlength]='minlength'
-    [pattern]='pattern'
-    [placeholder]='field.placeholder'
-    [required]='required'
-    [step]='step'
-    [type]='type'
+    [formControlName]="field.id"
+    [id]="field.id"
+    [max]="max"
+    [maxlength]="maxlength"
+    [min]="min"
+    [minlength]="minlength"
+    [pattern]="pattern"
+    [placeholder]="field.placeholder"
+    [required]="required"
+    [step]="step"
+    [type]="type"
     matInput
   />
-  <ng-container *ngFor='let validator of validators; trackBy: trackByFn'>
-    <mat-error *ngIf='control?.hasError(validator.type)'>{{
+  <ng-container *ngFor="let validator of validators; trackBy: trackByFn">
+    <mat-error *ngIf="control?.hasError(validator.type)">{{
       validator.message
       }}</mat-error>
   </ng-container>

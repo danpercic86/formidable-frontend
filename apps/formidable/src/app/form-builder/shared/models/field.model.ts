@@ -1,9 +1,9 @@
 import { FieldType, IChoice, IModel, IValidator } from '@builder/shared';
 import { Set } from 'immutable';
+import { IResponseGet } from './response.model';
 
 export interface IField extends IModel {
   readonly name: string;
-  readonly value: string;
   readonly is_required: boolean;
   readonly placeholder: string;
   readonly dependent_value: string;
@@ -11,4 +11,5 @@ export interface IField extends IModel {
   readonly choices: Set<IChoice>;
   readonly validators: Set<IValidator>;
   readonly type: FieldType;
+  readonly response?: IResponseGet;
 }

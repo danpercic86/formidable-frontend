@@ -10,7 +10,7 @@ export class ResponsesService {
   constructor(private readonly _http: HttpClient) {}
 
   post(body: IResponseRequest, sectionId: string): Observable<unknown> {
-    const url = `/api/sections/${sectionId}/responses`;
-    return this._http.post(url, body);
+    const url = `/api/sections/${sectionId}/responses/`;
+    return this._http.post(url, body, { withCredentials: true });
   }
 }
