@@ -1,18 +1,20 @@
-<div class='auth-container'>
-  <mat-spinner *ngIf='isLoading$ | async'></mat-spinner>
+<div class="auth-container">
+  <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
 
-  <mat-card *ngIf='(isLoading$ | async) === false as notLoading'>
-    <form (ngSubmit)='onFormSubmit()' [formGroup]='form'>
+  <mat-card *ngIf="(isLoading$ | async) === false as notLoading"
+            class="d-flex justify-content-center">
+    <form (ngSubmit)="onFormSubmit()" [formGroup]="form" class="d-flex flex-column">
 
-      <h2>Register</h2>
-      <mat-form-field class='full-width'>
+      <h2 class="text-center pb-2 text-secondary">Register</h2>
+
+      <mat-form-field class="full-width">
         <mat-label>First name</mat-label>
         <input
-          [errorStateMatcher]='matcher'
-          formControlName='first_name'
+          [errorStateMatcher]="matcher"
+          formControlName="first_name"
           matInput
-          placeholder='First name'
-          title='First name'
+          placeholder="First name"
+          title="First name"
         />
         <mat-error>
           <span
@@ -22,14 +24,14 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class='full-width'>
+      <mat-form-field class="full-width">
         <mat-label>Last name</mat-label>
         <input
-          [errorStateMatcher]='matcher'
-          formControlName='last_name'
+          [errorStateMatcher]="matcher"
+          formControlName="last_name"
           matInput
-          placeholder='Last name'
-          title='Last name'
+          placeholder="Last name"
+          title="Last name"
         />
         <mat-error>
           <span *ngIf="!form.get('last_name')?.valid && form.get('last_name')?.touched"
@@ -38,15 +40,15 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class='full-width'>
+      <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
         <input
-          [errorStateMatcher]='matcher'
-          formControlName='email'
+          [errorStateMatcher]="matcher"
+          formControlName="email"
           matInput
-          placeholder='Email'
-          title='Email'
-          type='email'
+          placeholder="Email"
+          title="Email"
+          type="email"
         />
         <mat-error>
           <span *ngIf="!form.get('email')?.valid && form.get('email')?.touched"
@@ -55,15 +57,16 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class='full-width'>
+      <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
         <input
-          [errorStateMatcher]='matcher'
-          formControlName='password1'
+          [errorStateMatcher]="matcher"
+          autocomplete="off"
+          formControlName="password1"
           matInput
-          placeholder='Password'
-          title='Password'
-          type='password'
+          placeholder="Password"
+          title="Password"
+          type="password"
         />
         <mat-error>
           <span *ngIf="!form.get('password1')?.valid && form.get('password1')?.touched"
@@ -72,15 +75,16 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class='full-width'>
+      <mat-form-field class="full-width">
         <mat-label>Confirm password</mat-label>
         <input
-          [errorStateMatcher]='matcher'
-          formControlName='password2'
+          [errorStateMatcher]="matcher"
+          autocomplete="off"
+          formControlName="password2"
           matInput
-          placeholder='Confirm password'
-          title='Confirm password'
-          type='password'
+          placeholder="Confirm password"
+          title="Confirm password"
+          type="password"
         />
         <mat-error>
           <span *ngIf="!form.get('password2')?.valid && form.get('password2')?.touched"
@@ -90,18 +94,22 @@
       </mat-form-field>
 
       <formidable-button
-        (action)='onFormSubmit()'
-        [disabled]='!form.valid'
-        [loading]='!notLoading'
-        label='Register'
-        matIcon='how_to_reg'
+        (action)="onFormSubmit()"
+        [disabled]="!form.valid"
+        [loading]="!notLoading"
+        [matIcon]="'how_to_reg'"
+        [text]="'Register'"
+        class="flex-column align-self-center"
       ></formidable-button>
 
-      <h4>Already registered?</h4>
+      <h6 class="text-center fw-light pt-4">Already registered?</h6>
+
       <formidable-button
-        [routerLink]="['auth','login']"
-        label='Login'
-        matIcon='login'
+        [color]="'link'"
+        [matIcon]="'login'"
+        [routerLink]="['/auth/login']"
+        [text]="'Login'"
+        class="flex-column align-self-center"
       ></formidable-button>
     </form>
   </mat-card>

@@ -7,10 +7,10 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root',
 })
 export class NotAuthenticatedGuard implements CanActivate {
-  constructor(private readonly _router: Router) {}
+  constructor(private readonly _router: Router, private readonly _authService: AuthService) {}
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!AuthService.isLoggedIn()) return true;
+    if (!this._authService.isLoggedIn) return true;
 
     // eslint-disable-next-line no-void
     void this._router.navigate(['/']);

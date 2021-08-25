@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, take, tap } from 'rxjs/operators';
+import { catchError, map, take, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { IUser } from '../models/user';
@@ -36,8 +36,12 @@ export class AuthService {
     private readonly _logger: NGXLogger,
   ) {}
 
-  static isLoggedIn(): boolean {
-    return !!TokenService.rawRefreshToken;
+  get isLoggedIn(): boolean {
+    return !!this._user$.getValue();
+  }
+
+  get isLoggedIn$(): Observable<boolean> {
+    return this._user$.pipe(map(user => !!user));
   }
 
   login(data: ILoginRequest): Observable<ILoginResponse> {
@@ -70,7 +74,7 @@ export class AuthService {
       }),
       catchError(err => {
         this.logout();
-        return throwError(() => new Error(err));
+        return throwError(() => console.log(err));
       }),
     );
   }
@@ -78,11 +82,12 @@ export class AuthService {
   logout(): void {
     TokenService.removeTokens();
     this._stopRefreshTokenTimer();
+    this._user$.next(null);
 
     this._http.post(`${Api.authUrl}/logout/`, {}).pipe(take(1)).subscribe();
 
     // eslint-disable-next-line no-void
-    void this._router.navigate(['auth', 'login']).then();
+    void this._router.navigate(['/auth/login']).then();
   }
 
   register(data: IRegisterRequest): Observable<IRegisterRequest> {

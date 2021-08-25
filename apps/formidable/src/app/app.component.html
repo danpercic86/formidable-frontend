@@ -9,8 +9,12 @@
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a [routerLink]="['home']" mat-list-item>Home</a>
-      <a (click)="authService.logout()" mat-list-item>Logout</a>
+      <a [routerLink]="['/']" mat-list-item>Main page</a>
+
+      <ng-container *ngIf="authService.isLoggedIn$ | async; else authLinks">
+        <a [routerLink]="['/home']" mat-list-item>Home</a>
+        <a (click)="authService.logout()" mat-list-item> Logout </a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -29,6 +33,10 @@
     </mat-toolbar>
 
     <router-outlet></router-outlet>
-
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #authLinks>
+  <a [routerLinkActive]="'d-none'" [routerLink]="'/auth/login'" mat-list-item>Log in</a>
+  <a [routerLinkActive]="'d-none'" [routerLink]="'/auth/register'" mat-list-item>Register</a>
+</ng-template>
