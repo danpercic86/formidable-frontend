@@ -71,7 +71,7 @@
     "@angular/cli": "12.2.0",
     "@angular/compiler-cli": "12.2.0",
     "@angular/elements": "12.2.0",
-    "@nrwl/cli": "12.6.5",
+    "@nrwl/cli": "12.8.0",
     "@nrwl/cypress": "12.6.5",
     "@nrwl/eslint-plugin-nx": "12.6.5",
     "@nrwl/jest": "12.6.5",
