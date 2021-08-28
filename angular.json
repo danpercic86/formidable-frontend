@@ -110,10 +110,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/formidable/src/**/*.ts",
-              "apps/formidable/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/formidable/src/**/*.ts", "apps/formidable/src/**/*.html"]
           }
         },
         "test": {
