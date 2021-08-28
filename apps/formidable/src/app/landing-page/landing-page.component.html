@@ -1,1 +1,13 @@
-<h1>Welcome to Formidable!</h1>
+<section class="banner d-flex flex-column justify-content-center align-items-center">
+  <h1>Viitorul tău începe aici!</h1>
+  <h5 class="py-5">
+    Bine ai venit pe platforma de înscriere a Universității Politehnica Timișoara!
+  </h5>
+
+  <formidable-button
+    (action)="router.navigateByUrl('/home')"
+    [color]="btnColors.white"
+    [matIcon]="'arrow_forward'"
+    [text]="'APLICĂ'"
+  ></formidable-button>
+</section>
