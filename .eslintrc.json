@@ -20,6 +20,7 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:@angular-eslint/recommended--extra",
+        "airbnb-base",
         "airbnb-typescript/base",
         "prettier",
         "plugin:prettier/recommended"
