@@ -5,9 +5,10 @@ export const BtnColors = {
   accent: 'accent',
   warn: 'warn',
   link: 'link',
+  white: undefined,
 } as const;
 
-export type BtnColor = KeysOf<typeof BtnColors>;
+export type BtnColor = ValuesOf<typeof BtnColors>;
 
 export const BtnTypes = {
   button: 'button',
