@@ -18,7 +18,7 @@ import { Api } from '../utils/api';
   providedIn: 'root',
 })
 export class AuthService {
-  private _refreshTokenTimeout?: ReturnType<typeof setTimeout>;
+  private _refreshTokenTimeout?: number;
 
   private readonly _user$ = new BehaviorSubject<IUser | null>(null);
 
@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   get isLoggedIn$(): Observable<boolean> {
-    return this._user$.pipe(map(user => !!user));
+    return this.user$.pipe(map(user => !!user));
   }
 
   login(data: ILoginRequest): Observable<ILoginResponse> {
@@ -74,6 +74,7 @@ export class AuthService {
       }),
       catchError(err => {
         this.logout();
+        // eslint-disable-next-line no-console
         return throwError(() => console.log(err));
       }),
     );
@@ -108,7 +109,7 @@ export class AuthService {
     const expires = new Date(TokenService.token?.exp * 1000);
     const timeout = expires.getTime() - Date.now() - 60 * 1000;
 
-    this._refreshTokenTimeout = setTimeout(
+    this._refreshTokenTimeout = window.setTimeout(
       () => this.refreshToken().pipe(take(1)).subscribe(),
       timeout,
     );

@@ -23,17 +23,12 @@ import { Required } from '@danpercic86/helpful-decorators';
 })
 export class FormBuilderComponent implements OnInit {
   @Input() @Required() fields!: Set<IField>;
-
   @Input() buttonText?: string;
-
   @Input() buttonTemplate?: TemplateRef<unknown>;
-
   @Output() readonly formSubmit = new EventEmitter<Record<string, unknown>>();
 
   form!: FormGroup;
-
   readonly loading$ = new BehaviorSubject(false);
-
   readonly trackById = trackBy();
 
   constructor(private readonly _formBuilder: FormBuilder, private readonly _logger: NGXLogger) {}

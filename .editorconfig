@@ -16,3 +16,5 @@ trim_trailing_whitespace = false
 [{*.ts, *.js}]
 ij_javascript_use_double_quotes = false
 ij_typescript_use_double_quotes = false
+ij_javascript_enforce_trailing_comma = keep
+ij_typescript_enforce_trailing_comma = keep
