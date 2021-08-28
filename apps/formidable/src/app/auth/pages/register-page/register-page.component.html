@@ -1,4 +1,4 @@
-<div class="auth-container">
+<section class="auth-container">
   <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
 
   <mat-card *ngIf="(isLoading$ | async) === false as notLoading"
@@ -113,4 +113,4 @@
       ></formidable-button>
     </form>
   </mat-card>
-</div>
+</section>

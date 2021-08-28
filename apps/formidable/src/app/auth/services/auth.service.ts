@@ -19,9 +19,7 @@ import { Api } from '../utils/api';
 })
 export class AuthService {
   private _refreshTokenTimeout?: number;
-
   private readonly _user$ = new BehaviorSubject<IUser | null>(null);
-
   readonly user$ = this._user$.asObservable();
 
   private readonly _httpOptions = {
@@ -87,8 +85,9 @@ export class AuthService {
 
     this._http.post(`${Api.authUrl}/logout/`, {}).pipe(take(1)).subscribe();
 
-    // eslint-disable-next-line no-void
-    void this._router.navigate(['/auth/login']).then();
+    if (['/home', '/auth'].includes(this._router.url))
+      // eslint-disable-next-line no-void
+      void this._router.navigate(['/auth/login']).then();
   }
 
   register(data: IRegisterRequest): Observable<IRegisterRequest> {
