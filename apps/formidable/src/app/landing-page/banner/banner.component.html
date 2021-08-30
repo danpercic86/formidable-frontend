@@ -1,0 +1,25 @@
+<section
+  class="banner d-flex flex-column justify-content-center align-items-center my-3 mat-elevation-z5"
+>
+  <h1>Viitorul tău începe aici!</h1>
+  <h5 class="py-5">
+    Bine ai venit pe platforma de înscriere a Universității Politehnica Timișoara!
+  </h5>
+
+  <formidable-link
+    [color]="btnColors.white"
+    [link]="'/home'"
+    [matIcon]="'arrow_forward'"
+    [text]="'APLICĂ'"
+  ></formidable-link>
+
+  <formidable-second-option
+    [color]="btnColors.primary"
+    [display]="secondOptionDisplays.horizontal"
+    [linkTextColor]="'accent'"
+    [linkText]="'Autentifică-te!'"
+    [routerLink]="'/auth/login'"
+    [title]="'Ai deja un cont?'"
+    class="pt-5"
+  ></formidable-second-option>
+</section>

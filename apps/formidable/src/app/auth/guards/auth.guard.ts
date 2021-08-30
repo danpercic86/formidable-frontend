@@ -24,6 +24,6 @@ export class AuthGuard implements CanActivate {
 
   private async _toLogin(returnUrl: string): Promise<boolean> {
     const queryParams = { returnUrl };
-    return this._router.navigate(['auth', 'login'], { queryParams });
+    return this._router.navigate(['auth', 'register'], { queryParams });
   }
 }

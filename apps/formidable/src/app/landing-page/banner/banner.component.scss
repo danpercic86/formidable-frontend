@@ -1,0 +1,15 @@
+@use 'variables' as defaultVars;
+
+.banner {
+  animation: beat 1.5s infinite alternate;
+  background-color: defaultVars.$primary-500;
+  border-radius: 10px;
+  color: defaultVars.$white;
+  height: 50vh;
+}
+
+@keyframes beat {
+  to {
+    transform: scale(0.99);
+  }
+}

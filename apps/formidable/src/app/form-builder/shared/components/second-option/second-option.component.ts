@@ -11,7 +11,7 @@ import { LinkTextColor, LinkTextColors } from '../link/link-text-color.type';
 })
 export class SecondOptionComponent {
   @Input() title!: string;
-  @Input() routerLink!: string | string[];
+  @Input() routerLink!: string;
   @Input() linkText!: string;
   @Input() color: BtnColor = BtnColors.white;
   @Input() linkTextColor: LinkTextColor = LinkTextColors.primary;

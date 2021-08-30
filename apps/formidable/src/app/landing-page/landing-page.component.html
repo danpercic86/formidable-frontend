@@ -1,23 +1,41 @@
-<section class="banner d-flex flex-column justify-content-center align-items-center">
-  <h1>Viitorul tău începe aici!</h1>
-  <h5 class="py-5">
-    Bine ai venit pe platforma de înscriere a Universității Politehnica Timișoara!
-  </h5>
+<main class="container">
+  <formidable-banner></formidable-banner>
 
-  <formidable-button
-    (action)="router.navigateByUrl('/home')"
-    [color]="btnColors.white"
-    [matIcon]="'arrow_forward'"
-    [text]="'APLICĂ'"
-  ></formidable-button>
+  <section class="d-flex justify-content-around">
+    <mat-card *ngFor="let card of cards">
+      <mat-card-header>
+        <mat-card-title>{{ card.title }}</mat-card-title>
+      </mat-card-header>
 
-  <formidable-second-option
-    [color]="btnColors.primary"
-    [display]="secondOptionDisplays.horizontal"
-    [linkTextColor]="'accent'"
-    [linkText]="'Autentifică-te!'"
-    [routerLink]="'/auth/login'"
-    [title]="'Ai deja un cont?'"
-    class="pt-5"
-  ></formidable-second-option>
-</section>
+      <mat-card-content>
+        <mat-list>
+          <ng-container *ngFor="let item of card.items">
+            <div *ngIf="item.subHeading" [innerHTML]="item.subHeading" matSubheader></div>
+
+            <mat-list-item *ngFor="let listItem of item.listItems">
+              <mat-icon *ngIf="listItem.icon" fontSet="material-icons-round" matListIcon>{{
+                listItem.icon
+              }}</mat-icon>
+
+              <div *ngIf="!listItem.link" [matTooltip]="listItem.text" matLine>
+                {{ listItem.text }}
+              </div>
+
+              <formidable-link
+                *ngIf="listItem.link"
+                [link]="listItem.link"
+                [text]="listItem.text"
+                class="w-25"
+                matLine
+              ></formidable-link>
+
+              <div *ngIf="listItem.extraText" matLine>{{ listItem.extraText }}</div>
+            </mat-list-item>
+
+            <mat-divider *ngIf="card.items.indexOf(item) < card.items.length - 1"></mat-divider>
+          </ng-container>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</main>

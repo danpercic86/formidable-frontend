@@ -1,3 +1,28 @@
-<a [color]="color" [routerLink]="routerLink" mat-flat-button>
-  <span [className]="textColor">{{ text }}</span>
+<a
+  *ngIf="isExternalLink(link); else internalAnchor"
+  [color]="color"
+  [href]="href(link)"
+  mat-flat-button
+  rel="noreferrer noopener"
+  target="_blank"
+>
+  <ng-container [ngTemplateOutlet]="content"></ng-container>
 </a>
+
+<ng-template #internalAnchor>
+  <a [color]="color" [routerLink]="link" mat-flat-button>
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </a>
+</ng-template>
+
+<ng-template #content>
+  <span [className]="textColor">{{ text }}</span>
+
+  <mat-icon
+    *ngIf="matIcon"
+    [class.accent]="textColor === 'accent'"
+    [class.primary]="textColor === 'primary'"
+    fontSet="material-icons-round"
+    >{{ matIcon }}</mat-icon
+  >
+</ng-template>

@@ -1,16 +1,13 @@
-@use '~apps/formidable/src/assets/styles/variables' as defaultVars;
+@use 'variables' as defaultVars;
 
-.banner {
-  animation: beat 1.5s infinite alternate;
-  background-color: #673ab7;
-  border-radius: 10px;
-  color: defaultVars.$white;
-  height: 50vh;
-  margin: 15px;
+::ng-deep .email {
+  color: defaultVars.$primary-500;
 }
 
-@keyframes beat {
-  to {
-    transform: scale(0.99);
-  }
+mat-card {
+  width: 49%;
+}
+
+[matListIcon] {
+  color: defaultVars.$accent-500;
 }
