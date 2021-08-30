@@ -1,11 +1,5 @@
-<div *ngFor='let form of forms$ | async'>
-  <a [routerLink]='["forms", form.id.toString()]'>
-    {{ form.name }}
-  </a>
-  <a
-    *ngFor='let section of form.sections'
-    [routerLink]="['sections', section.id]"
-  >
-    --> {{ section.name }}
-  </a>
-</div>
+<mat-grid-list [cols]="3" [rowHeight]="'5:6'">
+  <mat-grid-tile *ngFor="let form of forms$ | async">
+    <formidable-form-card [form]="form"></formidable-form-card>
+  </mat-grid-tile>
+</mat-grid-list>

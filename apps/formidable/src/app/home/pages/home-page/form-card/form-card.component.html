@@ -1,0 +1,30 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div class="example-header-image" mat-card-avatar></div>
+    <mat-card-title>{{ form.name }}</mat-card-title>
+    <mat-card-subtitle>&nbsp;</mat-card-subtitle>
+  </mat-card-header>
+
+  <img
+    alt="Photo of a Shiba Inu"
+    mat-card-image
+    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+  />
+
+  <mat-card-content>
+    <p class="text-clip">
+      {{ form.description }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions class="d-flex justify-content-evenly">
+    <formidable-link
+      [color]="btnColors.primary"
+      [link]="'forms/' + form.id.toString() + '/sections'"
+      [matIcon]="'checklist_rtl'"
+      [textColor]="textColors.accent"
+      [text]="'Completează'"
+    ></formidable-link>
+    <formidable-link [link]="'forms/' + form.id.toString()" [text]="'Detalii'"></formidable-link>
+  </mat-card-actions>
+</mat-card>

@@ -1,11 +1,7 @@
 @use 'variables' as defaultVars;
 
 a {
-  align-items: center;
-  display: flex;
   font-size: 16px;
-  justify-content: space-evenly;
-  min-height: 45px !important;
   min-width: 130px !important;
 }
 
