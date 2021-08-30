@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { defaultDataServiceConfig, entityConfig } from './entity-metadata';
 import { AuthService } from './auth/services/auth.service';
 import { autoAuthenticate } from './auth/utils/functions';
@@ -39,6 +40,7 @@ import { AppRoutingModule } from './app-routing.module';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
+    MatTooltipModule,
   ],
   bootstrap: [AppComponent],
   providers: [

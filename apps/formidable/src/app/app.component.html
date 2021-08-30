@@ -7,13 +7,36 @@
     class="sidenav"
     fixedInViewport
   >
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a [routerLink]="['/']" mat-list-item>Main page</a>
+    <mat-toolbar class="primary-text">Menu</mat-toolbar>
 
-      <ng-container *ngIf="authService.isLoggedIn$ | async; else authLinks">
-        <a [routerLink]="['/home']" mat-list-item>Home</a>
-        <a (click)="authService.logout()" mat-list-item> Logout </a>
+    <mat-nav-list>
+      <ng-container *ngFor="let item of menuItems">
+        <ng-container *ngIf="!item.hide || (item.hide() | async) === false">
+          <mat-list-item (click)="item.action()" *ngIf="item.action" class="primary-text">
+            <ng-container
+              [ngTemplateOutletContext]="{ menuItem: item }"
+              [ngTemplateOutlet]="listItem"
+            ></ng-container>
+          </mat-list-item>
+
+          <mat-list-item
+            *ngIf="!item.action"
+            [routerLinkActiveOptions]="{
+              queryParams: 'ignored',
+              matrixParams: 'ignored',
+              fragment: 'ignored',
+              paths: 'exact'
+            }"
+            [routerLinkActive]="'list-item-active'"
+            [routerLink]="item.routerLink"
+            class="primary-text"
+          >
+            <ng-container
+              [ngTemplateOutletContext]="{ menuItem: item }"
+              [ngTemplateOutlet]="listItem"
+            ></ng-container>
+          </mat-list-item>
+        </ng-container>
       </ng-container>
     </mat-nav-list>
   </mat-sidenav>
@@ -23,12 +46,13 @@
       <button
         (click)="drawer.toggle()"
         *ngIf="(isHandset$ | async) && (currentUrl$ | async) !== '/'"
-        aria-label="Toggle sidenav"
+        [matTooltip]="'Toggle sidenav'"
         mat-icon-button
         type="button"
       >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon fontSet="material-icons-round">menu</mat-icon>
       </button>
+
       <span>Enroll</span>
     </mat-toolbar>
 
@@ -36,7 +60,7 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<ng-template #authLinks>
-  <a [routerLinkActive]="'d-none'" [routerLink]="'/auth/login'" mat-list-item>Log in</a>
-  <a [routerLinkActive]="'d-none'" [routerLink]="'/auth/register'" mat-list-item>Register</a>
+<ng-template #listItem let-menuItem="menuItem">
+  <mat-icon fontSet="material-icons-round">{{ menuItem.icon }}</mat-icon>
+  <a class="ps-2">{{ menuItem.text }}</a>
 </ng-template>

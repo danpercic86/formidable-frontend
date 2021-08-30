@@ -2,6 +2,7 @@
 @use '~@angular/material' as mat;
 
 $accent-500: map.get(mat.$amber-palette, 500);
+$accent-900: map.get(mat.$amber-palette, 900);
 $primary-500: map.get(mat.$deep-purple-palette, 500);
 
 $white: #ffffff;

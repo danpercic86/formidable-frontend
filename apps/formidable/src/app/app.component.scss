@@ -1,3 +1,6 @@
+@use 'texts';
+@use 'variables' as defaultVars;
+
 .sidenav-container {
   height: 100%;
 }
@@ -12,6 +15,12 @@
 
 .mat-toolbar.mat-primary {
   position: sticky;
-  z-index: 1;
   top: 0;
+  z-index: 1;
+}
+
+.list-item-active {
+  background: rgba(0, 0, 0, 0.04);
+  color: defaultVars.$accent-900 !important;
+  font-weight: bold;
 }
