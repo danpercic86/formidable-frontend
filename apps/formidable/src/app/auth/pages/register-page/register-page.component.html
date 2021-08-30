@@ -1,10 +1,7 @@
 <section class="auth-container">
   <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
 
-  <mat-card
-    *ngIf="(isLoading$ | async) === false as notLoading"
-    class="d-flex justify-content-center"
-  >
+  <mat-card *ngIf="(isLoading$ | async) === false" class="d-flex justify-content-center">
     <form (ngSubmit)="onFormSubmit()" [formGroup]="form" class="d-flex flex-column">
       <h2 class="text-center pb-2 text-secondary">Register</h2>
 
@@ -96,7 +93,6 @@
       <formidable-button
         (action)="onFormSubmit()"
         [disabled]="!form.valid"
-        [loading]="!notLoading"
         [matIcon]="'how_to_reg'"
         [text]="'Register'"
         class="flex-column align-self-center"
@@ -111,3 +107,5 @@
     </form>
   </mat-card>
 </section>
+
+<ng-container *ngIf="goHomeIfAuthenticated$ | async"></ng-container>

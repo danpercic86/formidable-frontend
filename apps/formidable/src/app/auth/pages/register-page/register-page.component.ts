@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { BtnColors } from '@formidable/shared';
+import { tap } from 'rxjs/operators';
 import { CustomErrorStateMatcher } from '../../utils/error-state-matcher';
 import { AuthService } from '../../services/auth.service';
 
@@ -22,8 +23,12 @@ export class RegisterPageComponent {
   });
 
   readonly isLoading$ = new BehaviorSubject(false);
-
   readonly matcher = new CustomErrorStateMatcher();
+  readonly goHomeIfAuthenticated$ = this._authService.isLoggedIn$.pipe(
+    tap(isLoggedIn => {
+      if (isLoggedIn) void this._router.navigate(['/home']).then();
+    }),
+  );
 
   constructor(
     private readonly _authService: AuthService,

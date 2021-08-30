@@ -39,6 +39,13 @@ export class TokenService {
     localStorage.setItem(REFRESH_TOKEN, refreshToken);
   }
 
+  static get accessTokenTimeout(): number {
+    if (!TokenService.token?.exp) return 0;
+
+    const expires = new Date(TokenService.token.exp * 1000);
+    return expires.getTime() - Date.now() - 60 * 1000;
+  }
+
   static removeToken(): void {
     localStorage.removeItem(ACCESS_TOKEN);
   }

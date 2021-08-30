@@ -13,7 +13,7 @@ export class NotAuthenticatedGuard implements CanActivate {
     if (!this._authService.isLoggedIn) return true;
 
     // eslint-disable-next-line no-void
-    void this._router.navigate(['/']);
+    void this._router.navigate(['/home']);
 
     return false;
   }

@@ -42,6 +42,10 @@ export class AuthService {
     return this.user$.pipe(map(user => !!user));
   }
 
+  get currentUser(): Observable<IUser> {
+    return this._http.get<IUser>(`${Api.authUrl}/user`, { withCredentials: true });
+  }
+
   login(data: ILoginRequest): Observable<ILoginResponse> {
     TokenService.removeTokens();
 
@@ -58,8 +62,15 @@ export class AuthService {
   }
 
   refreshToken(): Observable<IRefreshTokenResponse> {
-    TokenService.removeToken();
+    if (TokenService.rawToken && TokenService.accessTokenTimeout > 0) {
+      this._startRefreshTokenTimer();
+      return this.currentUser.pipe(
+        tap(user => this._user$.next(user)),
+        map(() => ({ access: TokenService.rawToken as string })),
+      );
+    }
 
+    TokenService.removeToken();
     const refreshToken = TokenService.rawRefreshToken || '';
     const body = new HttpParams().set('refresh', refreshToken);
     const url = `${Api.tokenUrl}/refresh/`;
@@ -105,9 +116,9 @@ export class AuthService {
   private _startRefreshTokenTimer(): void {
     if (!TokenService.token) return this._logger.debug('No token on timer start');
 
-    const expires = new Date(TokenService.token?.exp * 1000);
-    const timeout = expires.getTime() - Date.now() - 60 * 1000;
+    if (this._refreshTokenTimeout) this._stopRefreshTokenTimer();
 
+    const timeout = TokenService.accessTokenTimeout;
     this._refreshTokenTimeout = window.setTimeout(
       () => this.refreshToken().pipe(take(1)).subscribe(),
       timeout,
