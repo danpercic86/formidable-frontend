@@ -1,5 +1,16 @@
+@use '~apps/formidable/src/assets/styles/variables' as defaultVars;
+
 .banner {
-  color: white;
-  height: 50vh;
+  animation: beat 1.5s infinite alternate;
   background-color: #673ab7;
+  border-radius: 10px;
+  color: defaultVars.$white;
+  height: 50vh;
+  margin: 15px;
+}
+
+@keyframes beat {
+  to {
+    transform: scale(0.99);
+  }
 }

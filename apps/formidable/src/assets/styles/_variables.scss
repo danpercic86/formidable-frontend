@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+
+$accent-500: map.get(mat.$amber-palette, 500);
+$primary-500: map.get(mat.$deep-purple-palette, 500);
+
+$white: #ffffff;

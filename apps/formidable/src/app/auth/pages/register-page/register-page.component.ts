@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { BtnColors } from '@formidable/shared';
 import { CustomErrorStateMatcher } from '../../utils/error-state-matcher';
 import { AuthService } from '../../services/auth.service';
 
@@ -11,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPageComponent {
+  readonly btnColors = BtnColors;
   readonly form = this._formBuilder.group({
     email: [null, Validators.required],
     password1: [null, Validators.required],

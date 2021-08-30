@@ -4,7 +4,6 @@ export const BtnColors = {
   primary: 'primary',
   accent: 'accent',
   warn: 'warn',
-  link: 'link',
   white: undefined,
 } as const;
 

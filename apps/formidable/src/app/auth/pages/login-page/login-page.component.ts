@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { BtnColors } from '@formidable/shared';
 import { CustomErrorStateMatcher } from '../../utils/error-state-matcher';
 import { AuthService } from '../../services/auth.service';
 
@@ -12,15 +13,14 @@ import { AuthService } from '../../services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
+  readonly btnColors = BtnColors;
   readonly form = this._formBuilder.group({
     email: [null, Validators.required],
     password: [null, Validators.required],
   });
 
   readonly isLoading$ = new BehaviorSubject(false);
-
   readonly isAuthError$ = new BehaviorSubject(false);
-
   readonly matcher = new CustomErrorStateMatcher();
 
   constructor(

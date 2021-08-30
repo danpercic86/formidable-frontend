@@ -4,7 +4,6 @@
   "trailingComma": "all",
   "printWidth": 100,
   "singleQuote": true,
-  "jsxSingleQuote": true,
   "arrowParens": "avoid",
   "bracketSpacing": true,
   "overrides": [
@@ -15,6 +14,14 @@
       "options": {
         "singleQuote": true,
         "parser": "angular"
+      }
+    },
+    {
+      "files": [
+        "*.scss"
+      ],
+      "options": {
+        "singleQuote": true
       }
     }
   ]

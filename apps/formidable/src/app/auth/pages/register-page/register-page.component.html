@@ -1,10 +1,11 @@
 <section class="auth-container">
   <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
 
-  <mat-card *ngIf="(isLoading$ | async) === false as notLoading"
-            class="d-flex justify-content-center">
+  <mat-card
+    *ngIf="(isLoading$ | async) === false as notLoading"
+    class="d-flex justify-content-center"
+  >
     <form (ngSubmit)="onFormSubmit()" [formGroup]="form" class="d-flex flex-column">
-
       <h2 class="text-center pb-2 text-secondary">Register</h2>
 
       <mat-form-field class="full-width">
@@ -17,9 +18,8 @@
           title="First name"
         />
         <mat-error>
-          <span
-            *ngIf="!form.get('first_name')?.valid && form.get('first_name')?.touched"
-          >Please enter your first name</span
+          <span *ngIf="!form.get('first_name')?.valid && form.get('first_name')?.touched"
+            >Please enter your first name</span
           >
         </mat-error>
       </mat-form-field>
@@ -35,7 +35,7 @@
         />
         <mat-error>
           <span *ngIf="!form.get('last_name')?.valid && form.get('last_name')?.touched"
-          >Please enter your last name</span
+            >Please enter your last name</span
           >
         </mat-error>
       </mat-form-field>
@@ -52,7 +52,7 @@
         />
         <mat-error>
           <span *ngIf="!form.get('email')?.valid && form.get('email')?.touched"
-          >Please enter email</span
+            >Please enter email</span
           >
         </mat-error>
       </mat-form-field>
@@ -70,7 +70,7 @@
         />
         <mat-error>
           <span *ngIf="!form.get('password1')?.valid && form.get('password1')?.touched"
-          >Please enter Password</span
+            >Please enter Password</span
           >
         </mat-error>
       </mat-form-field>
@@ -88,7 +88,7 @@
         />
         <mat-error>
           <span *ngIf="!form.get('password2')?.valid && form.get('password2')?.touched"
-          >Please enter password confirmation</span
+            >Please enter password confirmation</span
           >
         </mat-error>
       </mat-form-field>
@@ -102,15 +102,12 @@
         class="flex-column align-self-center"
       ></formidable-button>
 
-      <h6 class="text-center fw-light pt-4">Already registered?</h6>
-
-      <formidable-button
-        [color]="'link'"
-        [matIcon]="'login'"
-        [routerLink]="['/auth/login']"
-        [text]="'Login'"
-        class="flex-column align-self-center"
-      ></formidable-button>
+      <formidable-second-option
+        [color]="btnColors.white"
+        [linkText]="'Login'"
+        [routerLink]="'/auth/login'"
+        [title]="'Already registered?'"
+      ></formidable-second-option>
     </form>
   </mat-card>
 </section>

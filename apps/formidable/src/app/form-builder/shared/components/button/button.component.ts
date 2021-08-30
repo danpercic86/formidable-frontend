@@ -20,8 +20,6 @@ export class ButtonComponent {
   @Input() matIcon?: string;
   @Input() loading = false;
   @Input() disabled = false;
-  @Input() routerLink: string | string[] = '';
-  @Input() small = false;
   @Input() color: BtnColor = BtnColors.primary;
   @Input() type: BtnType = BtnTypes.button;
   @Output() readonly action = new EventEmitter<MouseEvent | Event>();

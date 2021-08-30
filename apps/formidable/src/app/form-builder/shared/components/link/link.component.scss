@@ -1,0 +1,9 @@
+@use 'variables' as defaultVars;
+
+.primary {
+  color: defaultVars.$primary-500;
+}
+
+.accent {
+  color: defaultVars.$accent-500;
+}

@@ -1,28 +1,16 @@
-<a
-  *ngIf="color === 'link'; else button"
-  [routerLink]="routerLink"
-  class="text-primary"
-  mat-flat-button
+<button
+  (click)="action.emit($event)"
+  [color]="color"
+  [disabled]="disabled || loading"
+  [type]="type"
+  class="d-flex justify-content-between align-items-center formidable-button"
+  mat-raised-button
 >
-  {{ text }}
-</a>
+  <mat-spinner *ngIf="loading" [diameter]="24"></mat-spinner>
 
-<ng-template #button>
-  <button
-    (click)="action.emit($event)"
-    (keyup.enter)="action.emit($event)"
-    [color]="color"
-    [disabled]="disabled || loading"
-    [type]="type"
-    class="d-flex justify-content-between align-items-center formidable-button"
-    mat-raised-button
-  >
-    <mat-spinner *ngIf="loading" [diameter]="24"></mat-spinner>
+  <span [hidden]="loading">{{ text }}</span>
 
-    <span [hidden]="loading">{{ text }}</span>
-
-    <mat-icon *ngIf="matIcon" [hidden]="loading" fontSet="material-icons-round">{{
-      matIcon
-    }}</mat-icon>
-  </button>
-</ng-template>
+  <mat-icon *ngIf="matIcon" [hidden]="loading" fontSet="material-icons-round">{{
+    matIcon
+  }}</mat-icon>
+</button>
