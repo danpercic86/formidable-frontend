@@ -1,4 +1,6 @@
 <ng-container *ngIf="section$ | async as section">
+  <p [innerHTML]="section.description"></p>
+
   <formidable-form-builder
     #formBuilder
     (formSubmit)="submit($event)"

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { SectionsService } from '@builder/core';
 import { Required } from '@danpercic86/helpful-decorators';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { ISection } from '@builder/shared';
 import { IResponse } from '../../../../form-builder/shared/models/response.model';
 import { ResponsesService } from '../../../../form-builder/services/responses.service';
@@ -25,7 +25,7 @@ export class FormStepComponent implements OnInit {
     this.section$ = this._sectionsService.getByKey(this.sectionId);
   }
 
-  submit(data: Record<string, unknown>): void {
+  async submit(data: Record<string, unknown>): Promise<void> {
     // eslint-disable-next-line no-console
     console.log(data);
 
@@ -34,6 +34,6 @@ export class FormStepComponent implements OnInit {
       value: data[key] as string,
     }));
     // eslint-disable-next-line no-console
-    this._responsesService.post({ responses }, this.sectionId).subscribe(console.log);
+    await firstValueFrom(this._responsesService.post({ responses }, this.sectionId));
   }
 }

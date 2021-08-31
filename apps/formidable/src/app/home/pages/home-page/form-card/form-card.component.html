@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card mat-elevation-z10">
   <mat-card-header>
     <div class="example-header-image" mat-card-avatar></div>
     <mat-card-title>{{ form.name }}</mat-card-title>
@@ -15,7 +15,7 @@
     <p [innerHTML]="form.description" class="text-clip"></p>
   </mat-card-content>
 
-  <mat-card-actions class="d-flex justify-content-evenly">
+  <mat-card-actions class="d-flex justify-content-evenly my-2">
     <formidable-link
       [color]="btnColors.primary"
       [link]="'forms/' + form.id.toString() + '/sections'"
