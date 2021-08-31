@@ -1,4 +1,4 @@
-@use 'variables' as defaultVars;
+@use 'variables';
 
 a {
   font-size: 16px;
@@ -6,14 +6,14 @@ a {
 }
 
 .primary {
-  color: defaultVars.$primary-500;
+  color: variables.$primary-500;
 }
 
 .accent {
-  color: defaultVars.$accent-500;
+  color: variables.$accent-500;
 }
 
 mat-icon {
-  margin-bottom: 0.1rem;
-  margin-left: 7px;
+  margin-block-end: 0.1rem; // equal to margin-bottom
+  margin-inline-start: 7px; // equal to margin-left
 }

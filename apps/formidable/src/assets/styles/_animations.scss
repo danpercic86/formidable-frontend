@@ -1,0 +1,9 @@
+@mixin beat($scale: 0.99, $duration: 1.5s) {
+  @keyframes _beat {
+    to {
+      transform: scale($scale);
+    }
+  }
+
+  animation: _beat $duration infinite alternate;
+}

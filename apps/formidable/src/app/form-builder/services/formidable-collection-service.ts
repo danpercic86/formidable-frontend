@@ -6,7 +6,7 @@ import {
 import { distinctUntilChanged, filter, map, Observable, of, switchMap } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-interface FormidableEntityActionOptions {
+interface FormidableEntityActionOptions extends EntityActionOptions {
   readonly fetch?: boolean;
 }
 
@@ -18,7 +18,7 @@ export abstract class FormidableCollectionService<T> extends EntityCollectionSer
     super(entityName, _serviceElementsFactory);
   }
 
-  getAll(options?: EntityActionOptions & FormidableEntityActionOptions): Observable<T[]> {
+  getAll(options?: FormidableEntityActionOptions): Observable<T[]> {
     return this.loaded$.pipe(
       tap(loaded => {
         if (!loaded || options?.fetch) super.getAll(options);
@@ -28,10 +28,7 @@ export abstract class FormidableCollectionService<T> extends EntityCollectionSer
     );
   }
 
-  getByKey(
-    key: string,
-    options?: EntityActionOptions & FormidableEntityActionOptions,
-  ): Observable<T> {
+  getByKey(key: string, options?: FormidableEntityActionOptions): Observable<T> {
     if (options?.fetch) return super.getByKey(key, options);
     return this.collection$.pipe(
       map(collection => collection.entities[key]),

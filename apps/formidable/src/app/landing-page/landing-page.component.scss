@@ -1,7 +1,7 @@
-@use 'variables' as defaultVars;
+@use 'variables';
 
 ::ng-deep .email {
-  color: defaultVars.$primary-500;
+  color: variables.$primary-500;
 }
 
 mat-card {
@@ -9,5 +9,5 @@ mat-card {
 }
 
 [matListIcon] {
-  color: defaultVars.$accent-500;
+  color: variables.$accent-500;
 }
