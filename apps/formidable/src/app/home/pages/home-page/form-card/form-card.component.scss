@@ -1,16 +1,14 @@
+@use 'texts';
+
 .example-card {
   max-width: 400px;
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url('https://ac.upt.ro/wp-content/uploads/2021/02/cropped-Copy-of-Copy-of-Untitled-1-180x180.png');
   background-size: cover;
 }
 
 .text-clip {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @include texts.text-clip(3);
 }

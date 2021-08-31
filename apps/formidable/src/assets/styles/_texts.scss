@@ -1,5 +1,13 @@
-@use 'variables' as variables;
+@use 'variables';
 
 .primary-text {
   color: variables.$primary-500;
+}
+
+@mixin text-clip($lines: 1) {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines; /* number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
