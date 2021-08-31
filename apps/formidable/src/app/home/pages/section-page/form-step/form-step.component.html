@@ -1,19 +1,20 @@
-<ng-container *ngIf='section$ | async as section'>
+<ng-container *ngIf="section$ | async as section">
   <formidable-form-builder
     #formBuilder
-    (formSubmit)='submit($event)'
-    [buttonTemplate]='buttons'
-    [fields]='section.fields'
+    (formSubmit)="submit($event)"
+    [buttonTemplate]="buttons"
+    [fields]="section.fields"
   >
     <ng-template #buttons>
-      <div class='d-flex'>
-        <button mat-button matStepperPrevious>Back</button>
+      <div class="d-flex justify-content-between">
+        <button mat-button matStepperPrevious>Înapoi</button>
         <button
-          (click)='formBuilder.onSubmit($event)'
-          mat-button
+          (click)="formBuilder.onSubmit($event)"
+          [color]="'primary'"
+          mat-raised-button
           matStepperNext
         >
-          Next
+          Continuă
         </button>
       </div>
     </ng-template>

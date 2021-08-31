@@ -1,10 +1,29 @@
-<div *ngIf='form$ | async as form'>
-  <p>{{form.name}}</p>
+<div *ngIf="form$ | async as form" class="d-flex justify-content-center">
+  <mat-card class="example-card my-5 mat-elevation-z24">
+    <mat-card-header>
+      <div class="example-header-image" mat-card-avatar></div>
+      <mat-card-title>{{ form.name }}</mat-card-title>
+      <mat-card-subtitle>&nbsp;</mat-card-subtitle>
+    </mat-card-header>
 
-  <p>{{form.description}}</p>
+    <img
+      alt="UPT"
+      mat-card-image
+      src="https://www.tion.ro/wp-content/uploads/2019/06/universitatea_politehnica_timisoara_-_rectorat.jpg"
+    />
 
-  <formidable-button
-    (action)='goToSections(form.id)'
-    [text]="'Begin form'"
-  ></formidable-button>
+    <mat-card-content>
+      <p [innerHTML]="form.description"></p>
+    </mat-card-content>
+
+    <mat-card-actions class="d-flex justify-content-evenly my-3">
+      <formidable-link
+        [color]="btnColors.primary"
+        [link]="'forms/' + form.id.toString() + '/sections'"
+        [matIcon]="'checklist_rtl'"
+        [textColor]="textColors.accent"
+        [text]="'Aplică'"
+      ></formidable-link>
+    </mat-card-actions>
+  </mat-card>
 </div>

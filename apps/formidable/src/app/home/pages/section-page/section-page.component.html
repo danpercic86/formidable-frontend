@@ -1,6 +1,4 @@
-<mat-stepper
-  [orientation]="(stepperOrientation$ | async) ?? 'horizontal'"
->
+<mat-stepper [orientation]="(stepperOrientation$ | async) ?? 'horizontal'">
   <mat-step *ngFor="let section of minimalSections$ | async; trackBy: trackByFn">
     <ng-template matStepLabel>{{ section.name }}</ng-template>
 
@@ -19,7 +17,7 @@
     <ng-template matStepLabel>Done</ng-template>
     <ng-template matStepContent>
       <p>You are now done.</p>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious>Înapoi</button>
     </ng-template>
   </mat-step>
 </mat-stepper>

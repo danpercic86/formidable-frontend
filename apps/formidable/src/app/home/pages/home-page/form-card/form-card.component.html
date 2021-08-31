@@ -12,9 +12,7 @@
   />
 
   <mat-card-content>
-    <p class="text-clip">
-      {{ form.description }}
-    </p>
+    <p [innerHTML]="form.description" class="text-clip"></p>
   </mat-card-content>
 
   <mat-card-actions class="d-flex justify-content-evenly">
