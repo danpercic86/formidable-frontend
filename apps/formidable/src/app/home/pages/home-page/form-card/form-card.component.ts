@@ -14,4 +14,8 @@ export class FormCardComponent {
 
   readonly textColors = LinkTextColors;
   readonly btnColors = BtnColors;
+  readonly defaultImageUrl =
+    'https://www.tion.ro/wp-content/uploads/2019/06/universitatea_politehnica_timisoara_-_rectorat.jpg';
+  readonly defaultAvatarUrl =
+    'https://e7.pngegg.com/pngimages/218/302/png-clipart-square-academic-cap-graduation-ceremony-computer-icons-cap-angle-hat-thumbnail.png';
 }

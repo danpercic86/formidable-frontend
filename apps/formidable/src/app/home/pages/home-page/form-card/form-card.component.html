@@ -1,15 +1,15 @@
-<mat-card class="example-card mat-elevation-z10">
+<mat-card *ngIf="form" class="example-card mat-elevation-z10">
   <mat-card-header>
-    <div class="example-header-image" mat-card-avatar></div>
+    <div
+      [style.backgroundImage]="'url(' + (form.avatar || defaultAvatarUrl) + ')'"
+      [style.backgroundSize]="'cover'"
+      mat-card-avatar
+    ></div>
     <mat-card-title>{{ form.name }}</mat-card-title>
     <mat-card-subtitle>&nbsp;</mat-card-subtitle>
   </mat-card-header>
 
-  <img
-    alt="UPT"
-    mat-card-image
-    src="https://www.tion.ro/wp-content/uploads/2019/06/universitatea_politehnica_timisoara_-_rectorat.jpg"
-  />
+  <img [src]="form.image || defaultImageUrl" alt="UPT" mat-card-image />
 
   <mat-card-content>
     <p [innerHTML]="form.description" class="text-clip"></p>
