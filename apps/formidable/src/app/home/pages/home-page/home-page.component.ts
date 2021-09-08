@@ -9,7 +9,9 @@ import { Set } from 'immutable';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent {
-  readonly forms$ = this._formsService.getAll().pipe(map(forms => Set(forms)));
+  readonly forms$ = this._formsService
+    .getAll()
+    .pipe(map(forms => Set(forms.filter(f => f.order_index !== 99))));
 
   constructor(private readonly _formsService: FormsService) {}
 }

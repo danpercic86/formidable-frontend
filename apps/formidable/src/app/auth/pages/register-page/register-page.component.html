@@ -3,10 +3,10 @@
 
   <mat-card *ngIf="(isLoading$ | async) === false" class="d-flex justify-content-center">
     <form (ngSubmit)="onFormSubmit()" [formGroup]="form" class="d-flex flex-column">
-      <h2 class="text-center pb-2 text-secondary">Register</h2>
+      <h2 class="text-center pb-2 text-secondary">Înregistrare</h2>
 
       <mat-form-field class="full-width">
-        <mat-label>First name</mat-label>
+        <mat-label>Prenume</mat-label>
         <input
           [errorStateMatcher]="matcher"
           formControlName="first_name"
@@ -22,7 +22,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Last name</mat-label>
+        <mat-label>Nume</mat-label>
         <input
           [errorStateMatcher]="matcher"
           formControlName="last_name"
@@ -55,7 +55,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Password</mat-label>
+        <mat-label>Parolă</mat-label>
         <input
           [errorStateMatcher]="matcher"
           autocomplete="off"
@@ -73,7 +73,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Confirm password</mat-label>
+        <mat-label>Confirmă parola</mat-label>
         <input
           [errorStateMatcher]="matcher"
           autocomplete="off"
@@ -94,15 +94,15 @@
         (action)="onFormSubmit()"
         [disabled]="!form.valid"
         [matIcon]="'how_to_reg'"
-        [text]="'Register'"
+        [text]="'Înregistrare'"
         class="flex-column align-self-center"
       ></formidable-button>
 
       <formidable-second-option
         [color]="btnColors.white"
-        [linkText]="'Login'"
+        [linkText]="'Autentifică-te!'"
         [routerLink]="'/auth/login'"
-        [title]="'Already registered?'"
+        [title]="'Ai deja un cont?'"
       ></formidable-second-option>
     </form>
   </mat-card>

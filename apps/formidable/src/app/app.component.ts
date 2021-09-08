@@ -46,6 +46,12 @@ export class AppComponent {
       hide: (): Observable<boolean> => this._isNotLoggedIn,
     },
     {
+      text: 'Profil',
+      routerLink: '/home/forms/6/sections',
+      icon: 'person',
+      hide: (): Observable<boolean> => this._isNotLoggedIn,
+    },
+    {
       text: 'Logout',
       action: (): void => this.authService.logout(),
       icon: 'logout',

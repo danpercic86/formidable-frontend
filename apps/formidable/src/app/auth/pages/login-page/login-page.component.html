@@ -1,7 +1,7 @@
 <section class="auth-container">
   <mat-card class="d-flex justify-content-center">
     <form (ngSubmit)="onSubmit()" [formGroup]="form" class="d-flex flex-column">
-      <h2 class="text-center pb-2 text-secondary">Log In</h2>
+      <h2 class="text-center pb-2 text-secondary">Autentificare</h2>
 
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
@@ -20,13 +20,13 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Password</mat-label>
+        <mat-label>Parolă</mat-label>
         <input
           [errorStateMatcher]="matcher"
           autocomplete="off"
           formControlName="password"
           matInput
-          placeholder="Password"
+          placeholder="Parolă"
           title="Password"
           type="password"
         />
@@ -45,7 +45,7 @@
         (action)="onSubmit()"
         [disabled]="(!form.get('email')?.value && !form.get('password')?.value) || !form.valid"
         [loading]="(isLoading$ | async) ?? false"
-        [text]="'Login'"
+        [text]="'Autentificare'"
         [type]="'submit'"
         class="flex-column align-self-center"
         matIcon="login"
@@ -53,9 +53,9 @@
 
       <formidable-second-option
         [color]="btnColors.white"
-        [linkText]="'Register'"
+        [linkText]="'Înregistrează-te!'"
         [routerLink]="'/auth/register'"
-        [title]="'Don\'t have an account?'"
+        [title]="'Nu ai un cont?'"
       ></formidable-second-option>
     </form>
   </mat-card>

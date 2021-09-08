@@ -7,5 +7,6 @@ export interface IForm extends ICreatedModifiedModel {
   readonly description: string;
   readonly avatar?: string;
   readonly image?: string;
+  readonly order_index: number;
   readonly sections: Set<ISectionMinimal>;
 }

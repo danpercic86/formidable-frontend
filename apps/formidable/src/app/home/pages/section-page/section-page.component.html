@@ -13,11 +13,13 @@
     </ng-template>
   </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <ng-template matStepContent>
-      <p>You are now done.</p>
-      <button mat-button matStepperPrevious>Înapoi</button>
-    </ng-template>
-  </mat-step>
+  <ng-container *ngIf="minimalSections$ | async as sections">
+    <mat-step *ngIf="sections.count() > 1">
+      <ng-template matStepLabel>Finalizare</ng-template>
+      <ng-template matStepContent>
+        <p>Dosarul a fost transmis cu succes!</p>
+        <button mat-button matStepperPrevious>Înapoi</button>
+      </ng-template>
+    </mat-step>
+  </ng-container>
 </mat-stepper>

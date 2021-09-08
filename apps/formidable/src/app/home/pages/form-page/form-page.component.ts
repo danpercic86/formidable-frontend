@@ -31,8 +31,4 @@ export class FormPageComponent {
       getDataByKey(this._formsService),
     );
   }
-
-  async goToSections(formId: string): Promise<void> {
-    await this._router.navigate(['home', 'forms', formId, 'sections']);
-  }
 }
