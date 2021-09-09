@@ -75,7 +75,7 @@
     "@nrwl/tao": "12.8.0",
     "@nrwl/workspace": "12.8.0",
     "@types/jest": "27.0.1",
-    "@types/node": "16.7.8",
+    "@types/node": "16.9.0",
     "@typescript-eslint/eslint-plugin": "4.30.0",
     "@typescript-eslint/parser": "4.30.0",
     "@webcomponents/custom-elements": "^1.5.0",
