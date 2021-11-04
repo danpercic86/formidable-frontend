@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 
 $accent-500: map.get(mat.$amber-palette, 500);
 $accent-900: map.get(mat.$amber-palette, 900);
