@@ -1,38 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "analytics": false,
-    "defaultCollection": "@nrwl/angular",
-    "packageManager": "yarn"
-  },
-  "defaultProject": "formidable",
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
-  },
   "projects": {
     "formidable": {
       "projectType": "application",
@@ -49,18 +16,13 @@
             "polyfills": "apps/formidable/src/polyfills.ts",
             "tsConfig": "apps/formidable/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/formidable/src/favicon.ico",
-              "apps/formidable/src/assets"
-            ],
+            "assets": ["apps/formidable/src/favicon.ico", "apps/formidable/src/assets"],
             "styles": [
               "apps/formidable/src/styles.scss",
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "./apps/formidable/src/assets/styles"
-              ]
+              "includePaths": ["./apps/formidable/src/assets/styles"]
             },
             "scripts": []
           },
@@ -118,23 +80,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/formidable/src/**/*.ts",
-              "apps/formidable/src/**/*.html"
-            ]
-          }
+            "lintFilePatterns": ["apps/formidable/src/**/*.ts", "apps/formidable/src/**/*.html"]
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/formidable"
-          ],
+          "outputs": ["coverage/apps/formidable"],
           "options": {
             "jestConfig": "apps/formidable/jest.config.js",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "formidable-e2e": {
       "root": "apps/formidable-e2e",
@@ -157,12 +116,13 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/formidable-e2e/**/*.{js,ts}"
-            ]
-          }
+            "lintFilePatterns": ["apps/formidable-e2e/**/*.{js,ts}"]
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["formidable"]
     }
   }
 }
